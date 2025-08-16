@@ -30,25 +30,15 @@
     /* ====== PRELOADER ====== */
     .preloader{position:fixed; inset:0; display:grid; place-items:center; z-index:9999; background:
       radial-gradient(800px 560px at 30% 20%, #101728 0%, #0b0f14 45%, #080b10 100%);}    
-    .blob{
-      width: 120px; height: 120px; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      background: conic-gradient(from 90deg, var(--brand), var(--brand2));
-      filter: blur(1px) drop-shadow(0 10px 40px rgba(124,92,255,.45));
-      animation: blob 2.8s ease-in-out infinite;
-    }
+    .blob{ width: 120px; height: 120px; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      background: conic-gradient(from 90deg, var(--brand), var(--brand2)); filter: blur(1px) drop-shadow(0 10px 40px rgba(124,92,255,.45)); animation: blob 2.8s ease-in-out infinite;}
     .loader-text{margin-top:20px; letter-spacing:2px; color:var(--muted); font-size:14px; text-transform:uppercase}
-    @keyframes blob {
-      0%,100%{ transform: rotate(0deg) scale(1); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-      50%{ transform: rotate(180deg) scale(1.08); border-radius: 60% 40% 33% 67% / 56% 42% 58% 44%; }
-    }
+    @keyframes blob { 0%,100%{ transform: rotate(0deg) scale(1); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50%{ transform: rotate(180deg) scale(1.08); border-radius: 60% 40% 33% 67% / 56% 42% 58% 44%; } }
 
     /* ====== GUIDE OVERLAY ====== */
     .overlay{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:9998; backdrop-filter: blur(10px); background:rgba(4,6,10,.45)}
     .overlay.show{display:flex}
-    .guide{
-      width:min(720px, 92vw); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius); box-shadow: var(--shadow); padding:28px; position:relative; overflow:hidden;
-    }
+    .guide{ width:min(720px, 92vw); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); box-shadow: var(--shadow); padding:28px; position:relative; overflow:hidden; }
     .guide h2{margin:0 0 8px; font-size:28px}
     .guide p{margin:0 0 10px; color:var(--muted)}
     .chip{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:999px; background:rgba(124,92,255,.15); border:1px solid rgba(124,92,255,.35); margin:6px 8px 0 0; font-size:13px}
@@ -127,8 +117,8 @@
       <div class="chips">
         <span class="chip">1️⃣ Klik judul kategori</span>
         <span class="chip">2️⃣ Pilih paket</span>
-        <span class="chip">3️⃣ Isi email & password</span>
-        <span class="chip">4️⃣ Kirim via WA / TG</span>
+        <span class="chip">3️⃣ Isi data sesuai kategori</span>
+        <span class="chip">4️⃣ Preview → Kirim</span>
       </div>
       <button class="btn" id="btnMengerti">Saya Mengerti</button>
     </div>
@@ -146,7 +136,7 @@
   <main>
     <section class="hero wrap">
       <h1>Harga Jelas. Performa Kencang. Order Sekejap.</h1>
-      <p>Semua kebutuhanmu mulai dari bot WhatsApp/Telegram, panel Pterodactyl, sampai VPS – dalam satu tempat. Transparan, aman, dan cepat.</p>
+      <p>Semua kebutuhanmu mulai dari bot WhatsApp/Telegram, panel Pterodactyl, sampai VPS – dalam satu tempat. Terjamin, aman, dan cepat.</p>
       <div class="stats">
         <div class="stat">🔒 Proteksi data & pembayaran
           <div class="muted">Password diverifikasi lokal, tidak dikirim sebelum Anda setuju.</div>
@@ -302,18 +292,11 @@
       <div class="form" id="orderForm">
         <h3 style="margin:0 0 10px">📝 Form Request</h3>
         <div class="muted" id="pickedInfo">Belum ada paket dipilih.</div>
-        <div class="row" style="margin-top:10px">
-          <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="nama@email.com" required />
-            <div class="error" id="emailErr">Email tidak valid.</div>
-          </div>
-          <div>
-            <label for="password">Password (min. 8, campuran huruf & angka)</label>
-            <input type="password" id="password" placeholder="••••••••" required minlength="8" />
-            <div class="help">Gunakan minimal 1 huruf besar, 1 huruf kecil, dan 1 angka.</div>
-            <div class="error" id="passErr">Password masih lemah.</div>
-          </div>
+
+        <!-- Dinamis sesuai kategori -->
+        <div class="row" id="dynFields" style="margin-top:12px"></div>
+
+        <div class="row">
           <div>
             <label for="platform">Kirim ke</label>
             <div class="inline">
@@ -326,19 +309,19 @@
             <textarea id="catatan" placeholder="Contoh: Minta setup domain custom…"></textarea>
           </div>
         </div>
-        <div class="help">Dengan melanjutkan, Anda setuju data hanya dipakai untuk memproses pesanan.</div>
+
+        <div class="help">Cek preview dulu, lalu tekan Kirim. Data hanya dipakai untuk proses pesanan.</div>
         <div class="actions">
-          <button class="btn-wa" id="sendWA">Kirim via WhatsApp</button>
-          <button class="btn-tg" id="sendTG">Kirim via Telegram</button>
           <button class="btn-primary" id="previewMsg">Lihat Preview Pesan</button>
+          <button class="btn-wa" id="kirimBtn">Kirim</button>
         </div>
-        <div class="help" id="previewBox" style="display:none; margin-top:10px"></div>
+        <div class="help" id="previewBox" style="display:none; margin-top:10px; white-space:pre-wrap"></div>
       </div>
     </section>
   </main>
 
   <footer>
-    © <span id="year"></span> Aiss Official. Dibuat agar memudahkan customer memilih sesuai selera.
+    © <span id="year"></span> HostoX. Dibuat dengan cinta dan sedikit kafein.
   </footer>
 
   <script>
@@ -366,11 +349,9 @@
           head.setAttribute('aria-expanded', 'false');
           chev.style.transform = 'rotate(0)';
         } else {
-          // close others
           document.querySelectorAll('.acc-body').forEach(b => { b.style.maxHeight = 0; });
           document.querySelectorAll('.acc-head').forEach(h => h.setAttribute('aria-expanded','false'));
           document.querySelectorAll('.chev').forEach(c => c.style.transform = 'rotate(0)');
-          // open this
           body.style.maxHeight = body.scrollHeight + 'px';
           head.setAttribute('aria-expanded', 'true');
           chev.style.transform = 'rotate(180deg)';
@@ -378,9 +359,99 @@
       });
     });
 
-    // ===== Select package → populate form
+    // ===== Dinamis: struktur form per kategori
     let picked = null;
     const pickedInfo = document.getElementById('pickedInfo');
+    const dyn = document.getElementById('dynFields');
+
+    function fieldHtml(cat){
+      if(cat === 'Sewa Bot'){
+        return `
+        <div>
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" placeholder="Nama lengkap" required />
+          <div class="error" id="namaErr">Nama wajib diisi.</div>
+        </div>
+        <div>
+          <label for="hp">Nomor HP</label>
+          <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpErr">Nomor HP tidak valid.</div>
+        </div>
+        <div>
+          <label for="grup">Link Grup</label>
+          <input type="url" id="grup" placeholder="https://chat.whatsapp.com/... atau link Telegram" required />
+          <div class="error" id="grupErr">Link grup tidak valid.</div>
+        </div>`;
+      }
+      if(cat === 'Panel'){
+        return `
+        <div>
+          <label for="namaAwal">Nama Awal (untuk email)</label>
+          <input type="text" id="namaAwal" placeholder="contoh: johndoe" required />
+          <div class="help">Email akan otomatis menjadi <code>namaawal@gmail.com</code></div>
+          <div class="error" id="namaAwalErr">Nama awal wajib diisi.</div>
+        </div>
+        <div>
+          <label for="hp">Nomor HP</label>
+          <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpErr">Nomor HP tidak valid.</div>
+        </div>
+        <div>
+          <label for="emailAuto">Email (otomatis)</label>
+          <input type="text" id="emailAuto" readonly />
+        </div>
+        <div>
+          <label for="password">Password Panel (min. 8, huruf besar/kecil & angka)</label>
+          <input type="password" id="password" placeholder="••••••••" minlength="8" required />
+          <div class="error" id="passErr">Password masih lemah.</div>
+        </div>`;
+      }
+      if(cat === 'VPS'){
+        return `
+        <div>
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" placeholder="Nama lengkap" required />
+          <div class="error" id="namaErr">Nama wajib diisi.</div>
+        </div>
+        <div>
+          <label for="hp">Nomor HP</label>
+          <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpErr">Nomor HP tidak valid.</div>
+        </div>
+        <div>
+          <label for="region">Region VPS</label>
+          <select id="region">
+            <option value="SG">SG (Singapore)</option>
+            <option value="US">US (United States)</option>
+            <option value="EU">EU (Europe)</option>
+            <option value="ID">ID (Indonesia)</option>
+          </select>
+        </div>`;
+      }
+      // default untuk Jasa Bikin Bot
+      return `
+      <div>
+        <label for="nama">Nama</label>
+        <input type="text" id="nama" placeholder="Nama lengkap" required />
+        <div class="error" id="namaErr">Nama wajib diisi.</div>
+      </div>
+      <div>
+        <label for="hp">Nomor HP</label>
+        <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+        <div class="error" id="hpErr">Nomor HP tidak valid.</div>
+      </div>`;
+    }
+
+    function sanitizeNameToEmail(name){
+      return name.trim().toLowerCase().replace(/\s+/g,'.').replace(/[^a-z0-9._-]/g,'');
+    }
+
+    function updateEmailAuto(){
+      const el = document.getElementById('namaAwal');
+      const out = document.getElementById('emailAuto');
+      if(el && out){ out.value = sanitizeNameToEmail(el.value) + '@gmail.com'; }
+    }
+
     document.querySelectorAll('[data-select]').forEach(btn => {
       btn.addEventListener('click', () => {
         picked = {
@@ -389,64 +460,81 @@
           price: parseInt(btn.getAttribute('data-price'), 10)
         };
         pickedInfo.innerHTML = `Paket dipilih: <b>${picked.cat} — ${picked.plan}</b> (Rp ${picked.price.toLocaleString('id-ID')})`;
-        // Scroll ke form
+        dyn.innerHTML = fieldHtml(picked.cat);
+        const namaAwalEl = document.getElementById('namaAwal');
+        if(namaAwalEl){
+          namaAwalEl.addEventListener('input', updateEmailAuto);
+          updateEmailAuto();
+        }
         document.getElementById('orderForm').scrollIntoView({behavior:'smooth', block:'start'});
       });
     });
 
     // ===== Validation helpers
-    const email = document.getElementById('email');
-    const emailErr = document.getElementById('emailErr');
-    const pass = document.getElementById('password');
-    const passErr = document.getElementById('passErr');
+    function show(el, on){ if(!el) return; el.style.display = on ? 'block' : 'none'; }
+    function validateNama(){ const el = document.getElementById('nama') || document.getElementById('namaAwal'); const err = document.getElementById('namaErr') || document.getElementById('namaAwalErr'); const ok = !!(el && el.value.trim().length >= 2); show(err,!ok); return ok; }
+    function validateHP(){ const el = document.getElementById('hp'); const err = document.getElementById('hpErr'); if(!el) return true; const v = el.value.replace(/\s|-/g,''); const ok = /^\+?\d{9,15}$/.test(v) || /^0\d{9,13}$/.test(v); show(err,!ok); return ok; }
+    function validateGrup(){ const el = document.getElementById('grup'); const err = document.getElementById('grupErr'); if(!el) return true; try{ const u = new URL(el.value); const ok = /^https?:/.test(u.protocol); show(err,!ok); return ok; }catch(e){ show(err,true); return false; } }
+    function validatePass(){ const el = document.getElementById('password'); const err = document.getElementById('passErr'); if(!el) return true; const v = el.value; const ok = v.length >= 8 && /[a-z]/.test(v) && /[A-Z]/.test(v) && /\d/.test(v); show(err,!ok); return ok; }
 
-    function validateEmail(){
-      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
-      emailErr.style.display = ok ? 'none' : 'block';
-      return ok;
+    function guard(){
+      if(!picked){ alert('Silakan pilih paket terlebih dulu.'); return false; }
+      const cat = picked.cat;
+      const okNama = validateNama();
+      const okHP = validateHP();
+      const okGrup = (cat === 'Sewa Bot') ? validateGrup() : true;
+      const okPass = (cat === 'Panel') ? validatePass() : true;
+      return okNama && okHP && okGrup && okPass;
     }
-    function validatePass(){
-      const v = pass.value;
-      const ok = v.length >= 8 && /[a-z]/.test(v) && /[A-Z]/.test(v) && /\d/.test(v);
-      passErr.style.display = ok ? 'none' : 'block';
-      return ok;
-    }
-    email.addEventListener('input', validateEmail);
-    pass.addEventListener('input', validatePass);
 
-    // ===== Compose message
+    // ===== Compose message per kategori
     function composeMessage(){
       const id = 'REQ-' + Date.now().toString(36).toUpperCase();
       const note = (document.getElementById('catatan').value || '-').trim();
       const platform = document.querySelector('input[name="platform"]:checked')?.value || 'wa';
-      const lines = [
-        '*REQUEST ORDER*',
-        `ID : ${id}`,
-        `Kategori : ${picked? picked.cat : '-'}`,
-        `Paket : ${picked? picked.plan : '-'}`,
-        `Harga : ${picked? 'Rp ' + picked.price.toLocaleString('id-ID') : '-'}`,
-        `Email : ${email.value.trim()}`,
-        `Password : (diserahkan saat proses, sudah memenuhi syarat)`,
-        `Platform : ${platform.toUpperCase()}`,
-        `Catatan : ${note}`,
-      ];
-      return lines.join('\n');
+      const hp = document.getElementById('hp')?.value || '-';
+      let nama = document.getElementById('nama')?.value || '-';
+      let teks = '*REQUEST ORDER*\n';
+      teks += `ID : ${id}\n`;
+      teks += `Kategori : ${picked? picked.cat : '-'}\n`;
+      teks += `Paket : ${picked? picked.plan : '-'}\n`;
+      teks += `Harga : ${picked? 'Rp ' + picked.price.toLocaleString('id-ID') : '-'}\n`;
+
+      if(picked.cat === 'Sewa Bot'){
+        const grup = document.getElementById('grup')?.value || '-';
+        teks += `Nama : ${nama}\n`;
+        teks += `No HP : ${hp}\n`;
+        teks += `Link Grup : ${grup}\n`;
+      } else if(picked.cat === 'Panel'){
+        const namaAwal = document.getElementById('namaAwal')?.value || '';
+        const email = document.getElementById('emailAuto')?.value || (sanitizeNameToEmail(namaAwal)+'@gmail.com');
+        const pass = document.getElementById('password')?.value || '-';
+        teks += `Nama : ${namaAwal}\n`;
+        teks += `Email : ${email}\n`;
+        teks += `No HP : ${hp}\n`;
+        teks += `Password : ${pass}\n`;
+      } else if(picked.cat === 'VPS'){
+        const region = document.getElementById('region')?.value || '-';
+        teks += `Nama : ${nama}\n`;
+        teks += `No HP : ${hp}\n`;
+        teks += `Region : ${region}\n`;
+      } else { // Jasa Bikin Bot
+        teks += `Nama : ${nama}\n`;
+        teks += `No HP : ${hp}\n`;
+      }
+
+      teks += `Platform : ${platform.toUpperCase()}\n`;
+      teks += `Catatan : ${note}`;
+      return teks;
     }
 
-    function guard(){
-      if(!picked){ alert('Silakan pilih paket terlebih dulu.'); return false; }
-      if(!validateEmail()){ alert('Email belum valid.'); return false; }
-      if(!validatePass()){ alert('Password belum memenuhi syarat.'); return false; }
-      return true;
-    }
-
-    // ===== Send click handlers
+    // ===== Send helpers
     function openWA(text){
       const url = 'https://wa.me/6287831914759?text=' + encodeURIComponent(text);
       window.open(url, '_blank');
     }
     function openTG(text){
-      const url = 'https://t.me/AISSOFFICIALL?url=' + encodeURIComponent('') + '&text=' + encodeURIComponent(text);
+      const url = 'https://t.me/share/url?url=' + encodeURIComponent('') + '&text=' + encodeURIComponent(text);
       window.open(url, '_blank');
     }
 
@@ -457,13 +545,12 @@
       previewBox.style.display='block';
       previewBox.textContent = msg;
     });
-    document.getElementById('sendWA').addEventListener('click', ()=>{
+
+    document.getElementById('kirimBtn').addEventListener('click', ()=>{
       if(!guard()) return;
-      openWA(composeMessage());
-    });
-    document.getElementById('sendTG').addEventListener('click', ()=>{
-      if(!guard()) return;
-      openTG(composeMessage());
+      const msg = composeMessage();
+      const platform = document.querySelector('input[name="platform"]:checked')?.value || 'wa';
+      if(platform === 'wa') openWA(msg); else openTG(msg);
     });
 
     // footer year
