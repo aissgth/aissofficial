@@ -199,7 +199,7 @@
         <div class="accordion shine" data-acc>
           <div class="acc-head" role="button" aria-expanded="false">
             <div>
-              <div class="acc-title">🤖 Sewa Bot Premium</div>
+              <div class="acc-title">✨ Sewa Bot Premium</div>
               <div class="acc-desc">Bot WhatsApp siap pakai, 24 online</div>
             </div>
             <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -242,7 +242,7 @@
         <div class="accordion shine" data-acc>
           <div class="acc-head" role="button" aria-expanded="false">
             <div>
-              <div class="acc-title">🤖 Sewa Bot Vvip</div>
+              <div class="acc-title">👑 Sewa Bot Vvip</div>
               <div class="acc-desc">Bot WhatsApp siap pakai, 24 online</div>
             </div>
             <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -536,18 +536,33 @@
       // default untuk Jadi Bot
       return `
       <div>
-        <label for="nama">Nama</label>
+        <label for="nama">Nama Bot</label>
         <input type="text" id="nama" placeholder="Nama lengkap" required />
         <div class="error" id="namaErr">Nama wajib diisi.</div>
       </div>
       <div>
-        <label for="hp">Nomor HP</label>
+        <label for="nama">Nama Owner</label>
+        <input type="text" id="nama" placeholder="Nama lengkap" required />
+        <div class="error" id="namaErr">Nama wajib diisi.</div>
+      </div>
+      <div>
+        <label for="namaBot">Nama Bot</label>
+        <input type="text" id="namaBot" placeholder="Nama Bot" required />
+        <div class="error" id="namaBotErr">Nama Bot wajib diisi.</div>
+      </div>
+      <div>
+        <label for="namaOwner">Nama Owner</label>
+        <input type="text" id="namaOwner" placeholder="Nama Owner" required />
+        <div class="error" id="namaOwnerErr">Nama Owner wajib diisi.</div>
+      </div>
+      <div>
+        <label for="hp">Nomor HP Owner</label>
         <input type="tel" id="hp" placeholder="08xxx / 62xxx" required />
         <div class="error" id="hpErr">Nomor HP tidak valid.</div>
       </div>
       <div>
         <label for="hpBot">Nomor HP Bot</label>
-        <input type="tel" id="hpbot" placeholder="08xxx / 62xxx" required />
+        <input type="tel" id="hpBot" placeholder="08xxx / 62xxx" required />
         <div class="error" id="hpBotErr">Nomor HP tidak valid.</div>
       </div>`;
     }
@@ -630,11 +645,14 @@
         teks += `Nama : ${nama}\n`;
         teks += `No HP : ${hp}\n`;
         teks += `Region : ${region}\n`;
-      } else { // Jadi Bot
-        teks += `Nama Bot : ${nama}\n`;
-        teks += `Nama Owner : ${nama}\n`
+      } else if(picked.cat === 'Jadi Bot'){
+        const namaBot = document.getElementById('namaBot')?.value || '-';
+        const namaOwner = document.getElementById('namaOwner')?.value || '-';
+        const hpBot = document.getElementById('hpBot')?.value || '-';
+        teks += `Nama Bot : ${namaBot}\n`;
+        teks += `Nama Owner : ${namaOwner}\n`;
         teks += `No HP Owner : ${hp}\n`;
-        teks += `No Hp Bot : ${hpBot}\n`
+        teks += `No HP Bot : ${hpBot}\n`;
       }
 
       teks += `Platform : ${platform.toUpperCase()}\n`;
