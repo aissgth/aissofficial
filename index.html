@@ -588,6 +588,8 @@
     // ===== Validation helpers
     function show(el, on){ if(!el) return; el.style.display = on ? 'block' : 'none'; }
     function validateNama(){ const el = document.getElementById('nama') || document.getElementById('namaAwal'); const err = document.getElementById('namaErr') || document.getElementById('namaAwalErr'); const ok = !!(el && el.value.trim().length >= 2); show(err,!ok); return ok; }
+    function validateNamaOwner(){ const el = document.getElementById('namaOwner') || document.getElementById('namaOwner'); const err = document.getElementById('namaOwnerErr') || document.getElementById('namaOwnerErr'); const ok = !!(el && el.value.trim().length >= 2); show(err,!ok); return ok; }
+    function validateNamaBot(){ const el = document.getElementById('namaBot') || document.getElementById('namaBot'); const err = document.getElementById('namaBotErr') || document.getElementById('namaBotErr'); const ok = !!(el && el.value.trim().length >= 2); show(err,!ok); return ok; }
     function validateHP(){ const el = document.getElementById('hp'); const err = document.getElementById('hpErr'); if(!el) return true; const v = el.value.replace(/\s|-/g,''); const ok = /^\+?\d{9,15}$/.test(v) || /^0\d{9,13}$/.test(v); show(err,!ok); return ok; }
     function validateGrup(){ const el = document.getElementById('grup'); const err = document.getElementById('grupErr'); if(!el) return true; try{ const u = new URL(el.value); const ok = /^https?:/.test(u.protocol); show(err,!ok); return ok; }catch(e){ show(err,true); return false; } }
     function validatePass(){ const el = document.getElementById('password'); const err = document.getElementById('passErr'); if(!el) return true; const v = el.value; const ok = v.length >= 8 && /[a-z]/.test(v) && /[A-Z]/.test(v) && /\d/.test(v); show(err,!ok); return ok; }
@@ -597,11 +599,13 @@
       if(!picked){ alert('Silakan pilih paket terlebih dulu.'); return false; }
       const cat = picked.cat;
       const okNama = validateNama();
+      const okNamaOwner = validateNamaOwner();
+      const okNamaBot = validateNamaBot();
       const okHP = validateHP();
       const okHPBot = validateHPBot();
       const okGrup = (cat === 'Sewa Bot') ? validateGrup() : true;
       const okPass = (cat === 'Panel') ? validatePass() : true;
-      return okNama && okHP && okHPBot && okGrup && okPass;
+      return okNama && okNamaOwner && okNamaBot && okHP && okHPBot && okGrup && okPass;
     }
 
     // ===== Compose message per kategori
