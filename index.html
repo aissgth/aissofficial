@@ -548,7 +548,7 @@
       <div>
         <label for="hpBot">Nomor HP Bot</label>
         <input type="tel" id="hpbot" placeholder="08xxx / 62xxx" required />
-        <div class="error" id="hpbotErr">Nomor HP tidak valid.</div>
+        <div class="error" id="hpBotErr">Nomor HP tidak valid.</div>
       </div>`;
     }
 
@@ -596,7 +596,7 @@
       const okHPBot = validateHPBot();
       const okGrup = (cat === 'Sewa Bot') ? validateGrup() : true;
       const okPass = (cat === 'Panel') ? validatePass() : true;
-      return okNama && okHP && okGrup && okPass;
+      return okNama && okHP && okHPBot && okGrup && okPass;
     }
 
     // ===== Compose message per kategori
@@ -631,8 +631,9 @@
         teks += `No HP : ${hp}\n`;
         teks += `Region : ${region}\n`;
       } else { // Jadi Bot
-        teks += `Nama : ${nama}\n`;
-        teks += `No HP : ${hp}\n`;
+        teks += `Nama Bot : ${nama}\n`;
+        teks += `Nama Owner : ${nama}\n`
+        teks += `No HP Owner : ${hp}\n`;
         teks += `No Hp Bot : ${hpBot}\n`
       }
 
