@@ -27,6 +27,41 @@
       overflow-x:hidden; 
     }
 
+    .music-btn {
+      margin-left: 8px;
+      padding: 0 12px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+      color: var(--brand2);
+      font-size: 16px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .music-btn.active {
+      background: var(--brand2);
+      color: #000;
+    }
+
+    .clock {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 12px;
+      background: rgba(255,255,255,.05);
+      color: var(--brand2);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 90px;
+      height: 40px;
+      text-align: center;
+    }
+   
     /* ====== PRELOADER ====== */
     .preloader{position:fixed; inset:0; display:grid; place-items:center; z-index:9999; background:
       radial-gradient(800px 560px at 30% 20%, #101728 0%, #0b0f14 45%, #080b10 100%);}    
@@ -128,11 +163,19 @@
     <div class="wrap nav">
       <div class="brand"><span class="spark"></span> <span>AissOfficial</span></div>
       <div class="cta">
+        <button id="musicBtn" class="music-btn">🎵</button>
+        <div id="clock" class="clock"></div>
         <button class="ghost" onclick="document.getElementById('guideOverlay').classList.add('show')">Panduan</button>
       </div>
     </div>
   </header>
 
+      <!-- audio tersembunyi -->
+  <audio id="bgMusic" loop>
+    <source src="https://files.catbox.moe/fxnysm.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
+ 
   <main>
     <section class="hero wrap">
       <h1>Harga Jelas. Performa Kencang. Order Sekejap.</h1>
@@ -168,28 +211,28 @@
                 <div class="title">Bot Reguler</div>
                 <div class="muted">Limit Terbatas Tanpa Akses Premium</div>
                 <div class="price">Rp 3.000 / 2 Minggu</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler" data-price="3000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler 2 Minggu" data-price="3000">Pilih Paket</button>
               </div>
               <div class="card">
                 <div class="badge">Bot WhatsApp</div>
                 <div class="title">Bot Reguler</div>
                 <div class="muted">Limit Terbatas Tanpa Akses Premium</div>
                 <div class="price">Rp 6.000 / 1 bulan</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler" data-price="6000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler 1 Bulan" data-price="6000">Pilih Paket</button>
               </div>
               <div class="card">
                 <div class="badge">Bot WhatsApp</div>
                 <div class="title">Bot Reguler</div>
                 <div class="muted">Limit Terbatas Tanpa Akses Premium</div>
                 <div class="price">Rp 10.000 / 2 bulan</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler" data-price="10000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler 2 Bulan" data-price="10000">Pilih Paket</button>
               </div>
               <div class="card">
                 <div class="badge">Bot WhatsApp</div>
                 <div class="title">Bot Reguler</div>
                 <div class="muted">Limit Terbatas Tanpa Akses Premium</div>
                 <div class="price">Rp 17.000 / permanen</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler" data-price="17000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler Permanen" data-price="17000">Pilih Paket</button>
               </div>
             </div>
           </div>
@@ -211,28 +254,28 @@
                 <div class="title">Bot Premium</div>
                 <div class="muted">Limit Tanpa Batas & Akses Fitur Premium ( hanya yang sewa )</div>
                 <div class="price">Rp 5.000 / 2 Minggu</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium" data-price="5000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium 2 Minggu" data-price="5000">Pilih Paket</button>
               </div>
               <div class="card">
                 <div class="badge">Bot WhatsApp</div>
                 <div class="title">Bot Premium</div>
                 <div class="muted">Limit Tanpa Batas & Akses Fitur Premium ( hanya yang sewa )</div>
                 <div class="price">Rp 9.000 / 1 bulan</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium" data-price="9000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium 1 Bulan" data-price="9000">Pilih Paket</button>
               </div>
               <div class="card">
                 <div class="badge">Bot WhatsApp</div>
                 <div class="title">Bot Premium</div>
                 <div class="muted">Limit Tanpa Batas & Akses Fitur Premium ( hanya yang sewa )</div>
                 <div class="price">Rp 12.000 / 2 bulan</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium" data-price="12000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium 2 Bulan" data-price="12000">Pilih Paket</button>
               </div>
               <div class="card">
                 <div class="badge">Bot WhatsApp</div>
                 <div class="title">Bot Premium</div>
                 <div class="muted">Limit Tanpa Batas & Akses Fitur Premium ( hanya yang sewa )</div>
                 <div class="price">Rp 20.000 / permanen</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium" data-price="20000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium Permanen" data-price="20000">Pilih Paket</button>
               </div>
             </div>
           </div>
@@ -254,28 +297,28 @@
                 <div class="title">Bot Vvip</div>
                 <div class="muted">Mendapatkan Limit Tanpa Batas & Premium Untuk 1 Group</div>
                 <div class="price">Rp 7.000 / 2 Minggu</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip" data-price="7000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip 2 Minggu" data-price="7000">Pilih Paket</button>
               </div>
               <div class="card">
                 <div class="badge">Bot WhatsApp</div>
                 <div class="title">Bot Vvip</div>
                 <div class="muted">Mendapatkan Limit Tanpa Batas & Premium Untuk 1 Group</div>
                 <div class="price">Rp 13.000 / 1 bulan</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip" data-price="13000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip 1 Bulan" data-price="13000">Pilih Paket</button>
               </div>
               <div class="card">
                 <div class="badge">Bot WhatsApp</div>
                 <div class="title">Bot Vvip</div>
                 <div class="muted">Mendapatkan Limit Tanpa Batas & Premium Untuk 1 Group</div>
                 <div class="price">Rp 19.000 / 2 bulan</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip" data-price="19000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip 2 Bulan" data-price="19000">Pilih Paket</button>
               </div>
               <div class="card">
                 <div class="badge">Bot WhatsApp</div>
                 <div class="title">Bot Vvip</div>
                 <div class="muted">Mendapatkan Limit Tanpa Batas & Premium Untuk 1 Group</div>
                 <div class="price">Rp 28.000 / permanen</div>
-                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip" data-price="28000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip Permanen" data-price="28000">Pilih Paket</button>
               </div>
             </div>
           </div>
@@ -452,7 +495,7 @@
                 <div class="title">VPS Ultimate</div>
                 <div class="muted">RAM 16GB • CORE 8GB</div>
                 <div class="price">Rp 85.000 / bln</div>
-                <button class="btn-primary" data-select data-cat="VPS" data-plan="Ultimate" data-price="90000">Pilih Paket</button>
+                <button class="btn-primary" data-select data-cat="VPS" data-plan="Ultimate" data-price="85000">Pilih Paket</button>
               </div>
             </div>
           </div>
@@ -598,24 +641,32 @@
             <option value="ID">ID (Indonesia)</option>
           </select>
         </div>`;
-      }
-      // default untuk Jadi Bot
-      return `
-      <div>
+      } return `
+        <div>
           <label for="nama">Nama</label>
           <input type="text" id="nama" placeholder="Nama lengkap" required />
           <div class="error" id="namaErr">Nama wajib diisi.</div>
-      </div>
-      <div>
-        <label for="hp">Nomor HP</label>
-        <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
-        <div class="error" id="hpErr">Nomor HP tidak valid.</div>
-      </div>
-      <div>
-        <label for="hpBot">Nomor HP</label>
-        <input type="tel" id="hpBot" placeholder="08xxx / +62xxx" required />
-        <div class="error" id="hpBotErr">Nomor HP tidak valid.</div>
-      </div>
+        </div>
+        <div>
+          <label for="botName">Nama Bot</label>
+          <input type="text" id="botName" placeholder="Nama bot kamu" required />
+          <div class="error" id="botNameErr">Nama bot wajib diisi.</div>
+        </div>
+        <div>
+          <label for="ownerName">Nama Owner</label>
+          <input type="text" id="ownerName" placeholder="Nama owner bot" required />
+          <div class="error" id="ownerNameErr">Nama owner wajib diisi.</div>
+        </div>
+        <div>
+          <label for="hpBot">Nomor Bot</label>
+          <input type="tel" id="hpBot" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpBotErr">Nomor bot tidak valid.</div>
+        </div>
+        <div>
+          <label for="hp">Nomor Owner</label>
+          <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpErr">Nomor Owmer tidak valid.</div>
+        </div>
       `;
     }
 
@@ -654,16 +705,45 @@
     function validateGrup(){ const el = document.getElementById('grup'); const err = document.getElementById('grupErr'); if(!el) return true; try{ const u = new URL(el.value); const ok = /^https?:/.test(u.protocol); show(err,!ok); return ok; }catch(e){ show(err,true); return false; } }
     function validatePass(){ const el = document.getElementById('password'); const err = document.getElementById('passErr'); if(!el) return true; const v = el.value; const ok = v.length >= 8 && /[a-z]/.test(v) && /[A-Z]/.test(v) && /\d/.test(v); show(err,!ok); return ok; }
     function validateHPBot(){ const el = document.getElementById('hpBot'); const err = document.getElementById('hpBotErr'); if(!el) return true; const v = el.value.replace(/\s|-/g,''); const ok = /^\+?\d{9,15}$/.test(v) || /^0\d{9,13}$/.test(v); show(err,!ok); return ok; }
+    function validateOwnerName(){
+      const el = document.getElementById('ownerName');
+      const err = document.getElementById('ownerNameErr');
+      if(!el) return true;
+      const ok = el.value.trim().length >= 2;
+      show(err, !ok);
+      return ok;
+    }
 
+    function validateBotName(){
+      const el = document.getElementById('botName');
+      const err = document.getElementById('botNameErr');
+      if(!el) return true;
+      const ok = el.value.trim().length >= 2;
+      show(err, !ok);
+      return ok;
+    }
     function guard(){
       if(!picked){ alert('Silakan pilih paket terlebih dulu.'); return false; }
       const cat = picked.cat;
       const okNama = validateNama();
       const okHP = validateHP();
       const okHPBot = validateHPBot();
-      const okGrup = (cat === 'Sewa Bot') ? validateGrup() : true;
-      const okPass = (cat === 'Panel') ? validatePass() : true;
-      return okNama && okHP && okHPBot && okGrup && okPass;
+      const okOwnerName = validateOwnerName();
+      const okBotName = validateBotName();
+  
+    if(cat === 'Jadi Bot'){
+      return okNama && okHP && okHPBot && okOwnerName && okBotName;
+    }
+    if(cat === 'Panel'){
+      return okNama && okHP && validatePass();
+    }
+    if(cat === 'Sewa Bot'){
+      return okNama && okHP && validateGrup();
+    }
+    if(cat === 'VPS'){
+      return okNama && okHP;
+    }
+      return true;
     }
 
     // ===== Compose message per kategori
@@ -698,10 +778,15 @@
         teks += `No HP : ${hp}\n`;
         teks += `Region : ${region}\n`;
       } else { 
-        const hpBot = document.getElementById('hpBot')?.value || '-';
-        teks += `Nama : ${nama}\n`
-        teks += `No HP : ${hp}\n`;
+        const ownerName = document.getElementById('ownerName')?.value || '-';
+        const botName   = document.getElementById('botName')?.value || '-';
+        const hpBot     = document.getElementById('hpBot')?.value || '-';
+
+        teks += `Nama : ${nama}\n`;
         teks += `No Bot : ${hpBot}\n`;
+        teks += `No Owner : ${hp}\n`;
+        teks += `Nama Bot : ${botName}\n`;
+        teks += `Nama Owner : ${ownerName}\n`;
       }
 
       teks += `Platform : ${platform.toUpperCase()}\n`;
@@ -736,6 +821,32 @@
 
     // footer year
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+   
+    function updateClock(){
+       const now = new Date();
+       const jam   = String(now.getHours()).padStart(2,'0');
+       const menit = String(now.getMinutes()).padStart(2,'0');
+       const detik = String(now.getSeconds()).padStart(2,'0');
+       document.getElementById('clock').textContent = `${jam}:${menit}:${detik}`;
+    }  
+       setInterval(updateClock, 1000);
+       updateClock(); 
+    
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+
+    musicBtn.addEventListener('click', () => {
+      if (music.paused) {
+      music.play();
+      musicBtn.classList.add('active');
+      musicBtn.textContent = '⏸';
+    } else {
+      music.pause();
+      musicBtn.classList.remove('active');
+      musicBtn.textContent = '▶️';
+      }
+    });
+
+    </script>
+  </body>
 </html>
