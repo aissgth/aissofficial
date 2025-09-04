@@ -125,24 +125,77 @@
       cursor: pointer;
       font-weight: 600;
     }
+    
+    /* Import font digital */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap');
 
     .clock {
-      font-size: 16px;
-      font-weight: 600;
-      padding: 8px 16px;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 12px;
-      background: rgba(255,255,255,.05);
-      color: var(--brand2);
-
+      margin: 0 auto 20px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-width: 90px;
-      height: 40px;
+  
+      font-family: 'Orbitron', monospace;
+      font-size: 36px;
+      font-weight: 700;
+      color: #00ffd0;
+
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(0, 255, 208, 0.4);
+      border-radius: 12px;
+      padding: 12px 28px;
       text-align: center;
+
+      box-shadow: 0 0 15px rgba(0, 255, 208, 0.6),
+              0 0 30px rgba(0, 255, 208, 0.4);
+      animation: glowPulse 1.6s infinite alternate;
     }
-   
+
+    @keyframes glowPulse {
+      from { box-shadow: 0 0 8px rgba(0, 255, 208, 0.4); }
+      to   { box-shadow: 0 0 22px rgba(0, 255, 208, 0.8); }
+    }
+
+    /* titik dua berkedip */
+    .clock span.blink {
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+    
+    .clock span.blink.hide {
+      opacity: 0;
+    }
+    
+    
+    @keyframes scrollDate {
+      from { transform: translateX(100%); }
+      to   { transform: translateX(-100%); }
+    }
+    .date-marquee {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 6px;
+    }
+
+    .date-marquee span {
+      display: inline-block;
+      padding-left: 10%;
+      animation: scrollDate 12s linear infinite;
+      font-size: 25px;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    
+    .colon {
+      animation: blink 1s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    
     /* ====== PRELOADER ====== */
     .preloader{position:fixed; inset:0; display:grid; place-items:center; z-index:9999; background:
       radial-gradient(800px 560px at 30% 20%, #101728 0%, #0b0f14 45%, #080b10 100%);}    
@@ -244,9 +297,8 @@
          <div class="wrap nav">
            <div class="brand"><span class="spark"></span> <span>AissOfficial</span></div>
              <div class="cta">
-               <div id="clock" class="clock"></div>
+               <button class="music-btn" onclick="document.getElementById('musicOverlay').classList.add('show')">🎵</button>               
                <button class="ghost" onclick="document.getElementById('guideOverlay').classList.add('show')">Panduan</button>
-               <button class="music-btn" onclick="document.getElementById('musicOverlay').classList.add('show')">🎵</button>
            </div>
          </div>
        </header>
@@ -272,6 +324,17 @@
  
   <main>
     <section class="hero wrap">
+      <div id="clock" class="clock">
+        <div class="time">
+          <span id="hours">00</span><span class="colon">  :</span>
+          <span id="minutes">00</span><span class="colon">  :</span>
+          <span id="seconds">00</span>
+        </div>
+        <div class="date-marquee">
+          <span id="dateText">Senin, 04 September 2025</span>
+        </div>
+      </div>
+      
       <h1>Harga Jelas. Performa Kencang. Order Sekejap.</h1>
       <p>Semua kebutuhanmu mulai dari bot WhatsApp/Telegram, panel Pterodactyl, sampai VPS – dalam satu tempat. Terjamin, aman, dan cepat.</p>
       <div class="stats">
@@ -918,15 +981,27 @@
     // footer year
     document.getElementById('year').textContent = new Date().getFullYear();
    
-    function updateClock(){
-       const now = new Date();
-       const jam   = String(now.getHours()).padStart(2,'0');
-       const menit = String(now.getMinutes()).padStart(2,'0');
-       const detik = String(now.getSeconds()).padStart(2,'0');
-       document.getElementById('clock').textContent = `${jam}:${menit}:${detik}`;
-    }  
-       setInterval(updateClock, 1000);
-       updateClock(); 
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('hours').textContent   = String(now.getHours()).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(now.getSeconds()).padStart(2, '0');
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function updateDate() {
+      const now = new Date();
+      const hari = now.toLocaleDateString('id-ID', { weekday: 'long' });
+      const tanggal = now.getDate();
+      const bulan = now.toLocaleDateString('id-ID', { month: 'long' });
+      const tahun = now.getFullYear();
+
+      document.getElementById('dateText').textContent = 
+      `${hari}, ${tanggal} ${bulan} ${tahun}`;
+    }
+    setInterval(updateDate, 60000);
+    updateDate();
     
        const playlist = [
     {
