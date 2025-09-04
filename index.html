@@ -27,22 +27,97 @@
       overflow-x:hidden; 
     }
 
-    .music-btn {
-      margin-left: 8px;
-      padding: 0 12px;
-      height: 40px;
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .overlay.show { display: flex; }
+
+    .overlay-content {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 320px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      color: white;
+    }
+
+    .cover-art {
+      width: 120px;
+      height: 120px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.05);
-      color: var(--brand2);
+      margin: 10px auto;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,.2);
+    }
+
+    .song-title {
+      font-weight: 600;
+      margin: 8px 0;
+    }
+
+    .music-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 15px 0;
+    }
+
+    .music-controls button {
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.1);
+      color: white;
       font-size: 16px;
       cursor: pointer;
       transition: .2s;
     }
 
-    .music-btn.active {
+    .music-controls button:hover {
       background: var(--brand2);
       color: #000;
+    }
+
+    .music-btn {
+      width: 25px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 10px;
+      background: rgba(255,255,255,.05);
+  
+      color: var(--brand2);
+      font-size: 12px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .music-btn:hover {
+      background: rgba(255,255,255,.12);
+    }
+
+    .close-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: none;
+      background: var(--brand2);
+      color: #000;
+      cursor: pointer;
+      font-weight: 600;
     }
 
     .clock {
@@ -133,48 +208,62 @@
     /* small fx */
     .shine{position:relative; isolation:isolate}
     .shine:before{content:""; position:absolute; inset:-2px; border-radius:inherit; background: conic-gradient(from 0deg, rgba(124,92,255,.0), rgba(124,92,255,.45), rgba(0,255,208,.35), rgba(124,92,255,.0)); filter: blur(20px); z-index:-1; opacity:.3}
-  </style>
-</head>
+    </style>
+  </head>
 <body>
-  <!-- PRELOADER -->
-  <div class="preloader" id="preloader">
-    <div>
-      <div class="blob"></div>
-      <div class="loader-text">memuat halaman…</div>
-    </div>
-  </div>
+       <!-- PRELOADER -->
+       <div class="preloader" id="preloader">
+         <div>
+           <div class="blob"></div>
+             <div class="loader-text">memuat halaman…</div>
+         </div>
+       </div>
 
-  <!-- GUIDE OVERLAY -->
-  <div class="overlay" id="guideOverlay" aria-modal="true" role="dialog">
-    <div class="guide shine">
-      <h2>Selamat Datang! 👋</h2>
-      <p>Ini adalah portal cepat untuk <b>sewa bot</b>, <b>jadi bot</b>, <b>panel</b>, dan <b>VPS</b>. Klik setiap judul kategori untuk membuka <i>slide harga</i>, pilih paket, lalu kirim request via WhatsApp/Telegram.</p>
-      <div class="chips">
-        <span class="chip">1️⃣ Klik judul kategori</span>
-        <span class="chip">2️⃣ Pilih paket</span>
-        <span class="chip">3️⃣ Isi data sesuai kategori</span>
-        <span class="chip">4️⃣ Preview → Kirim</span>
+       <!-- GUIDE OVERLAY -->
+       <div class="overlay" id="guideOverlay" aria-modal="true" role="dialog">
+         <div class="guide shine">
+           <h2>Selamat Datang! 👋</h2>
+           <p>Ini adalah portal cepat untuk <b>sewa bot</b>, <b>jadi bot</b>, <b>panel</b>, dan <b>VPS</b>. Klik setiap judul kategori untuk membuka <i>slide harga</i>, pilih paket, lalu kirim request via WhatsApp/Telegram.</p>
+           <div class="chips">
+             <span class="chip">1️⃣ Klik judul kategori</span>
+             <span class="chip">2️⃣ Pilih paket</span>
+             <span class="chip">3️⃣ Isi data sesuai kategori</span>
+             <span class="chip">4️⃣ Preview → Kirim</span>
+           </div>
+           <button class="btn" id="btnMengerti">Saya Mengerti</button>
+         </div>
+       </div>
+
+       <header>
+         <div class="wrap nav">
+           <div class="brand"><span class="spark"></span> <span>AissOfficial</span></div>
+             <div class="cta">
+               <button class="music-btn" onclick="document.getElementById('musicOverlay').classList.add('show')">🎵</button>
+               <div id="clock" class="clock"></div>
+               <button class="ghost" onclick="document.getElementById('guideOverlay').classList.add('show')">Panduan</button>
+           </div>
+         </div>
+       </header>
+
+    
+      <div id="musicOverlay" class="overlay">
+        <div class="overlay-content">
+          <h2>🎶 Pemutar Musik</h2>
+            <img id="coverArt" src="" alt="Cover" class="cover-art">
+
+            <p id="currentSong" class="song-title">Judul Lagu</p>
+
+        <div class="music-controls">
+          <button id="prevBtn">⏮</button>
+          <button id="playPauseBtn">▶️</button>
+          <button id="nextBtn">⏭</button>
+        </div>
+
+          <button class="close-btn" onclick="closeMusic()">Tutup</button>
+        </div>
       </div>
-      <button class="btn" id="btnMengerti">Saya Mengerti</button>
-    </div>
-  </div>
 
-  <header>
-    <div class="wrap nav">
-      <div class="brand"><span class="spark"></span> <span>AissOfficial</span></div>
-      <div class="cta">
-        <button id="musicBtn" class="music-btn">🎵</button>
-        <div id="clock" class="clock"></div>
-        <button class="ghost" onclick="document.getElementById('guideOverlay').classList.add('show')">Panduan</button>
-      </div>
-    </div>
-  </header>
-
-      <!-- audio tersembunyi -->
-  <audio id="bgMusic" loop>
-    <source src="https://files.catbox.moe/fxnysm.mp3" type="audio/mpeg">
-    Browser kamu tidak mendukung audio.
-  </audio>
+    <audio id="bgMusic" preload="auto"></audio>
  
   <main>
     <section class="hero wrap">
@@ -329,7 +418,7 @@
           <div class="acc-head" role="button" aria-expanded="false">
             <div>
               <div class="acc-title">🧩 Jadi Bot</div>
-              <div class="acc-desc">Custom fitur, integrasi API, panel admin</div>
+              <div class="acc-desc">Terima Jadi, Tanpa Bermodalkan Panel</div>
             </div>
             <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </div>
@@ -488,12 +577,14 @@
               <div class="card">
                 <div class="title">VPS Vvip</div>
                 <div class="muted">RAM 16GB • CORE 4GB</div>
+                <i>SOLD STOKE</i>
                 <div class="price">Rp 65.000 / bln</div>
                 <button class="btn-primary" data-select data-cat="VPS" data-plan="Vvip" data-price="65000">Pilih Paket</button>
               </div>
               <div class="card">
                 <div class="title">VPS Ultimate</div>
                 <div class="muted">RAM 16GB • CORE 8GB</div>
+                <i>SOLD STOKE</i>
                 <div class="price">Rp 85.000 / bln</div>
                 <button class="btn-primary" data-select data-cat="VPS" data-plan="Ultimate" data-price="85000">Pilih Paket</button>
               </div>
@@ -665,7 +756,7 @@
         <div>
           <label for="hp">Nomor Owner</label>
           <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
-          <div class="error" id="hpErr">Nomor Owmer tidak valid.</div>
+          <div class="error" id="hpErr">Nomor HP tidak valid.</div>
         </div>
       `;
     }
@@ -832,21 +923,81 @@
        setInterval(updateClock, 1000);
        updateClock(); 
     
-    const music = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
+       const playlist = [
+    {
+       title: "Powered By Aiss Official",
+       src: "https://files.catbox.moe/5d9ei6.mp3",
+       cover: "https://files.catbox.moe/ue7x1i.jpg"
+    },
+    {
+       title: "Powered By Aiss Official",
+       src: "https://files.catbox.moe/k3xguo.mp3",
+       cover: "https://files.catbox.moe/7nse3a.jpg"
+    },
+    {
+       title: "Powered By Aiss Official",
+       src: "https://files.catbox.moe/0ezudr.mp3",
+       cover: "https://files.catbox.moe/fnz9x2.jpg"
+    },
+    {
+       title: "Powered By Aiss Official",
+       src: "https://files.catbox.moe/ftvnln.mp3",
+       cover: "https://files.catbox.moe/90wta0.jpg"
+    },
+    {
+       title: "Powered By Aiss Official",
+       src: "https://files.catbox.moe/4srs3w.mp3",
+       cover: "https://files.catbox.moe/10ycky.jpg"
+    }
+  ];
 
-    musicBtn.addEventListener('click', () => {
-      if (music.paused) {
-      music.play();
-      musicBtn.classList.add('active');
-      musicBtn.textContent = '⏸';
-    } else {
-      music.pause();
-      musicBtn.classList.remove('active');
-      musicBtn.textContent = '▶️';
-      }
+    let currentIndex = 0;
+      const audio = document.getElementById("bgMusic");
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const currentSong = document.getElementById("currentSong");
+      const coverArt = document.getElementById("coverArt");
+
+    function loadSong(index) {
+      const song = playlist[index];
+      audio.src = song.src;
+      currentSong.textContent = song.title;
+      coverArt.src = song.cover;
+    }
+    loadSong(currentIndex);
+
+    function playSong() {
+      audio.play();
+      playPauseBtn.textContent = "⏸";
+    }
+
+    function pauseSong() {
+      audio.pause();
+      playPauseBtn.textContent = "▶️";
+    }
+
+    playPauseBtn.addEventListener("click", () => {
+      if (audio.paused) playSong();
+      else pauseSong();
     });
+
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      loadSong(currentIndex);
+      playSong();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % playlist.length;
+      loadSong(currentIndex);
+      playSong();
+    });
+
+    function closeMusic() {
+      document.getElementById("musicOverlay").classList.remove("show");
+    }
 
     </script>
   </body>
-</html>
+                  </html>
