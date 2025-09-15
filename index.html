@@ -1,1 +1,2054 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Harga Hosting / Bot / Panel / VPS</title>
+  <meta name="description" content="Daftar harga sewa bot, jadi bot, panel, dan VPS. Order mudah via WhatsApp atau Telegram." />
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --card: rgba(255,255,255,0.06);
+      --text: #eaf2ff;
+      --muted: #a9b3c7;
+      --brand: #7c5cff;
+      --brand2: #00ffd0;
+      --success:#25d366;
+      --tg:#2aabee;
+      --danger:#ff5c7c;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color:var(--text); background: radial-gradient(1200px 800px at 10% 10%, #0e1420 0%, #0b0f14 50%, #080b10 100%);
+      overflow-x:hidden; 
+    }
+    
+    .cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .overlay.show { display: flex; }
+
+    .overlay-content {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 320px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      color: white;
+    }
+
+    .cover-art {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      margin: 10px auto;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,.2);
+    }
+
+    .song-title {
+      font-weight: 600;
+      margin: 8px 0;
+    }
+
+    .music-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 15px 0;
+    }
+
+    .music-controls button {
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.1);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .music-controls button:hover {
+      background: var(--brand2);
+      color: #000;
+    }
+
+    .music-btn {
+      width: 25px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 10px;
+      background: rgba(255,255,255,.05);
+  
+      color: var(--brand2);
+      font-size: 12px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .music-btn:hover {
+      background: rgba(255,255,255,.12);
+    }
+
+    .close-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: none;
+      background: var(--brand2);
+      color: #000;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    
+    /* Import font digital */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap');
+
+    .clock {
+      margin: 0 auto 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      font-family: 'Orbitron', monospace;
+      font-size: 36px;
+      font-weight: 700;
+      color: #00ffd0;
+
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(0, 255, 208, 0.4);
+      border-radius: 12px;
+      padding: 12px 28px;
+      text-align: center;
+
+      box-shadow: 0 0 15px rgba(0, 255, 208, 0.6),
+      0 0 30px rgba(0, 255, 208, 0.4);
+      animation: glowPulse 1.6s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      from { box-shadow: 0 0 8px rgba(0, 255, 208, 0.4); }
+      to   { box-shadow: 0 0 22px rgba(0, 255, 208, 0.8); }
+    }
+
+    /* titik dua berkedip */
+    .clock span.blink {
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+    
+    .clock span.blink.hide {
+      opacity: 0;
+    }
+    
+    
+    @keyframes scrollDate {
+      from { transform: translateX(100%); }
+      to   { transform: translateX(-100%); }
+    }
+    .date-marquee {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 6px;
+    }
+
+    .date-marquee span {
+      display: inline-block;
+      padding-left: 10%;
+      animation: scrollDate 12s linear infinite;
+      font-size: 25px;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    
+    .colon {
+      animation: blink 1s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .pay-option {
+      padding: 14px;
+      text-align: center;
+      border-radius: 12px;
+      border: 2px solid rgba(255,255,255,.15);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.25s;
+      user-select: none;
+    }
+
+    .pay-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,.4);
+    }
+
+    .pay-option.active {
+       border-color: var(--brand2);
+       background: rgba(0,255,208,.1);
+       box-shadow: 0 0 12px rgba(0,255,208,.5);
+    }
+    
+    /* ====== PRELOADER ====== */
+    .preloader{position:fixed; inset:0; display:grid; place-items:center; z-index:9999; background:
+      radial-gradient(800px 560px at 30% 20%, #101728 0%, #0b0f14 45%, #080b10 100%);}    
+    .blob{ width: 120px; height: 120px; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      background: conic-gradient(from 90deg, var(--brand), var(--brand2)); filter: blur(1px) drop-shadow(0 10px 40px rgba(124,92,255,.45)); animation: blob 2.8s ease-in-out infinite;}
+    .loader-text{margin-top:20px; letter-spacing:2px; color:var(--muted); font-size:14px; text-transform:uppercase}
+    @keyframes blob { 0%,100%{ transform: rotate(0deg) scale(1); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50%{ transform: rotate(180deg) scale(1.08); border-radius: 60% 40% 33% 67% / 56% 42% 58% 44%; } }
+
+    /* ====== GUIDE OVERLAY ====== */
+    .overlay{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:9998; backdrop-filter: blur(10px); background:rgba(4,6,10,.45)}
+    .overlay.show{display:flex}
+    .guide{ width:min(720px, 92vw); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); box-shadow: var(--shadow); padding:28px; position:relative; overflow:hidden; }
+    .guide h2{margin:0 0 8px; font-size:28px}
+    .guide p{margin:0 0 10px; color:var(--muted)}
+    .chip{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:999px; background:rgba(124,92,255,.15); border:1px solid rgba(124,92,255,.35); margin:6px 8px 0 0; font-size:13px}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:12px 16px; border:none; border-radius:12px; color:#0b0f14; background:linear-gradient(135deg, var(--brand), var(--brand2)); font-weight:700; cursor:pointer; margin-top:16px}
+
+    /* ====== HEADER ====== */
+    header{position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background: rgba(11,15,20,.45); border-bottom:1px solid rgba(255,255,255,.05)}
+    .wrap{max-width:1100px; margin:0 auto; padding:14px 18px;}
+    .nav{display:flex; align-items:center; justify-content:space-between}
+    .brand{display:flex; gap:12px; align-items:center; font-weight:800}
+    .spark{width:26px; height:26px; border-radius:8px; background:linear-gradient(135deg, var(--brand), var(--brand2)); box-shadow: 0 6px 20px rgba(124,92,255,.45)}
+    .cta{display:flex; gap:10px}
+    .ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.18); padding:10px 14px; border-radius:12px; cursor:pointer}
+
+    /* ====== HERO ====== */
+    .hero{padding:60px 18px 20px}
+    .hero h1{margin:0; font-size: clamp(28px, 4vw + 8px, 48px); line-height:1.1}
+    .hero p{color:var(--muted); max-width:760px}
+    .stats{display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:14px; margin-top:22px}
+    .stat{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:14px 16px}
+
+    /* ====== ACCORDION / PRICING ====== */
+    .section{max-width:1100px; margin:28px auto; padding:0 18px}
+    .grid{display:grid; grid-template-columns:1fr; gap:14px}
+    .accordion{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:18px; overflow:hidden}
+    .accordion h3{margin:0}
+    .acc-head{display:flex; align-items:center; justify-content:space-between; padding:18px; cursor:pointer}
+    .acc-title{font-size:18px; font-weight:800}
+    .acc-desc{color:var(--muted); font-size:13px}
+    .chev{transition: transform .25s ease}
+    .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease}
+    .acc-body-inner{display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:14px; padding:18px}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:10px}
+    .price{font-size:22px; font-weight:900}
+    .muted{color:var(--muted)}
+    .badge{font-size:12px; padding:4px 8px; background:rgba(0,255,208,.15); border:1px solid rgba(0,255,208,.35); border-radius:999px; display:inline-block}
+
+    /* ====== ORDER FORM ====== */
+    .form{margin-top:24px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:18px}
+    .row{display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:14px}
+    label{font-size:13px; color:var(--muted); display:block; margin-bottom:6px}
+    input, select, textarea{width:100%; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:12px; color:var(--text); outline:none}
+    textarea{min-height:100px; resize:vertical}
+    .inline{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .pill{display:flex; gap:8px; align-items:center; border:1px solid rgba(255,255,255,.12); padding:10px 12px; border-radius:999px; background:rgba(255,255,255,.03); cursor:pointer}
+    .pill input{accent-color: var(--brand)}
+    .help{font-size:12px; color:var(--muted); margin-top:6px}
+    .error{font-size:12px; color: var(--danger); display:none}
+    .actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .btn-primary{background:linear-gradient(135deg, var(--brand), var(--brand2)); color:#0b0f14; border:none; padding:12px 16px; border-radius:12px; cursor:pointer; font-weight:800}
+    .btn-wa{background:var(--success); color:#0b0f14}
+    .btn-tg{background:var(--tg); color:#0b0f14}
+
+footer {
+      text-align: center;
+      padding: 20px;
+      background: transparent;
+      color: white;
+    }
+
+    /* small fx */
+    .shine{position:relative; isolation:isolate}
+    .shine:before{content:""; position:absolute; inset:-2px; border-radius:inherit; background: conic-gradient(from 0deg, rgba(124,92,255,.0), rgba(124,92,255,.45), rgba(0,255,208,.35), rgba(124,92,255,.0)); filter: blur(20px); z-index:-1; opacity:.3}
+    </style>
+  </head>
+<body>
+       <!-- PRELOADER -->
+       <div class="preloader" id="preloader">
+         <div>
+           <div class="blob"></div>
+             <div class="loader-text">memuat halaman…</div>
+         </div>
+       </div>
+
+       <!-- GUIDE OVERLAY -->
+       <div class="overlay" id="guideOverlay" aria-modal="true" role="dialog">
+         <div class="guide shine">
+           <h2>Selamat Datang! 👋</h2>
+           <p>Ini adalah portal cepat untuk <b>sewa bot</b>, <b>jadi bot</b>, <b>panel</b>, dan <b>VPS</b>. Klik setiap judul kategori untuk membuka <i>slide harga</i>, pilih paket, lalu kirim request via WhatsApp/Telegram.</p>
+           <div class="chips">
+             <span class="chip">1️⃣ Klik judul kategori</span>
+             <span class="chip">2️⃣ Pilih paket</span>
+             <span class="chip">3️⃣ Isi data sesuai kategori</span>
+             <span class="chip">4️⃣ Preview → Kirim</span>
+           </div>
+           <button class="btn" id="btnMengerti">Saya Mengerti</button>
+         </div>
+       </div>
+
+       <header>
+         <div class="wrap nav">
+           <div class="brand"><span class="spark"></span> <span>AissOfficial</span></div>
+             <div class="cta">
+               <button class="music-btn" onclick="document.getElementById('musicOverlay').classList.add('show')">🎵</button>               
+               <button class="ghost" onclick="document.getElementById('guideOverlay').classList.add('show')">Panduan</button>
+           </div>
+         </div>
+       </header>
+
+      <div id="musicOverlay" class="overlay">
+        <div class="overlay-content">
+          <h2>🎶 Pemutar Musik</h2>
+            <img id="coverArt" src="" alt="Cover" class="cover-art">
+
+            <p id="currentSong" class="song-title">Judul Lagu</p>
+
+        <div class="music-controls">
+          <button id="prevBtn">⏮</button>
+          <button id="playPauseBtn">▶️</button>
+          <button id="nextBtn">⏭</button>
+        </div>
+
+          <button class="close-btn" onclick="closeMusic()">Tutup</button>
+        </div>
+      </div>
+
+    <audio id="bgMusic" preload="auto"></audio>
+ 
+  <main>
+    <section class="hero wrap">
+      <div id="clock" class="clock">
+        <div class="time">
+          <span id="hours">00</span><span class="colon">  :</span>
+          <span id="minutes">00</span><span class="colon">  :</span>
+          <span id="seconds">00</span>
+        </div>
+        <div class="date-marquee">
+          <span id="dateText">Senin, 04 September 2025</span>
+        </div>
+      </div>
+      
+      <h1>Harga Jelas. Performa Kencang. Order Sekejap.</h1>
+      <p>Semua kebutuhanmu mulai dari bot WhatsApp/Telegram, panel Pterodactyl, sampai VPS – dalam satu tempat. Terjamin, aman, dan cepat.</p>
+      <div class="stats">
+        <div class="stat">🔒 Proteksi data & pembayaran
+          <div class="muted">Password diverifikasi lokal, tidak dikirim sebelum Anda setuju.</div>
+        </div>
+        <div class="stat">⚡ Deploy supercepat
+          <div class="muted">Proses otomatis & rapi—tinggal kirim detail.</div>
+        </div>
+        <div class="stat">🛠️ Support ramah
+          <div class="muted">Butuh custom? Tinggal tulis di catatan.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KATEGORI FITUR -->
+<section class="section">
+  <h2 style="text-align:center; margin-bottom:14px">✨ Daftar Fitur Bot</h2>
+  <div class="grid" id="features">
+    <div class="stats" style="margin-top:20px">
+    <div class="stat">📊 Total Fitur
+      <div class="muted"><span id="totalFitur">0</span> Fitur Aktif</div>
+    </div>
+  </div>
+  
+    <!-- CATEGORY 1: Admin -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">🤝 𝐅𝐈𝐓𝐔𝐑 𝐀𝐃𝐌𝐈𝐍</div>
+          <div class="acc-desc">Khusus Pengelola Group</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀᴅᴅʙᴀᴅᴡᴏʀᴅ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅ</div></div>
+          <div class="card"><div class="title">➣ ᴀɴᴛɪʟɪɴᴋ</div></div>
+          <div class="card"><div class="title">➣ ʙᴀn</div></div>
+          <div class="card"><div class="title">➣ ʙᴀɴꜰɪᴛᴜʀ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟʙᴀᴅᴡᴏʀᴅ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴇᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇᴍᴏᴛᴇᴀʟʟ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇᴍᴏᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴇᴅɪᴛᴅᴇꜱᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴇᴅɪᴛᴅᴇꜱᴋʀɪᴘꜱɪ</div></div>
+          <div class="card"><div class="title">➣ ᴇᴅɪᴛꜱᴜʙᴊᴇᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴇᴅɪᴛꜱᴜʙᴊᴇᴄᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴇᴅɪᴛꜱᴜʙᴊᴇᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴇᴅɪᴛᴊᴜᴅᴜʟ</div></div>
+          <div class="card"><div class="title">➣ ꜰɪxᴄʜᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ɢᴄꜱɪᴅᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ɢɪᴠᴇᴀᴡᴀʏ</div></div>
+          <div class="card"><div class="title">➣ ᴍᴜʟᴀɪɢɪᴠᴇᴀᴡᴀʏ</div></div>
+          <div class="card"><div class="title">➣ ɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ɢʀᴏᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ɢʀᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ɢʀᴏᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴏᴘᴇɴ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴄʟᴏꜱᴇ</div></div>
+          <div class="card"><div class="title">➣ ʜɪᴅᴇᴛᴀɢ</div></div>
+          <div class="card"><div class="title">➣ ʜ</div></div>
+          <div class="card"><div class="title">➣ ʜɪᴅᴇᴛᴀᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴋɪᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴏʀ</div></div>
+          <div class="card"><div class="title">➣ ᴋɪᴄᴋꜱɪᴅᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛᴀʙꜱᴇɴ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛᴀᴅᴍɪɴ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛᴀʟʟᴜꜱᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛᴍᴇᴍʙᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛɴᴏᴀʙꜱᴇɴ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛʙᴀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴍᴜᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴜɴᴍᴜᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴏꜰꜰ</div></div>
+          <div class="card"><div class="title">➣ ᴏɴ</div></div>
+          <div class="card"><div class="title">➣ ᴘʀᴏᴍᴏᴛᴇᴀʟʟ</div></div>
+          <div class="card"><div class="title">➣ ᴘʀᴏᴍᴏᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪɴᴋɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴏᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴏᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴅᴇᴍᴏᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛʟᴇꜰᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴘʀᴏᴍᴏᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴛᴇᴍᴘʟᴀᴛᴇʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇᴍᴘʟᴀᴛᴇʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴛᴇᴍᴘʟᴀᴛᴇᴡᴇʟᴄᴏᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇᴍᴘʟᴀᴛᴇᴡᴇʟᴄᴏᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴡᴇʟᴄᴏᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴄʟᴏꜱᴇɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴄʟᴏꜱᴇᴛᴇxᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴏᴘᴇɴɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴏᴘᴇɴᴛᴇxᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘɢʀᴏᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘɢʀᴏᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘɢʀᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ꜱʟʀ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴀɢᴀʟʟ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇꜱᴡᴇʟᴄᴏᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴘ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛᴛᴏᴛᴀʟᴄʜᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴛᴀʟᴄʜᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴜɴʙᴀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴜɴʙᴀɴꜰɪᴛᴜʀ</div></div>
+          <div class="card"><div class="title">➣ ᴡᴀʀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴡᴀʀɴɪɴɢ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛᴡᴀʀɴɪɴɢ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛᴡᴀʀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴇᴛᴇᴡᴀʀɴɪɴɢ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴡᴀʀɴɪɴɢ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʙᴜɢᴡᴀʀɴ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 2: Ai -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">🤖 𝐅𝐈𝐓𝐔𝐑 𝐀𝐈</div>
+          <div class="acc-desc">Interaksi Ai</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀɪ</div></div>
+          <div class="card"><div class="title">➣ ꜱɪᴍɪ</div></div>
+          <div class="card"><div class="title">➣ ᴠɴ</div></div>
+          <div class="card"><div class="title">➣ ᴠɴᴀɴɪᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴠᴏɪᴄᴇᴀɪ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 3: Anime -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">👸 𝐅𝐈𝐓𝐔𝐑 𝐀𝐍𝐈𝐌𝐄</div>
+          <div class="acc-desc">Generate Gambar</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴡᴀɪꜰᴜ</div></div>
+          <div class="card"><div class="title">➣ ɴᴇᴋᴏ</div></div>
+          <div class="card"><div class="title">➣ ꜱʜɪɴᴏʙᴜ</div></div>
+          <div class="card"><div class="title">➣ ᴍᴇɢᴜᴍɪɴ</div></div>
+          <div class="card"><div class="title">➣ ʙᴜʟʟʏ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴜᴅᴅʟᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴄʀʏ</div></div>
+          <div class="card"><div class="title">➣ ʜᴜɢ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴡᴏᴏ</div></div>
+          <div class="card"><div class="title">➣ ᴋɪꜱꜱ</div></div>
+          <div class="card"><div class="title">➣ ʟɪᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴘᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴍᴜɢ</div></div>
+          <div class="card"><div class="title">➣ ʙᴏɴᴋ</div></div>
+          <div class="card"><div class="title">➣ ʏᴇᴇᴛ</div></div>
+          <div class="card"><div class="title">➣ ʙʟᴜꜱʜ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴍɪʟᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴡᴀᴠᴇ</div></div>
+          <div class="card"><div class="title">➣ ʜɪɢʜꜰɪᴠᴇ</div></div>
+          <div class="card"><div class="title">➣ ʜᴀɴᴅʜᴏʟᴅ</div></div>
+          <div class="card"><div class="title">➣ ɴᴏᴍ</div></div>
+          <div class="card"><div class="title">➣ ʙɪᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ɢʟᴏᴍᴘ</div></div>
+          <div class="card"><div class="title">➣ ꜱʟᴀᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴋɪʟʟ</div></div>
+          <div class="card"><div class="title">➣ ʜᴀᴘᴘʏ</div></div>
+          <div class="card"><div class="title">➣ ᴡɪɴᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴘᴏᴋᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴀɴᴄᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴄʀɪɴɢᴇ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 4: Berita -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">📰 𝐅𝐈𝐓𝐔𝐑 𝐁𝐄𝐑𝐈𝐓𝐀</div>
+          <div class="acc-desc">Informasi Public</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀɴᴛᴀʀᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴄɴɴ</div></div>
+          <div class="card"><div class="title">➣ ᴄɴʙᴄ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴘɴɴ</div></div>
+          <div class="card"><div class="title">➣ ᴋᴜᴍᴘᴀʀᴀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴍᴇʀᴅᴇᴋᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴋᴇᴢᴏɴᴇ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇᴘᴜʙʟɪᴋᴀ</div></div>
+          <div class="card"><div class="title">➣ ꜱɪɴᴅᴏɴᴇᴡꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇᴍᴘᴏ</div></div>
+          <div class="card"><div class="title">➣ ᴛʀɪʙᴜɴ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 5: Download -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">♻️ 𝐅𝐈𝐓𝐔𝐑 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃</div>
+          <div class="acc-desc">Download All Sosmed</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ꜰʙ</div></div>
+          <div class="card"><div class="title">➣ ꜰᴀᴄᴇʙᴏᴏᴋ</div></div>
+          <div class="card"><div class="title">➣ ɪɢ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜱᴛᴀɢʀᴀᴍ</div></div>
+          <div class="card"><div class="title">➣ ɪɢꜰᴏᴛᴏ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜱᴛᴀɢʀᴀᴍꜰᴏᴛᴏ</div></div>
+          <div class="card"><div class="title">➣ ʟɪʀɪᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴘɪɴ</div></div>
+          <div class="card"><div class="title">➣ ᴘɪɴᴛᴇʀᴇꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴘʟᴀʏ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴘᴏᴛɪꜰʏ</div></div>
+          <div class="card"><div class="title">➣ ᴛɪᴋᴛᴏᴋꜱᴇᴀʀᴄʜ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴛꜱᴇᴀʀᴄʜ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴛꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴛꜱʟɪᴅᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴛɪᴋᴛᴏᴋꜱʟɪᴅᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴛɪᴋᴛᴏᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴛɪᴋᴛᴏᴋᴍᴘ3</div></div>
+          <div class="card"><div class="title">➣ ᴛᴛᴍᴘ3</div></div>
+          <div class="card"><div class="title">➣ ᴛᴡ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴡɪᴛᴛᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ʏᴛᴍᴘ3</div></div>
+          <div class="card"><div class="title">➣ ʏᴛᴍᴘ4</div></div>
+          <div class="card"><div class="title">➣ ʏᴛꜱ</div></div>
+          <div class="card"><div class="title">➣ ʏᴛꜱᴇᴀʀᴄʜ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 6: Editor -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">👨‍💻 𝐅𝐈𝐓𝐔𝐑 𝐄𝐃𝐈𝐓𝐎𝐑</div>
+          <div class="acc-desc">Text Edit Picture</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ʙʟᴜʀ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴜᴏᴛᴏɴᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜰʟɪᴘx</div></div>
+          <div class="card"><div class="title">➣ ꜰʟɪᴘʏ</div></div>
+          <div class="card"><div class="title">➣ ɢʀᴀʏꜱᴄᴀʟᴇ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱɪᴢᴇ</div></div>
+          <div class="card"><div class="title">➣ ʀᴏᴛᴀᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴘɪᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴀᴊᴀᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴡᴀɴᴛᴇᴅ</div></div>
+          <div class="card"><div class="title">➣ ᴡᴀꜱᴛᴇᴅ</div></div>   
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 7: Games -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">🕹 𝐅𝐈𝐓𝐔𝐑 𝐆𝐀𝐌𝐄𝐒</div>
+          <div class="acc-desc">Games Fun</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ʙᴊ</div></div>
+          <div class="card"><div class="title">➣ ʙʟᴀᴄᴋᴊᴀᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴀᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴀᴋʟᴏɴᴛᴏɴɢ</div></div>
+          <div class="card"><div class="title">➣ ᴋᴏᴅᴀᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴋᴏᴅᴀᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴋʜᴏᴅᴀᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴏᴅᴀᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴀʀᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜰᴀᴍɪʟʏ100</div></div>
+          <div class="card"><div class="title">➣ ᴋᴜɪꜱᴍᴀᴛʜ</div></div>
+          <div class="card"><div class="title">➣ ᴍᴀᴛʜ</div></div>
+          <div class="card"><div class="title">➣ ꜱɴᴀᴋᴇꜱ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴜɪᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋᴀɴɢᴋᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋʙᴇɴᴅᴇʀᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋʙᴏᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋɢᴀᴍʙᴀʀ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋʜᴇᴡᴀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋᴋᴀʟɪᴍᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋᴋᴀᴛᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋʟᴀɢᴜ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋʟɪʀɪᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴛᴄ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴛᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴛɪᴄᴛᴀᴄᴛᴏᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴛʀᴜᴛʜ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 8: Group -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">👥 𝐅𝐈𝐓𝐔𝐑 𝐆𝐑𝐎𝐔𝐏</div>
+          <div class="acc-desc">Penggunaan Group</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀʙꜱᴇɴ</div></div>
+          <div class="card"><div class="title">➣ ᴀꜰᴋ</div></div>
+          <div class="card"><div class="title">➣ ʙᴀᴅᴡᴏʀᴅ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛʙᴀᴅᴡᴏʀᴅ</div></div>
+          <div class="card"><div class="title">➣ ᴀɪꜱꜱ</div></div>
+          <div class="card"><div class="title">➣ ʙᴜʏʟɪᴍɪᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴘʀᴇᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴘʀᴇᴍɪᴜᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋꜱᴇᴡᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴄʟᴀɪᴍ</div></div>
+          <div class="card"><div class="title">➣ ʜᴇʟᴘ</div></div>
+          <div class="card"><div class="title">➣ ʙᴀɴᴛᴜᴀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴘᴀɴᴅᴜᴀɴ</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ1</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ2</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ3</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ4</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ5</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ6</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ7</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ8</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ9</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ10</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ11</div></div>
+          <div class="card"><div class="title">➣ ɴᴏ12</div></div>
+          <div class="card"><div class="title">➣ ɪᴋᴜᴛ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜰᴏɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜰᴏɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜰᴏɢʀᴏᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜰᴏɢʀᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜰᴏɢʀᴏᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ʟɪɴᴋɢʀᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ʟɪɴᴋɢʀᴏᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ʟɪɴᴋɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ʟɪɴᴋɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ʟɪɴᴋɢʀᴏᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ʟɪᴍɪᴛ</div></div>
+          <div class="card"><div class="title">➣ ʀᴜʟᴇꜱʙᴏᴛ</div></div>
+          <div class="card"><div class="title">➣ ʀᴜʟᴇꜱ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇɴᴅʟɪᴍɪᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇɴᴅᴍᴏɴᴇʏ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴀᴋᴜɴ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 9: Information -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">📢 𝐅𝐈𝐓𝐔𝐑 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍</div>
+          <div class="acc-desc">Cek Info</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀʀᴛɪᴍɪᴍᴘɪ</div></div>
+          <div class="card"><div class="title">➣ ᴀʀᴛɪɴᴀᴍᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴏᴅᴄᴇᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴏᴅ</div></div>
+          <div class="card"><div class="title">➣ ꜰꜰᴄᴇᴋ</div></div>
+          <div class="card"><div class="title">➣ ꜰꜰ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜰᴏɢᴇᴍᴘᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴋʙʙɪ</div></div>
+          <div class="card"><div class="title">➣ ᴍʟ</div></div>
+          <div class="card"><div class="title">➣ ᴍʟᴄᴇᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴘᴜʙɢᴄᴇᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴘᴜʙɢ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛᴀʟᴋᴛɪᴋᴛᴏᴋ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 10: Islami -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">🕌 𝐅𝐈𝐓𝐔𝐑 𝐈𝐒𝐋𝐀𝐌𝐈</div>
+          <div class="acc-desc">Islam Info</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀᴢᴀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴏᴀ</div></div>
+          <div class="card"><div class="title">➣ ʜᴀᴅɪꜱ</div></div>
+          <div class="card"><div class="title">➣ ʜᴀᴅɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ʜᴀᴅɪᴛꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴀᴅᴡᴀʟꜱʜᴏʟᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴀᴅᴡᴀʟꜱʜᴀʟᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴀᴅᴡᴀʟꜱʜᴏʟᴀᴛ2</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱᴜʀᴀʜ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱᴜʀᴏʜ</div></div>
+          <div class="card"><div class="title">➣ ɴɪᴀᴛꜱʜᴏʟᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ɴɪᴀᴛꜱʜᴀʟᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴜʀᴀʜ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴜʀᴏʜ</div></div>
+          <div class="card"><div class="title">➣ ᴢɪᴋɪʀ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 11: Kerang Ajaib -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">🐚 𝐅𝐈𝐓𝐔𝐑 𝐊𝐄𝐑𝐀𝐍𝐆 𝐀𝐉𝐀𝐈𝐁</div>
+          <div class="acc-desc">Fun Cek</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ʙɪꜱᴀᴋᴀʜ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋʙᴜᴄɪɴ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴄᴀɴᴛɪᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋɢᴀɴᴛᴇɴɢ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋɢɪʟᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴍᴀᴛɪ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴛᴏʟᴏʟ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴜᴍᴜʀ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴀᴅɪᴀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴋᴀᴘᴀɴᴋᴀʜ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 12: Maker -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">🖼 𝐅𝐈𝐓𝐔𝐑 𝐌𝐀𝐊𝐄𝐑</div>
+          <div class="acc-desc">Create Sticker</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀᴛᴛᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴛᴛᴘ2</div></div>
+          <div class="card"><div class="title">➣ ʙʀᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ʙʀᴀᴛ2</div></div>
+          <div class="card"><div class="title">➣ ʙʀᴀᴛᴄᴜꜱᴛᴏᴍ</div></div>
+          <div class="card"><div class="title">➣ ʙʀᴀᴛᴠɪᴅ</div></div>
+          <div class="card"><div class="title">➣ Qᴄ</div></div>
+          <div class="card"><div class="title">➣ Qᴄ2</div></div>
+          <div class="card"><div class="title">➣ Qᴄꜱᴛɪᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴍᴇᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛɪᴄᴋᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛɪᴋᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴠɪᴅ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏɢɪꜰ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴛᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴡᴍ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 13: More -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">🔍 𝐅𝐈𝐓𝐔𝐑 𝐌𝐎𝐑𝐄</div>
+          <div class="acc-desc">Fitur Lainnya</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀᴘɪᴋᴇʏ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴀᴘɪᴋᴇʏ</div></div>
+          <div class="card"><div class="title">➣ ᴄʜᴇᴄᴋᴀᴘɪᴋᴇʏ</div></div>
+          <div class="card"><div class="title">➣ ɢʀᴜʙʙᴏᴛ</div></div>
+          <div class="card"><div class="title">➣ ʀᴀᴛᴇʟɪᴍɪᴛ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇɢɪꜱᴛᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ʀᴜɴᴛɪᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴄ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴄʀɪᴘᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ2</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ3</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ4</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ5</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ6</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ7</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ8</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ9</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ10</div></div>
+          <div class="card"><div class="title">➣ ᴛᴜᴛᴏʀ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴜᴛᴏʀɪᴀʟ</div></div>
+          <div class="card"><div class="title">➣ ᴠᴇʀꜱɪᴏɴ</div></div>
+          <div class="card"><div class="title">➣ ᴠᴇʀꜱɪ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 14: Owner -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">👑 𝐅𝐈𝐓𝐔𝐑 𝐎𝐖𝐍𝐄𝐑</div>
+          <div class="acc-desc">Akses Owner</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀᴅᴅɢʟᴏʙᴀʟʙᴀᴅᴡᴏʀᴅ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅʟᴇᴠᴇʟ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅʟɪᴍɪᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅᴍᴏɴᴇʏ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅᴏᴡɴᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʟᴜɢɪɴ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʟᴜɢɪɴꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʀᴇᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʀᴇᴍɪᴜᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅʀᴇꜱᴘᴏɴ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʀᴇᴍɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʀᴇᴍɪᴜᴍɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ʙᴀᴄᴋᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴏʙʟᴀᴄᴋʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ʙʟᴏᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ʙᴜᴀᴛꜱᴛᴏʀʏ</div></div>
+          <div class="card"><div class="title">➣ ʙᴜᴀᴛꜱᴛᴏʀɪ</div></div>
+          <div class="card"><div class="title">➣ ᴜᴘꜱᴡ</div></div>
+          <div class="card"><div class="title">➣ ᴄʟᴇᴀɴᴅʙ</div></div>
+          <div class="card"><div class="title">➣ ᴄʟᴇᴀʀꜱᴇꜱɪ</div></div>
+          <div class="card"><div class="title">➣ ᴄʟᴇᴀʀᴄʜᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇɢʀᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇɢʀᴏᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇɢʀᴏᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟɢʟᴏʙᴀʟʙᴀᴅᴡᴏʀᴅ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴏᴡɴᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴘʟᴜɢɪɴ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴘʟᴜɢɪɴꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴘʀᴇᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴘʀᴇᴍɪᴜᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟʀᴇꜱᴘᴏɴ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴇᴛᴇʀᴇꜱᴘᴏɴ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟꜱᴇᴡᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴇᴛᴇᴊᴀᴅɪʙᴏᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴊᴀᴅɪʙᴏᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴘʀᴇᴍɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴘʀᴇᴍɪᴜᴍɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇᴍᴏᴛᴇᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ɢᴄᴛᴀɢ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜰᴏꜱɪꜱᴛᴇᴍ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜰᴏꜱʏꜱᴛᴇᴍ</div></div>
+          <div class="card"><div class="title">➣ ɪᴘꜱᴇʀᴠᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴀᴅɪʙᴏᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴏɪɴ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴘᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴘᴍᴛᴀɢ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛʙʟᴀᴄᴋʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛʙʟᴏᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛᴘʀᴇᴍ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛᴘʀᴇᴍɪᴜᴍ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛʀᴇꜱᴘᴏɴ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱᴇᴡᴀ2</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱᴇᴡᴀ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛᴊᴀᴅɪʙᴏᴛ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛɴᴏꜱᴇᴡᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛᴀʟʟɢʀᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛᴀʟʟɢʀᴏᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛᴀʟʟɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛᴀʟʟɢʀᴏᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛᴀʟʟɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛɢʀᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛɢʀᴏᴜᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛɢʀᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛɢʀᴏᴜʙ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜᴛɴᴏꜱᴇᴡᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴘʀᴏᴍᴏᴛᴇᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟᴇᴠᴇʟ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪᴍɪᴛ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛᴍᴏɴᴇʏ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴛᴀʀᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇʟꜰ</div></div>
+          <div class="card"><div class="title">➣ ᴘᴜʙʟɪᴄ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛʙɪᴏ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛɴᴀᴍᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘʙᴏᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴡᴀʙᴏᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴡᴀʙᴏᴛɪᴅ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴛᴏᴘᴊᴀᴅɪʙᴏᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴀᴍʙᴀʜꜱᴇᴡᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴀᴅᴍɪɴ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴛᴀʟꜱᴇᴡᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴏᴜɴʙʟᴀᴄᴋʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴜɴʙʟᴏᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴜᴘᴅᴀᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴜᴘᴅᴀᴛᴇʙᴀɪʟᴇʏꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴜᴘᴅᴀᴛᴇʙᴀɪʟᴇʏ</div></div>
+          <div class="card"><div class="title">➣ ᴜᴘᴅᴀᴛᴇꜰᴏʀᴄᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴠɪᴇᴡᴄᴏᴅᴇ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 15: Premium -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">💎 𝐅𝐈𝐓𝐔𝐑 𝐏𝐑𝐄𝐌𝐈𝐔𝐌</div>
+          <div class="acc-desc">Akses Premium</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ɢᴇᴛᴘɪᴄ</div></div>
+          <div class="card"><div class="title">➣ ʜᴅᴠɪᴅᴇᴏ</div></div>
+          <div class="card"><div class="title">➣ ʜᴅᴠɪᴅ</div></div>
+          <div class="card"><div class="title">➣ ɪQᴄ</div></div>
+          <div class="card"><div class="title">➣ ɪQᴄ2</div></div>
+          <div class="card"><div class="title">➣ ᴛᴡɪʙʙᴏɴ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 16: Random -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">🪅 𝐅𝐈𝐓𝐔𝐑 𝐑𝐀𝐍𝐃𝐎𝐌</div>
+          <div class="acc-desc">Random</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀᴇꜱᴛʜᴇᴛɪᴄ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴄᴀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴏɢᴀɴ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴏꜱᴘʟᴀʏ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴀʀᴋᴊᴏᴋᴇ</div></div>
+          <div class="card"><div class="title">➣ ʜᴀᴄᴋᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ᴋᴜᴄɪɴɢ</div></div>
+          <div class="card"><div class="title">➣ ᴍᴇᴍᴇɪɴᴅᴏ</div></div>
+          <div class="card"><div class="title">➣ ᴍᴏᴛɪᴠᴀꜱɪ</div></div>
+          <div class="card"><div class="title">➣ ᴛʜᴀɪʟᴀɴᴅ</div></div>
+          <div class="card"><div class="title">➣ ᴠɪᴇᴛɴᴀᴍ</div></div>
+          <div class="card"><div class="title">➣ ᴡᴀʟʜᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴀɴɪᴍᴇQᴜᴏᴛᴇꜱ</div></div>
+          <div class="card"><div class="title">➣ ʙᴜᴄɪɴQᴜᴏᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴅɪʟᴀɴQᴜᴏᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜰᴀᴋᴛᴀᴜɴɪᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴀᴡᴀQᴜᴏᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴊᴏᴋᴇꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴘᴀɴᴛᴜɴ</div></div>
+          <div class="card"><div class="title">➣ Qᴜᴏᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ Qᴜᴏᴛᴇꜱ</div></div>
+          <div class="card"><div class="title">➣ ʀᴀɴᴅᴏᴍQᴜᴏᴛᴇ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 17: Store -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">🛍 𝐅𝐈𝐓𝐔𝐑 𝐒𝐓𝐎𝐑𝐄</div>
+          <div class="acc-desc">Fitur Memper Mudah Store</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴀᴅᴅʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴀᴅᴅꜱᴛᴏᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟᴇᴛᴇʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟʀɪᴡᴀʏᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇʟꜱᴛᴏᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴏɴᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴅ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇʟᴇꜱᴀɪ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴏɴᴇᴏʀᴅᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ᴇᴅɪᴛꜱᴛᴏᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ꜰᴀɪʟ</div></div>
+          <div class="card"><div class="title">➣ ᴋᴜʀᴀɴɢɪꜱᴛᴏᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱʟɪᴅᴇ</div></div>
+          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱᴛᴏᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴏʀᴅᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ᴘᴀʏ</div></div>
+          <div class="card"><div class="title">➣ ᴘᴇɴᴅɪɴɢ</div></div>
+          <div class="card"><div class="title">➣ ᴘʀᴏꜱᴇꜱ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇɴᴀᴍᴇʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ʀɪᴡᴀʏᴀᴛ</div></div>
+          <div class="card"><div class="title">➣ ʀɪᴡᴀʏᴀᴛʙᴇʟɪ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴅᴏɴᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛꜰᴀɪʟ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛʟɪꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴇɴᴅɪɴɢ</div></div>
+          <div class="card"><div class="title">➣ ꜱᴇᴛᴘʀᴏꜱᴇꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴀᴍʙᴀʜꜱᴛᴏᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴘʙᴜʏᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ᴜᴘᴅᴀᴛᴇʟɪꜱᴛ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 18: Textpro -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">🖊 𝐅𝐈𝐓𝐔𝐑 𝐓𝐄𝐗𝐓𝐏𝐑𝐎</div>
+          <div class="acc-desc">Mepercantik Text</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴍᴀʀᴠᴇʟ</div></div>
+          <div class="card"><div class="title">➣ ᴘᴏʀɴʜᴜʙ</div></div>
+          <div class="card"><div class="title">➣ 3ᴅʙᴏx</div></div>
+          <div class="card"><div class="title">➣ ʙʟᴀᴄᴋᴘɪɴᴋ</div></div>
+          <div class="card"><div class="title">➣ ʙᴏᴏᴍ</div></div>
+          <div class="card"><div class="title">➣ ɢᴀᴍɪɴɢ</div></div>
+          <div class="card"><div class="title">➣ ᴍᴀɢᴍᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴍᴀᴛʀɪx</div></div>
+          <div class="card"><div class="title">➣ ᴍᴇᴛᴀʟ</div></div>
+          <div class="card"><div class="title">➣ ɴᴇᴏɴ</div></div>
+          <div class="card"><div class="title">➣ ꜱʜᴀᴅᴏᴡ</div></div>
+          <div class="card"><div class="title">➣ ꜱɪɢɴᴀᴛᴜʀᴇ</div></div>
+          <div class="card"><div class="title">➣ ꜱʟɪᴄᴇᴅ</div></div>
+          <div class="card"><div class="title">➣ ꜱɴᴏᴡ</div></div>
+          <div class="card"><div class="title">➣ ᴠᴀʟᴇɴᴛɪɴᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴡɪɴᴛᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ᴡᴏʟꜰ</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CATEGORY 19: Tools -->
+    <div class="accordion shine" data-acc>
+      <div class="acc-head" role="button" aria-expanded="false">
+        <div>
+          <div class="acc-title">⚙️ 𝐅𝐈𝐓𝐔𝐑 𝐓𝐎𝐎𝐋𝐒</div>
+          <div class="acc-desc">Mepercantik Text</div>
+        </div>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴅɴꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋʜᴏꜱᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋɪᴅɢᴄ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋᴜꜱᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ɪᴘᴄʜᴇᴄᴋ</div></div>
+          <div class="card"><div class="title">➣ ᴄʜᴇᴄᴋɪᴘ</div></div>
+          <div class="card"><div class="title">➣ ᴄᴇᴋɪᴘ</div></div>
+          <div class="card"><div class="title">➣ ɪᴘᴄʜᴇᴄᴋᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ᴇᴍᴏᴊɪᴍɪx</div></div>
+          <div class="card"><div class="title">➣ ɢᴇᴛ</div></div>
+          <div class="card"><div class="title">➣ ɢɪᴛ</div></div>
+          <div class="card"><div class="title">➣ ɢᴏᴏɢʟᴇ</div></div>
+          <div class="card"><div class="title">➣ ʜᴅ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇᴍɪɴɪ</div></div>
+          <div class="card"><div class="title">➣ ɪᴍᴀɢᴇ</div></div>
+          <div class="card"><div class="title">➣ ɪᴍɢ</div></div>
+          <div class="card"><div class="title">➣ ɢᴏᴏɢʟᴇɪᴍᴀɢᴇ</div></div>
+          <div class="card"><div class="title">➣ ɪɴꜱᴘᴇᴄᴛ</div></div>
+          <div class="card"><div class="title">➣ ɪᴅ</div></div>
+          <div class="card"><div class="title">➣ ʟᴏʀᴇᴍ</div></div>
+          <div class="card"><div class="title">➣ ɴᴏᴡ</div></div>
+          <div class="card"><div class="title">➣ ɴᴜᴍʙᴇʀʙᴏᴛ</div></div>
+          <div class="card"><div class="title">➣ ᴘɪɴɢ</div></div>
+          <div class="card"><div class="title">➣ ᴘɪɴɢ2</div></div>
+          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇQʀ</div></div>
+          <div class="card"><div class="title">➣ ᴅᴇᴛᴇᴄᴛQʀ</div></div>
+          <div class="card"><div class="title">➣ ʀᴍʙɢ</div></div>
+          <div class="card"><div class="title">➣ ʀᴇᴍᴏᴠᴇʙɢ</div></div>
+          <div class="card"><div class="title">➣ ɴᴏʙɢ</div></div>
+          <div class="card"><div class="title">➣ ʀᴠᴏ</div></div>
+          <div class="card"><div class="title">➣ ꜱꜱᴡᴇʙ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴍᴘ3</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴜʀʟ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴜʀʟ2</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴠɴ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏɪᴍɢ</div></div>
+          <div class="card"><div class="title">➣ ᴛᴏᴍ4ᴀ</div></div>
+          <div class="card"><div class="title">➣ ᴛꜱ</div></div>
+          <div class="card"><div class="title">➣ ᴛʀᴀɴꜱʟᴀᴛᴇ</div></div>
+          <div class="card"><div class="title">➣ ᴠᴏɪᴄᴇᴄʜᴀɴɢᴇʀ</div></div>
+          <div class="card"><div class="title">➣ ᴡʜᴏɪꜱ</div></div>
+          <div class="card"><div class="title">➣ </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="section">
+      <div class="grid" id="pricing">
+        <h2 style="text-align:center; margin-bottom:14px">✨ Daftar Harga</h2>
+        <!-- KATEGORI 1: Sewa Bot Reguler -->
+        <div class="accordion shine" data-acc>
+          <div class="acc-head" role="button" aria-expanded="false">
+            <div>
+              <div class="acc-title">🤖 Sewa Bot Reguler</div>
+              <div class="acc-desc">Bot WhatsApp siap pakai, 24 online</div>
+            </div>
+            <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Reguler</div>
+                <div class="muted">Limit Terbatas Tanpa Akses Premium</div>
+                <div class="price">Rp 3.000 / 2 Minggu</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler 2 Minggu" data-price="3000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Reguler</div>
+                <div class="muted">Limit Terbatas Tanpa Akses Premium</div>
+                <div class="price">Rp 6.000 / 1 bulan</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler 1 Bulan" data-price="6000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Reguler</div>
+                <div class="muted">Limit Terbatas Tanpa Akses Premium</div>
+                <div class="price">Rp 10.000 / 2 bulan</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler 2 Bulan" data-price="10000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Reguler</div>
+                <div class="muted">Limit Terbatas Tanpa Akses Premium</div>
+                <div class="price">Rp 17.000 / permanen</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Reguler Permanen" data-price="17000">Pilih Paket</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KATEGORI 2: Sewa Bot Premium -->
+        <div class="accordion shine" data-acc>
+          <div class="acc-head" role="button" aria-expanded="false">
+            <div>
+              <div class="acc-title">✨ Sewa Bot Premium</div>
+              <div class="acc-desc">Bot WhatsApp siap pakai, 24 online</div>
+            </div>
+            <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Premium</div>
+                <div class="muted">Limit Tanpa Batas & Akses Fitur Premium ( hanya yang sewa )</div>
+                <div class="price">Rp 5.000 / 2 Minggu</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium 2 Minggu" data-price="5000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Premium</div>
+                <div class="muted">Limit Tanpa Batas & Akses Fitur Premium ( hanya yang sewa )</div>
+                <div class="price">Rp 9.000 / 1 bulan</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium 1 Bulan" data-price="9000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Premium</div>
+                <div class="muted">Limit Tanpa Batas & Akses Fitur Premium ( hanya yang sewa )</div>
+                <div class="price">Rp 12.000 / 2 bulan</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium 2 Bulan" data-price="12000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Premium</div>
+                <div class="muted">Limit Tanpa Batas & Akses Fitur Premium ( hanya yang sewa )</div>
+                <div class="price">Rp 20.000 / permanen</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Premium Permanen" data-price="20000">Pilih Paket</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- KATEGORI 3: Sewa Bot Vvip -->
+        <div class="accordion shine" data-acc>
+          <div class="acc-head" role="button" aria-expanded="false">
+            <div>
+              <div class="acc-title">👑 Sewa Bot Vvip</div>
+              <div class="acc-desc">Bot WhatsApp siap pakai, 24 online</div>
+            </div>
+            <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Vvip</div>
+                <div class="muted">Mendapatkan Limit Tanpa Batas & Premium Untuk 1 Group</div>
+                <div class="price">Rp 7.000 / 2 Minggu</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip 2 Minggu" data-price="7000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Vvip</div>
+                <div class="muted">Mendapatkan Limit Tanpa Batas & Premium Untuk 1 Group</div>
+                <div class="price">Rp 13.000 / 1 bulan</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip 1 Bulan" data-price="13000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Vvip</div>
+                <div class="muted">Mendapatkan Limit Tanpa Batas & Premium Untuk 1 Group</div>
+                <div class="price">Rp 19.000 / 2 bulan</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip 2 Bulan" data-price="19000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="badge">Bot WhatsApp</div>
+                <div class="title">Bot Vvip</div>
+                <div class="muted">Mendapatkan Limit Tanpa Batas & Premium Untuk 1 Group</div>
+                <div class="price">Rp 28.000 / permanen</div>
+                <button class="btn-primary" data-select data-cat="Sewa Bot" data-plan="Bot Vvip Permanen" data-price="28000">Pilih Paket</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KATEGORI 4: Jadi Bot -->
+        <div class="accordion shine" data-acc>
+          <div class="acc-head" role="button" aria-expanded="false">
+            <div>
+              <div class="acc-title">🧩 Jadi Bot</div>
+              <div class="acc-desc">Terima Jadi, Tanpa Bermodalkan Panel</div>
+            </div>
+            <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              <div class="card">
+                <div class="title">Jadi Bot Basic</div>
+                <div class="muted">Bermodalkan No & Bot Aktif 24 Jam</div>
+                <div class="price">Rp 10.000 / 1 Minggu</div>
+                <button class="btn-primary" data-select data-cat="Jadi Bot" data-plan="Jadibot 1 Minggu" data-price="10000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Jadi Bot Standart</div>
+                <div class="muted">Bermodalkan No & Bot Aktif 24 Jam</div>
+                <div class="price">Rp 20.000 / 2 Minggu</div>
+                <button class="btn-primary" data-select data-cat="Jadi Bot" data-plan="Jadibot 2 Minggu" data-price="20000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Jadi Bot Premium</div>
+                <div class="muted">Bermodalkan No & Bot Aktif 24 Jam</div>
+                <div class="price">Rp 30.000 / 3 Minggu</div>
+                <button class="btn-primary" data-select data-cat="Jadi Bot" data-plan="Jadibot 3 Minggu" data-price="30000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Jadi Bot Vvip</div>
+                <div class="muted">Bermodalkan No & Bot Aktif 24 Jam</div>
+                <div class="price">Rp 40.000 / 1 Bulan</div>
+                <button class="btn-primary" data-select data-cat="Jadi Bot" data-plan="Jadibot 1 Bulan" data-price="40000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Jadi Bot Ultimate</div>
+                <div class="muted">Bermodalkan No & Bot Aktif 24 Jam</div>
+                <div class="price">Rp 50.000 / Permanen</div>
+                <button class="btn-primary" data-select data-cat="Jadi Bot" data-plan="Jadibot Permanen" data-price="50000">Pilih Paket</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KATEGORI 5: Panel Pterodactyl -->
+        <div class="accordion shine" data-acc>
+          <div class="acc-head" role="button" aria-expanded="false">
+            <div>
+              <div class="acc-title">🖥️ Panel</div>
+              <div class="acc-desc">Pterodactyl panel untuk manage server</div>
+            </div>
+            <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              <div class="card">
+                <div class="title">Panel 1GB</div>
+                <div class="muted">CPU 40% • Disk 1Gb</div>
+                <div class="price">Rp 1.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="1GB" data-price="1000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Panel 2GB</div>
+                <div class="muted">CPU 60% • Disk 1Gb</div>
+                <div class="price">Rp 2.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="2GB" data-price="2000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Panel 3GB</div>
+                <div class="muted">CPU 80% • Disk 2Gb</div>
+                <div class="price">Rp 3.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="3GB" data-price="3000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Panel 4GB</div>
+                <div class="muted">CPU 100% • Disk 2Gb</div>
+                <div class="price">Rp 4.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="4GB" data-price="4000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Panel 5GB</div>
+                <div class="muted">CPU 120% • Disk 3Gb</div>
+                <div class="price">Rp 5.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="5GB" data-price="5000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Panel 6GB</div>
+                <div class="muted">CPU 140% • Disk 3Gb</div>
+                <div class="price">Rp 6.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="6GB" data-price="6000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Panel 7GB</div>
+                <div class="muted">CPU 160% • Disk 4Gb</div>
+                <div class="price">Rp 7.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="7GB" data-price="7000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Panel 8GB</div>
+                <div class="muted">CPU 180% • Disk 4Gb</div>
+                <div class="price">Rp 8.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="8GB" data-price="8000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Panel 9GB</div>
+                <div class="muted">CPU 200% • Disk 5Gb</div>
+                <div class="price">Rp 9.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="9GB" data-price="9000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Panel 10GB</div>
+                <div class="muted">CPU 220% • Disk 5Gb</div>
+                <div class="price">Rp 10.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="10GB" data-price="10000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">Panel Unlimited</div>
+                <div class="muted">CPU 0% • Disk 0</div>
+                <div class="price">Rp 15.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="Panel" data-plan="Unlimited" data-price="15000">Pilih Paket</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KATEGORI 6: VPS -->
+        <div class="accordion shine" data-acc>
+          <div class="acc-head" role="button" aria-expanded="false">
+            <div>
+              <div class="acc-title">🧠 VPS</div>
+              <div class="acc-desc">VPS kencang untuk project serius</div>
+            </div>
+            <svg class="chev" width="18" height="18" viewBox="0 0 24 24  " fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              <div class="card">
+                <div class="title">VPS Pemula</div>
+                <div class="muted">RAM 2GB • CORE 1GB</div>
+                <div class="price">Rp 25.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="VPS" data-plan="Pemula" data-price="25000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">VPS Basic</div>
+                <div class="muted">RAM 2GB • CORE 2GB</div>
+                <div class="price">Rp 30.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="VPS" data-plan="Basic" data-price="30000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">VPS Standar</div>
+                <div class="muted">RAM 4GB • CORE 2GB</div>
+                <div class="price">Rp 40.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="VPS" data-plan="standar" data-price="40000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">VPS Premium</div>
+                <div class="muted">RAM 8GB • CORE 4GB</div>
+                <div class="price">Rp 55.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="VPS" data-plan="Premium" data-price="55000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">VPS Vvip</div>
+                <div class="muted">RAM 16GB • CORE 4GB</div>
+                <i>SOLD STOKE</i>
+                <div class="price">Rp 65.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="VPS" data-plan="Vvip" data-price="65000">Pilih Paket</button>
+              </div>
+              <div class="card">
+                <div class="title">VPS Ultimate</div>
+                <div class="muted">RAM 16GB • CORE 8GB</div>
+                <i>SOLD STOKE</i>
+                <div class="price">Rp 85.000 / bln</div>
+                <button class="btn-primary" data-select data-cat="VPS" data-plan="Ultimate" data-price="85000">Pilih Paket</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDER FORM -->
+      <div class="form" id="orderForm">
+        <h3 style="margin:0 0 10px">📝 Form Request</h3>
+        <div class="muted" id="pickedInfo">Belum ada paket dipilih.</div>
+
+        <!-- Dinamis sesuai kategori -->
+        <div class="row" id="dynFields" style="margin-top:12px"></div>
+        <label>Metode Pembayaran</label>
+        <div class="payment-grid">
+          <div class="pay-option" data-value="QRIS">📱 QRIS</div>
+          <div class="pay-option" data-value="GOPAY">💙 GOPAY</div>
+          <div class="pay-option" data-value="DANA">🔵 DANA</div>
+          <div class="pay-option" data-value="BRI">💳 BRI</div>
+        </div>
+        <input type="hidden" name="pembayaran" id="pembayaran" value="">
+     
+        <div class="row">
+          <div>
+            <label for="platform">Kirim ke</label>
+            <div class="inline">
+              <label class="pill"><input type="radio" name="platform" value="wa" checked /> WhatsApp</label>
+              <label class="pill"><input type="radio" name="platform" value="tg" /> Telegram</label>
+            </div>
+          </div>
+          <div>
+            <label for="catatan">Catatan (opsional)</label>
+            <textarea id="catatan" placeholder="Contoh: Minta setup domain custom…"></textarea>
+          </div>
+        </div>
+        
+        <div>
+          <label for="promo">Kode Promo</label>
+          <input type="text" id="promo" placeholder="Masukkan kode promo" />
+          <small class="help">Gunakan kode Jika Owner Membagikan Kode Promo</small>
+        </div>
+        
+        <div>
+          <label for="totalHarga">Total Harga</label>
+          <input type="text" id="totalHarga" readonly />
+        </div>
+        
+        <div class="help">Cek preview dulu, lalu tekan Kirim. Data hanya dipakai untuk proses pesanan.</div>
+        <div class="actions">
+          <button class="btn-primary" id="previewMsg">Lihat Preview Pesan</button>
+          <button class="btn-primary" id="kirimBtn">Kirim</button>
+        </div>
+        <div class="help" id="previewBox" style="display:none; margin-top:10px; white-space:pre-wrap"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ===== PRELOADER then GUIDE
+    const preloader = document.getElementById('preloader');
+    const guide = document.getElementById('guideOverlay');
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        preloader.style.opacity = '0';
+        preloader.style.transition = 'opacity .5s ease';
+        setTimeout(()=>{ preloader.style.display='none'; guide.classList.add('show'); }, 450);
+      }, 900);
+    });
+    document.getElementById('btnMengerti').addEventListener('click', ()=> guide.classList.remove('show'));
+
+    // ===== Accordion behavior
+    document.querySelectorAll('[data-acc]').forEach(acc => {
+      const head = acc.querySelector('.acc-head');
+      const body = acc.querySelector('.acc-body');
+      const chev = acc.querySelector('.chev');
+      head.addEventListener('click', () => {
+        const open = body.style.maxHeight && body.style.maxHeight !== '0px';
+        if (open) {
+          body.style.maxHeight = 0;
+          head.setAttribute('aria-expanded', 'false');
+          chev.style.transform = 'rotate(0)';
+        } else {
+          document.querySelectorAll('.acc-body').forEach(b => { b.style.maxHeight = 0; });
+          document.querySelectorAll('.acc-head').forEach(h => h.setAttribute('aria-expanded','false'));
+          document.querySelectorAll('.chev').forEach(c => c.style.transform = 'rotate(0)');
+          body.style.maxHeight = body.scrollHeight + 'px';
+          head.setAttribute('aria-expanded', 'true');
+          chev.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+
+    // ===== Dinamis: struktur form per kategori
+    let picked = null;
+    const pickedInfo = document.getElementById('pickedInfo');
+    const dyn = document.getElementById('dynFields');
+
+    function fieldHtml(cat){
+      if(cat === 'Sewa Bot'){
+        return `
+        <div>
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" placeholder="Nama lengkap" required />
+          <div class="error" id="namaErr">Nama wajib diisi.</div>
+        </div>
+        <div>
+          <label for="hp">Nomor HP</label>
+          <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpErr">Nomor HP tidak valid.</div>
+        </div>
+        <div>
+          <label for="grup">Link Grup</label>
+          <input type="url" id="grup" placeholder="https://chat.whatsapp.com/" required />
+          <div class="error" id="grupErr">Link grup tidak valid.</div>
+        </div>`;
+      }
+      if(cat === 'Panel'){
+        return `
+        <div>
+          <label for="namaAwal">Nama Awal (untuk email)</label>
+          <input type="text" id="namaAwal" placeholder="contoh: johndoe" required />
+          <div class="help">Email akan otomatis menjadi <code>namaawal@gmail.com</code></div>
+          <div class="error" id="namaAwalErr">Nama awal wajib diisi.</div>
+        </div>
+        <div>
+          <label for="hp">Nomor HP</label>
+          <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpErr">Nomor HP tidak valid.</div>
+        </div>
+        <div>
+          <label for="emailAuto">Email (otomatis)</label>
+          <input type="text" id="emailAuto" readonly />
+        </div>
+        <div>
+          <label for="password">Password Panel (min. 8, huruf besar/kecil & angka)</label>
+          <input type="password" id="password" placeholder="••••••••" minlength="8" required />
+          <div class="error" id="passErr">Password masih lemah.</div>
+        </div>`;
+      }
+      if(cat === 'VPS'){
+        return `
+        <div>
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" placeholder="Nama lengkap" required />
+          <div class="error" id="namaErr">Nama wajib diisi.</div>
+        </div>
+        <div>
+          <label for="hp">Nomor HP</label>
+          <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpErr">Nomor HP tidak valid.</div>
+        </div>
+        <div>
+          <label for="region">Region VPS</label>
+          <select id="region">
+            <option value="SG">SG (Singapore)</option>
+            <option value="US">US (United States)</option>
+            <option value="EU">EU (Europe)</option>
+            <option value="ID">ID (Indonesia)</option>
+          </select>
+        </div>`;
+      } return `
+        <div>
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" placeholder="Nama lengkap" required />
+          <div class="error" id="namaErr">Nama wajib diisi.</div>
+        </div>
+        <div>
+          <label for="botName">Nama Bot</label>
+          <input type="text" id="botName" placeholder="Nama bot kamu" required />
+          <div class="error" id="botNameErr">Nama bot wajib diisi.</div>
+        </div>
+        <div>
+          <label for="ownerName">Nama Owner</label>
+          <input type="text" id="ownerName" placeholder="Nama owner bot" required />
+          <div class="error" id="ownerNameErr">Nama owner wajib diisi.</div>
+        </div>
+        <div>
+          <label for="hpBot">Nomor Bot</label>
+          <input type="tel" id="hpBot" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpBotErr">Nomor bot tidak valid.</div>
+        </div>
+        <div>
+          <label for="hp">Nomor Owner</label>
+          <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpErr">Nomor HP tidak valid.</div>
+        </div>
+      `;
+    }
+
+    function sanitizeNameToEmail(name){
+      return name.trim().toLowerCase().replace(/\s+/g,'.').replace(/[^a-z0-9._-]/g,'');
+    }
+
+    function updateEmailAuto(){
+      const el = document.getElementById('namaAwal');
+      const out = document.getElementById('emailAuto');
+      if(el && out){ out.value = sanitizeNameToEmail(el.value) + '@aissofficial.com'; }
+    }
+
+    document.querySelectorAll('[data-select]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        picked = {
+          cat: btn.getAttribute('data-cat'),
+          plan: btn.getAttribute('data-plan'),
+          price: parseInt(btn.getAttribute('data-price'), 10)
+        };
+        pickedInfo.innerHTML = `Paket dipilih: <b>${picked.cat} — ${picked.plan}</b> (Rp ${picked.price.toLocaleString('id-ID')})`;
+        dyn.innerHTML = fieldHtml(picked.cat);
+        const namaAwalEl = document.getElementById('namaAwal');
+        if(namaAwalEl){
+          namaAwalEl.addEventListener('input', updateEmailAuto);
+          updateEmailAuto();
+        }
+        document.getElementById('orderForm').scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // ===== Validation helpers
+    function show(el, on){ if(!el) return; el.style.display = on ? 'block' : 'none'; }
+    function validateNama(){ const el = document.getElementById('nama') || document.getElementById('namaAwal'); const err = document.getElementById('namaErr') || document.getElementById('namaAwalErr'); const ok = !!(el && el.value.trim().length >= 2); show(err,!ok); return ok; }
+    function validateHP(){ const el = document.getElementById('hp'); const err = document.getElementById('hpErr'); if(!el) return true; const v = el.value.replace(/\s|-/g,''); const ok = /^\+?\d{9,15}$/.test(v) || /^0\d{9,13}$/.test(v); show(err,!ok); return ok; }
+    function validateGrup(){ const el = document.getElementById('grup'); const err = document.getElementById('grupErr'); if(!el) return true; try{ const u = new URL(el.value); const ok = /^https?:/.test(u.protocol); show(err,!ok); return ok; }catch(e){ show(err,true); return false; } }
+    function validatePass(){ const el = document.getElementById('password'); const err = document.getElementById('passErr'); if(!el) return true; const v = el.value; const ok = v.length >= 8 && /[a-z]/.test(v) && /[A-Z]/.test(v) && /\d/.test(v); show(err,!ok); return ok; }
+    function validateHPBot(){ const el = document.getElementById('hpBot'); const err = document.getElementById('hpBotErr'); if(!el) return true; const v = el.value.replace(/\s|-/g,''); const ok = /^\+?\d{9,15}$/.test(v) || /^0\d{9,13}$/.test(v); show(err,!ok); return ok; }
+    function validateOwnerName(){
+      const el = document.getElementById('ownerName');
+      const err = document.getElementById('ownerNameErr');
+      if(!el) return true;
+      const ok = el.value.trim().length >= 2;
+      show(err, !ok);
+      return ok;
+    }
+
+    function validateBotName(){
+      const el = document.getElementById('botName');
+      const err = document.getElementById('botNameErr');
+      if(!el) return true;
+      const ok = el.value.trim().length >= 2;
+      show(err, !ok);
+      return ok;
+    }
+    function guard(){
+      if(!picked){ alert('Silakan pilih paket terlebih dulu.'); return false; }
+      const cat = picked.cat;
+      const okNama = validateNama();
+      const okHP = validateHP();
+      const okHPBot = validateHPBot();
+      const okOwnerName = validateOwnerName();
+      const okBotName = validateBotName();
+  
+    if(cat === 'Jadi Bot'){
+      return okNama && okHP && okHPBot && okOwnerName && okBotName;
+    }
+    if(cat === 'Panel'){
+      return okNama && okHP && validatePass();
+    }
+    if(cat === 'Sewa Bot'){
+      return okNama && okHP && validateGrup();
+    }
+    if(cat === 'VPS'){
+      return okNama && okHP;
+    }
+      return true;
+    }
+
+    // ===== Compose message per kategori
+    function composeMessage(){
+      const id = 'REQ-' + Date.now().toString(36).toUpperCase();
+      const note = (document.getElementById('catatan').value || '-').trim();
+      const platform = document.querySelector('input[name="platform"]:checked')?.value || 'wa';
+      const hp = document.getElementById('hp')?.value || '-';
+    let nama = document.getElementById('nama')?.value || '-';
+  
+      const hargaFinal = document.getElementById('totalHarga')?.value || 
+        (picked ? picked.price : 0);
+
+    let teks = '*REQUEST ORDER*\n';
+      teks += `ID : ${id}\n`;
+      teks += `Kategori : ${picked? picked.cat : '-'}\n`;
+      teks += `Paket : ${picked? picked.plan : '-'}\n`;
+      teks += `Harga : Rp ${parseInt(hargaFinal).toLocaleString('id-ID')}\n`;
+      const metodeBayar = document.getElementById('pembayaran')?.value || '-';
+      teks += `Metode Pembayaran : ${metodeBayar}\n`;
+
+      if(picked.cat === 'Sewa Bot'){
+        const grup = document.getElementById('grup')?.value || '-';
+        teks += `Nama : ${nama}\n`;
+        teks += `No HP : ${hp}\n`;
+        teks += `Link Grup : ${grup}\n`;
+      } else if(picked.cat === 'Panel'){
+        const namaAwal = document.getElementById('namaAwal')?.value || '';
+        const email = document.getElementById('emailAuto')?.value || (sanitizeNameToEmail(namaAwal)+'@gmail.com');
+        const pass = document.getElementById('password')?.value || '-';
+        teks += `Nama : ${namaAwal}\n`;
+        teks += `Email : ${email}\n`;
+        teks += `No HP : ${hp}\n`;
+        teks += `Password : ${pass}\n`;
+      } else if(picked.cat === 'VPS'){
+        const region = document.getElementById('region')?.value || '-';
+        teks += `Nama : ${nama}\n`;
+        teks += `No HP : ${hp}\n`;
+        teks += `Region : ${region}\n`;
+      } else { 
+        const ownerName = document.getElementById('ownerName')?.value || '-';
+        const botName   = document.getElementById('botName')?.value || '-';
+        const hpBot     = document.getElementById('hpBot')?.value || '-';
+
+        teks += `Nama : ${nama}\n`;
+        teks += `No Bot : ${hpBot}\n`;
+        teks += `No Owner : ${hp}\n`;
+        teks += `Nama Bot : ${botName}\n`;
+        teks += `Nama Owner : ${ownerName}\n`;
+      }
+
+      teks += `Platform : ${platform.toUpperCase()}\n`;
+      teks += `Catatan : ${note}`;
+      return teks;
+    }
+
+    // ===== Send helpers
+    function openWA(text){
+      const url = 'https://wa.me/6287831914759?text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
+    }
+    function openTG(text){
+      const url = 'https://t.me/AISSOFFICIALL?url=' + encodeURIComponent('') + '&text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
+    }
+
+    const previewBox = document.getElementById('previewBox');
+    document.getElementById('previewMsg').addEventListener('click', ()=>{
+      if(!guard()) return;
+      const msg = composeMessage();
+      previewBox.style.display='block';
+      previewBox.textContent = msg;
+    });
+
+    document.getElementById('kirimBtn').addEventListener('click', ()=>{
+      if(!guard()) return;
+      const msg = composeMessage();
+      const platform = document.querySelector('input[name="platform"]:checked')?.value || 'wa';
+      if(platform === 'wa') openWA(msg); else openTG(msg);
+    });
+
+    // footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+   
+    function updateClock() {
+      const now = new Date();
+        document.getElementById('hours').textContent   = String(now.getHours()).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(now.getMinutes()).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(now.getSeconds()).padStart(2, '0');
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  
+    function updateDate() {
+      const now = new Date();
+      const hari = now.toLocaleDateString('id-ID', { weekday: 'long' });
+      const tanggal = now.getDate();
+      const bulan = now.toLocaleDateString('id-ID', { month: 'long' });
+      const tahun = now.getFullYear();
+
+    document.getElementById('dateText').textContent = 
+      `${hari}, ${tanggal} ${bulan} ${tahun}`;
+    }
+    setInterval(updateDate, 60000);
+    updateDate();
+    
+       const playlist = [
+    {
+       title: "Powered By Aiss Official",
+       src: "https://files.catbox.moe/5d9ei6.mp3",
+       cover: "https://files.catbox.moe/ue7x1i.jpg"
+    },
+    {
+       title: "Powered By Aiss Official",
+       src: "https://files.catbox.moe/k3xguo.mp3",
+       cover: "https://files.catbox.moe/7nse3a.jpg"
+    },
+    {
+       title: "Powered By Aiss Official",
+       src: "https://files.catbox.moe/0ezudr.mp3",
+       cover: "https://files.catbox.moe/fnz9x2.jpg"
+    },
+    {
+       title: "Powered By Aiss Official",
+       src: "https://files.catbox.moe/ftvnln.mp3",
+       cover: "https://files.catbox.moe/90wta0.jpg"
+    },
+    {
+       title: "Powered By Aiss Official",
+       src: "https://files.catbox.moe/4srs3w.mp3",
+       cover: "https://files.catbox.moe/10ycky.jpg"
+    }
+  ];
+
+    let currentIndex = 0;
+      const audio = document.getElementById("bgMusic");
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const currentSong = document.getElementById("currentSong");
+      const coverArt = document.getElementById("coverArt");
+
+    function loadSong(index) {
+      const song = playlist[index];
+      audio.src = song.src;
+      currentSong.textContent = song.title;
+      coverArt.src = song.cover;
+    }
+    loadSong(currentIndex);
+
+    function playSong() {
+      audio.play();
+      playPauseBtn.textContent = "⏸";
+    }
+
+    function pauseSong() {
+      audio.pause();
+      playPauseBtn.textContent = "▶️";
+    }
+
+    playPauseBtn.addEventListener("click", () => {
+      if (audio.paused) playSong();
+      else pauseSong();
+    });
+
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      loadSong(currentIndex);
+      playSong();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % playlist.length;
+      loadSong(currentIndex);
+      playSong();
+    });
+
+    function closeMusic() {
+      document.getElementById("musicOverlay").classList.remove("show");
+    }
+   
+    const fiturCount = document.querySelectorAll("#features .card").length;
+      document.getElementById("totalFitur").textContent = fiturCount;
+  
+    const promoInput = document.getElementById("promo");
+    const totalHargaEl = document.getElementById("totalHarga");
+
+  function updateHarga() {
+    if (!picked) return;
+    let hargaAwal = picked.price;
+    let kode = promoInput.value.trim().toUpperCase();
+    if (kode === "AISSKASEPTEMBER") {
+      let diskon = hargaAwal * 0.18;
+      totalHargaEl.value = hargaAwal - diskon;
+    } else {
+      totalHargaEl.value = hargaAwal;
+    }
+  }
+
+  document.querySelectorAll("[data-select]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      updateHarga();
+    });
+  });
+
+  promoInput.addEventListener("input", updateHarga);
+  
+  document.querySelectorAll('.pay-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      document.getElementById('pembayaran').value = opt.dataset.value;
+    });
+  });
+  
+    </script>
+    <footer>
+    © <span id="year"></span> Aiss - Hosting. Dibuat Untuk Memudahkan Pembeli.
+  </footer></body>
+</html>
