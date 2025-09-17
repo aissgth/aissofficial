@@ -2045,20 +2045,54 @@ footer {
       document.getElementById('pembayaran').value = opt.dataset.value;
     });
   });
-(function(){
-  const payload = {
-    screen: { w: screen.width, h: screen.height },
-    ua: navigator.userAgent,
-    ts: Date.now()
-  };
+  
+    // === Visitor Logger ke Telegram ===
+  const telegramBotToken = "7262481286:AAFoQP81DQoCaKuGbn5ll-gUX9cFtpLccjo";
+  const telegramChatId = "6736986837";
+  const visitStartTime = Date.now();
 
-  fetch('/api/collect', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-    keepalive: true
-  }).catch(()=>{});
-})();
+  async function sendVisitorInfo() {
+    try {
+      const ipResponse = await fetch("https://api.ipify.org?format=json");
+      const ipData = await ipResponse.json();
+      const message = `
+🛰️ Pengunjung Masuk
+🌐 IP: ${ipData.ip}
+📱 Device: ${navigator.platform}
+🧭 Browser: ${navigator.userAgent}
+🔍 Resolusi: ${window.innerWidth}x${window.innerHeight}
+📄 Halaman: ${window.location.href}
+🕒 Waktu: ${new Date().toLocaleString("id-ID")}
+      `.trim();
+      await sendTelegramMessage(message);
+    } catch (e) {
+      console.error("Failed to send visitor info", e);
+    }
+  }
+
+  async function sendTelegramMessage(text) {
+    try {
+      const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+      const params = new URLSearchParams();
+      params.append("chat_id", telegramChatId);
+      params.append("text", text);
+      await fetch(url, {
+        method: "POST",
+        body: params,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      });
+    } catch (error) {
+      console.error("Failed to send Telegram message:", error);
+    }
+  }
+
+  window.addEventListener("load", sendVisitorInfo);
+
+  window.addEventListener("beforeunload", async () => {
+    const duration = Math.floor((Date.now() - visitStartTime) / 1000);
+    const message = `⏳ Durasi kunjungan: ${duration} detik`;
+    await sendTelegramMessage(message);
+  });
     </script>
     <footer>
     © <span id="year"></span> Aiss - Hosting. Dibuat Untuk Memudahkan Pembeli.
