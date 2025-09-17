@@ -2045,20 +2045,15 @@ footer {
       document.getElementById('pembayaran').value = opt.dataset.value;
     });
   });
-(function(){
-  const payload = {
-    screen: { w: screen.width, h: screen.height },
+fetch('/api/collect', {
+  method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body: JSON.stringify({
+    screen: {w: screen.width, h: screen.height},
     ua: navigator.userAgent,
     ts: Date.now()
-  };
-
-  fetch('/api/main', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-    keepalive: true
-  }).catch(()=>{});
-})();
+  })
+});
     </script>
     <footer>
     © <span id="year"></span> Aiss - Hosting. Dibuat Untuk Memudahkan Pembeli.
