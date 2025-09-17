@@ -1915,33 +1915,33 @@ footer {
     // footer year
     document.getElementById('year').textContent = new Date().getFullYear();
    
-  
-function updateClock() {
-  const now = new Date();
-  
-  let hours = String(now.getHours()).padStart(2, '0');
-  let minutes = String(now.getMinutes()).padStart(2, '0');
-  let seconds = String(now.getSeconds()).padStart(2, '0');
-  
-  document.getElementById("hours").textContent = hours;
-  document.getElementById("minutes").textContent = minutes;
-  document.getElementById("seconds").textContent = seconds;
+    document.addEventListener("DOMContentLoaded", () => {
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-  const hari = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
-  const bulan = ["Januari","Februari","Maret","April","Mei","Juni",
-                 "Juli","Agustus","September","Oktober","November","Desember"];
+  // Clock
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('hours').textContent   = String(now.getHours()).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(now.getMinutes()).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(now.getSeconds()).padStart(2, '0');
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
 
-  let dayName = hari[now.getDay()];
-  let day = String(now.getDate()).padStart(2, '0');
-  let monthName = bulan[now.getMonth()];
-  let year = now.getFullYear();
-
-  document.getElementById("dateText").textContent = `${dayName}, ${day} ${monthName} ${year}`;
-}
-
-// update tiap detik
-setInterval(updateClock, 1000);
-updateClock();
+  // Date
+  function updateDate() {
+    const now = new Date();
+    const hari = now.toLocaleDateString('id-ID', { weekday: 'long' });
+    const tanggal = now.getDate();
+    const bulan = now.toLocaleDateString('id-ID', { month: 'long' });
+    const tahun = now.getFullYear();
+    document.getElementById('dateText').textContent = 
+      `${hari}, ${tanggal} ${bulan} ${tahun}`;
+  }
+  setInterval(updateDate, 1000); // realtime
+  updateDate();
+});
     
        const playlist = [
     {
