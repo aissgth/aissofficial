@@ -130,7 +130,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap');
 
     .clock {
-      margin: 0 auto 20px;
+      margin: 0 auto 15px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -143,8 +143,8 @@
 
       background: rgba(0, 0, 0, 0.6);
       border: 2px solid rgba(0, 255, 208, 0.4);
-      border-radius: 12px;
-      padding: 12px 28px;
+      border-radius: 20px;
+      padding: 14px 30px;
       text-align: center;
 
       box-shadow: 0 0 15px rgba(0, 255, 208, 0.6),
@@ -167,19 +167,18 @@
       opacity: 0;
     }
     
-    
     @keyframes scrollDate {
       from { transform: translateX(100%); }
       to   { transform: translateX(-100%); }
     }
+    
     .date-marquee {
       width: 100%;
       overflow: hidden;
       white-space: nowrap;
       margin-top: 6px;
     }
-
-    .date-marquee span {
+        .date-marquee span {
       display: inline-block;
       padding-left: 10%;
       animation: scrollDate 12s linear infinite;
@@ -199,7 +198,7 @@
     .payment-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 10px;
     }
 
     .pay-option {
@@ -223,7 +222,110 @@
        background: rgba(0,255,208,.1);
        box-shadow: 0 0 12px rgba(0,255,208,.5);
     }
-    
+    /* ===== Track IP Page (Style Sesuai Web Aiss) ===== */
+#trackip-page {
+  background: transparent; /* biar nyatu sama tema global */
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+#trackip-page h1 {
+  color: #38bdf8; /* biru neon */
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+  margin-bottom: 1.5rem;
+}
+
+#trackip-page input {
+  background: rgba(15, 23, 42, 0.8); /* mirip card di web */
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #e0f2fe;
+  text-align: center;
+  padding: 14px;
+  border-radius: 14px;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+#trackip-page input::placeholder {
+  color: #64748b; /* placeholder abu-abu biru */
+}
+
+#trackip-page input:focus {
+  border-color: #22d3ee; /* cyan terang */
+  box-shadow: 0 0 14px rgba(34, 211, 238, 0.6);
+}
+
+/* Box hasil */
+#ipResult {
+  padding: 14px;
+  margin-top: 14px;
+  border-radius: 14px;
+  background: rgba(30, 41, 59, 0.75);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  color: #bae6fd; /* teks biru muda */
+  white-space: pre-line;
+  font-size: 0.9rem;
+  line-height: 0.2;
+}
+
+/* Tombol Custom */
+.btn-custom {
+  background: linear-gradient(135deg, #0284c7, #06b6d4);
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  padding: 13px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  border: none;
+}
+
+.btn-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.7);
+}
+
+.btn-custom:active {
+  transform: scale(0.97);
+}
+
+/* Animasi masuk */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Tambahan biar nyatu */
+#ipOverlay .overlay-content {
+  max-width: 360px;
+  width: 90%;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  border-radius: 18px;
+  padding: 20px;
+  color: #e0f2fe;
+  text-align: left;
+  animation: popUp 0.35s ease;
+}
+
+#ipOverlay h2 {
+  text-align: center;
+  color: #38bdf8;
+  margin-bottom: 14px;
+}
+
+@keyframes popUp {
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+  
     /* ====== PRELOADER ====== */
     .preloader{position:fixed; inset:0; display:grid; place-items:center; z-index:9999; background:
       radial-gradient(800px 560px at 30% 20%, #101728 0%, #0b0f14 45%, #080b10 100%);}    
@@ -289,7 +391,8 @@
     .btn-wa{background:var(--success); color:#0b0f14}
     .btn-tg{background:var(--tg); color:#0b0f14}
 
-footer {
+    /* ====== FOOTER ====== */
+    footer {
       text-align: center;
       padding: 20px;
       background: transparent;
@@ -299,18 +402,18 @@ footer {
     /* small fx */
     .shine{position:relative; isolation:isolate}
     .shine:before{content:""; position:absolute; inset:-2px; border-radius:inherit; background: conic-gradient(from 0deg, rgba(124,92,255,.0), rgba(124,92,255,.45), rgba(0,255,208,.35), rgba(124,92,255,.0)); filter: blur(20px); z-index:-1; opacity:.3}
-    </style>
-  </head>
+  </style>
+</head>
 <body>
-       <!-- PRELOADER -->
-       <div class="preloader" id="preloader">
-         <div>
-           <div class="blob"></div>
-             <div class="loader-text">memuat halaman…</div>
-         </div>
-       </div>
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div>
+      <div class="blob"></div>
+      <div class="loader-text">memuat halaman…</div>
+    </div>
+  </div>
 
-       <!-- GUIDE OVERLAY -->
+  <!-- GUIDE OVERLAY -->
        <div class="overlay" id="guideOverlay" aria-modal="true" role="dialog">
          <div class="guide shine">
            <h2>Selamat Datang! 👋</h2>
@@ -356,14 +459,14 @@ footer {
  
   <main>
     <section class="hero wrap">
-      <div id="clock" class="clock">
+    <div id="clock" class="clock">
         <div class="time">
-          <span id="hours">00</span><span class="colon">  :</span>
-          <span id="minutes">00</span><span class="colon">  :</span>
-          <span id="seconds">00</span>
-        </div>
+          <span id="hours">00</span><span class="colon">:</span>
+      <span id="minutes">00</span><span class="colon">:</span>
+      <span id="seconds">00</span>
+      </div>
         <div class="date-marquee">
-          <span id="dateText">Senin, 04 September 2025</span>
+          <span id="dateText">Senin, 01 Januari 2025</span>
         </div>
       </div>
       
@@ -381,886 +484,6 @@ footer {
         </div>
       </div>
     </section>
-
-    <!-- KATEGORI FITUR -->
-<section class="section">
-  <h2 style="text-align:center; margin-bottom:14px">✨ Daftar Fitur Bot</h2>
-  <div class="grid" id="features">
-    <div class="stats" style="margin-top:20px">
-    <div class="stat">📊 Total Fitur
-      <div class="muted"><span id="totalFitur">0</span> Fitur Aktif</div>
-    </div>
-  </div>
-  
-    <!-- CATEGORY 1: Admin -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">🤝 𝐅𝐈𝐓𝐔𝐑 𝐀𝐃𝐌𝐈𝐍</div>
-          <div class="acc-desc">Khusus Pengelola Group</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀᴅᴅʙᴀᴅᴡᴏʀᴅ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅ</div></div>
-          <div class="card"><div class="title">➣ ᴀɴᴛɪʟɪɴᴋ</div></div>
-          <div class="card"><div class="title">➣ ʙᴀn</div></div>
-          <div class="card"><div class="title">➣ ʙᴀɴꜰɪᴛᴜʀ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟʙᴀᴅᴡᴏʀᴅ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴇᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇᴍᴏᴛᴇᴀʟʟ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇᴍᴏᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴇᴅɪᴛᴅᴇꜱᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴇᴅɪᴛᴅᴇꜱᴋʀɪᴘꜱɪ</div></div>
-          <div class="card"><div class="title">➣ ᴇᴅɪᴛꜱᴜʙᴊᴇᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴇᴅɪᴛꜱᴜʙᴊᴇᴄᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴇᴅɪᴛꜱᴜʙᴊᴇᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴇᴅɪᴛᴊᴜᴅᴜʟ</div></div>
-          <div class="card"><div class="title">➣ ꜰɪxᴄʜᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ɢᴄꜱɪᴅᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ɢɪᴠᴇᴀᴡᴀʏ</div></div>
-          <div class="card"><div class="title">➣ ᴍᴜʟᴀɪɢɪᴠᴇᴀᴡᴀʏ</div></div>
-          <div class="card"><div class="title">➣ ɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ɢʀᴏᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ɢʀᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ɢʀᴏᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴏᴘᴇɴ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴄʟᴏꜱᴇ</div></div>
-          <div class="card"><div class="title">➣ ʜɪᴅᴇᴛᴀɢ</div></div>
-          <div class="card"><div class="title">➣ ʜ</div></div>
-          <div class="card"><div class="title">➣ ʜɪᴅᴇᴛᴀᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴋɪᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴏʀ</div></div>
-          <div class="card"><div class="title">➣ ᴋɪᴄᴋꜱɪᴅᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛᴀʙꜱᴇɴ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛᴀᴅᴍɪɴ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛᴀʟʟᴜꜱᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛᴍᴇᴍʙᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛɴᴏᴀʙꜱᴇɴ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛʙᴀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴍᴜᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴜɴᴍᴜᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴏꜰꜰ</div></div>
-          <div class="card"><div class="title">➣ ᴏɴ</div></div>
-          <div class="card"><div class="title">➣ ᴘʀᴏᴍᴏᴛᴇᴀʟʟ</div></div>
-          <div class="card"><div class="title">➣ ᴘʀᴏᴍᴏᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪɴᴋɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴏᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴏᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴅᴇᴍᴏᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛʟᴇꜰᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴘʀᴏᴍᴏᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴛᴇᴍᴘʟᴀᴛᴇʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇᴍᴘʟᴀᴛᴇʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴛᴇᴍᴘʟᴀᴛᴇᴡᴇʟᴄᴏᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇᴍᴘʟᴀᴛᴇᴡᴇʟᴄᴏᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴡᴇʟᴄᴏᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴄʟᴏꜱᴇɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴄʟᴏꜱᴇᴛᴇxᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴏᴘᴇɴɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴏᴘᴇɴᴛᴇxᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘɢʀᴏᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘɢʀᴏᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘɢʀᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ꜱʟʀ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴀɢᴀʟʟ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇꜱᴡᴇʟᴄᴏᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴘ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛᴛᴏᴛᴀʟᴄʜᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴛᴀʟᴄʜᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴜɴʙᴀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴜɴʙᴀɴꜰɪᴛᴜʀ</div></div>
-          <div class="card"><div class="title">➣ ᴡᴀʀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴡᴀʀɴɪɴɢ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛᴡᴀʀɴɪɴɢ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛᴡᴀʀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴇᴛᴇᴡᴀʀɴɪɴɢ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴡᴀʀɴɪɴɢ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʙᴜɢᴡᴀʀɴ</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CATEGORY 2: Ai -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">🤖 𝐅𝐈𝐓𝐔𝐑 𝐀𝐈</div>
-          <div class="acc-desc">Interaksi Ai</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀɪ</div></div>
-          <div class="card"><div class="title">➣ ꜱɪᴍɪ</div></div>
-          <div class="card"><div class="title">➣ ᴠɴ</div></div>
-          <div class="card"><div class="title">➣ ᴠɴᴀɴɪᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴠᴏɪᴄᴇᴀɪ</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CATEGORY 3: Anime -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">👸 𝐅𝐈𝐓𝐔𝐑 𝐀𝐍𝐈𝐌𝐄</div>
-          <div class="acc-desc">Generate Gambar</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴡᴀɪꜰᴜ</div></div>
-          <div class="card"><div class="title">➣ ɴᴇᴋᴏ</div></div>
-          <div class="card"><div class="title">➣ ꜱʜɪɴᴏʙᴜ</div></div>
-          <div class="card"><div class="title">➣ ᴍᴇɢᴜᴍɪɴ</div></div>
-          <div class="card"><div class="title">➣ ʙᴜʟʟʏ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴜᴅᴅʟᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴄʀʏ</div></div>
-          <div class="card"><div class="title">➣ ʜᴜɢ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴡᴏᴏ</div></div>
-          <div class="card"><div class="title">➣ ᴋɪꜱꜱ</div></div>
-          <div class="card"><div class="title">➣ ʟɪᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴘᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴍᴜɢ</div></div>
-          <div class="card"><div class="title">➣ ʙᴏɴᴋ</div></div>
-          <div class="card"><div class="title">➣ ʏᴇᴇᴛ</div></div>
-          <div class="card"><div class="title">➣ ʙʟᴜꜱʜ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴍɪʟᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴡᴀᴠᴇ</div></div>
-          <div class="card"><div class="title">➣ ʜɪɢʜꜰɪᴠᴇ</div></div>
-          <div class="card"><div class="title">➣ ʜᴀɴᴅʜᴏʟᴅ</div></div>
-          <div class="card"><div class="title">➣ ɴᴏᴍ</div></div>
-          <div class="card"><div class="title">➣ ʙɪᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ɢʟᴏᴍᴘ</div></div>
-          <div class="card"><div class="title">➣ ꜱʟᴀᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴋɪʟʟ</div></div>
-          <div class="card"><div class="title">➣ ʜᴀᴘᴘʏ</div></div>
-          <div class="card"><div class="title">➣ ᴡɪɴᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴘᴏᴋᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴀɴᴄᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴄʀɪɴɢᴇ</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CATEGORY 4: Berita -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">📰 𝐅𝐈𝐓𝐔𝐑 𝐁𝐄𝐑𝐈𝐓𝐀</div>
-          <div class="acc-desc">Informasi Public</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀɴᴛᴀʀᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴄɴɴ</div></div>
-          <div class="card"><div class="title">➣ ᴄɴʙᴄ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴘɴɴ</div></div>
-          <div class="card"><div class="title">➣ ᴋᴜᴍᴘᴀʀᴀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴍᴇʀᴅᴇᴋᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴋᴇᴢᴏɴᴇ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇᴘᴜʙʟɪᴋᴀ</div></div>
-          <div class="card"><div class="title">➣ ꜱɪɴᴅᴏɴᴇᴡꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇᴍᴘᴏ</div></div>
-          <div class="card"><div class="title">➣ ᴛʀɪʙᴜɴ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 5: Download -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">♻️ 𝐅𝐈𝐓𝐔𝐑 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃</div>
-          <div class="acc-desc">Download All Sosmed</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ꜰʙ</div></div>
-          <div class="card"><div class="title">➣ ꜰᴀᴄᴇʙᴏᴏᴋ</div></div>
-          <div class="card"><div class="title">➣ ɪɢ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜱᴛᴀɢʀᴀᴍ</div></div>
-          <div class="card"><div class="title">➣ ɪɢꜰᴏᴛᴏ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜱᴛᴀɢʀᴀᴍꜰᴏᴛᴏ</div></div>
-          <div class="card"><div class="title">➣ ʟɪʀɪᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴘɪɴ</div></div>
-          <div class="card"><div class="title">➣ ᴘɪɴᴛᴇʀᴇꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴘʟᴀʏ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴘᴏᴛɪꜰʏ</div></div>
-          <div class="card"><div class="title">➣ ᴛɪᴋᴛᴏᴋꜱᴇᴀʀᴄʜ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴛꜱᴇᴀʀᴄʜ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴛꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴛꜱʟɪᴅᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴛɪᴋᴛᴏᴋꜱʟɪᴅᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴛɪᴋᴛᴏᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴛɪᴋᴛᴏᴋᴍᴘ3</div></div>
-          <div class="card"><div class="title">➣ ᴛᴛᴍᴘ3</div></div>
-          <div class="card"><div class="title">➣ ᴛᴡ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴡɪᴛᴛᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ʏᴛᴍᴘ3</div></div>
-          <div class="card"><div class="title">➣ ʏᴛᴍᴘ4</div></div>
-          <div class="card"><div class="title">➣ ʏᴛꜱ</div></div>
-          <div class="card"><div class="title">➣ ʏᴛꜱᴇᴀʀᴄʜ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 6: Editor -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">👨‍💻 𝐅𝐈𝐓𝐔𝐑 𝐄𝐃𝐈𝐓𝐎𝐑</div>
-          <div class="acc-desc">Text Edit Picture</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ʙʟᴜʀ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴜᴏᴛᴏɴᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜰʟɪᴘx</div></div>
-          <div class="card"><div class="title">➣ ꜰʟɪᴘʏ</div></div>
-          <div class="card"><div class="title">➣ ɢʀᴀʏꜱᴄᴀʟᴇ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱɪᴢᴇ</div></div>
-          <div class="card"><div class="title">➣ ʀᴏᴛᴀᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴘɪᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴀᴊᴀᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴡᴀɴᴛᴇᴅ</div></div>
-          <div class="card"><div class="title">➣ ᴡᴀꜱᴛᴇᴅ</div></div>   
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 7: Games -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">🕹 𝐅𝐈𝐓𝐔𝐑 𝐆𝐀𝐌𝐄𝐒</div>
-          <div class="acc-desc">Games Fun</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ʙᴊ</div></div>
-          <div class="card"><div class="title">➣ ʙʟᴀᴄᴋᴊᴀᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴀᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴀᴋʟᴏɴᴛᴏɴɢ</div></div>
-          <div class="card"><div class="title">➣ ᴋᴏᴅᴀᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴋᴏᴅᴀᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴋʜᴏᴅᴀᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴏᴅᴀᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴀʀᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜰᴀᴍɪʟʏ100</div></div>
-          <div class="card"><div class="title">➣ ᴋᴜɪꜱᴍᴀᴛʜ</div></div>
-          <div class="card"><div class="title">➣ ᴍᴀᴛʜ</div></div>
-          <div class="card"><div class="title">➣ ꜱɴᴀᴋᴇꜱ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴜɪᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋᴀɴɢᴋᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋʙᴇɴᴅᴇʀᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋʙᴏᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋɢᴀᴍʙᴀʀ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋʜᴇᴡᴀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋᴋᴀʟɪᴍᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋᴋᴀᴛᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋʟᴀɢᴜ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴇʙᴀᴋʟɪʀɪᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴛᴄ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴛᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴛɪᴄᴛᴀᴄᴛᴏᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴛʀᴜᴛʜ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 8: Group -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">👥 𝐅𝐈𝐓𝐔𝐑 𝐆𝐑𝐎𝐔𝐏</div>
-          <div class="acc-desc">Penggunaan Group</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀʙꜱᴇɴ</div></div>
-          <div class="card"><div class="title">➣ ᴀꜰᴋ</div></div>
-          <div class="card"><div class="title">➣ ʙᴀᴅᴡᴏʀᴅ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛʙᴀᴅᴡᴏʀᴅ</div></div>
-          <div class="card"><div class="title">➣ ᴀɪꜱꜱ</div></div>
-          <div class="card"><div class="title">➣ ʙᴜʏʟɪᴍɪᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴘʀᴇᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴘʀᴇᴍɪᴜᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋꜱᴇᴡᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴄʟᴀɪᴍ</div></div>
-          <div class="card"><div class="title">➣ ʜᴇʟᴘ</div></div>
-          <div class="card"><div class="title">➣ ʙᴀɴᴛᴜᴀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴘᴀɴᴅᴜᴀɴ</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ1</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ2</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ3</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ4</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ5</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ6</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ7</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ8</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ9</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ10</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ11</div></div>
-          <div class="card"><div class="title">➣ ɴᴏ12</div></div>
-          <div class="card"><div class="title">➣ ɪᴋᴜᴛ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜰᴏɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜰᴏɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜰᴏɢʀᴏᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜰᴏɢʀᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜰᴏɢʀᴏᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ʟɪɴᴋɢʀᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ʟɪɴᴋɢʀᴏᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ʟɪɴᴋɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ʟɪɴᴋɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ʟɪɴᴋɢʀᴏᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ʟɪᴍɪᴛ</div></div>
-          <div class="card"><div class="title">➣ ʀᴜʟᴇꜱʙᴏᴛ</div></div>
-          <div class="card"><div class="title">➣ ʀᴜʟᴇꜱ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇɴᴅʟɪᴍɪᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇɴᴅᴍᴏɴᴇʏ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴀᴋᴜɴ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 9: Information -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">📢 𝐅𝐈𝐓𝐔𝐑 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍</div>
-          <div class="acc-desc">Cek Info</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀʀᴛɪᴍɪᴍᴘɪ</div></div>
-          <div class="card"><div class="title">➣ ᴀʀᴛɪɴᴀᴍᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴏᴅᴄᴇᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴏᴅ</div></div>
-          <div class="card"><div class="title">➣ ꜰꜰᴄᴇᴋ</div></div>
-          <div class="card"><div class="title">➣ ꜰꜰ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜰᴏɢᴇᴍᴘᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴋʙʙɪ</div></div>
-          <div class="card"><div class="title">➣ ᴍʟ</div></div>
-          <div class="card"><div class="title">➣ ᴍʟᴄᴇᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴘᴜʙɢᴄᴇᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴘᴜʙɢ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛᴀʟᴋᴛɪᴋᴛᴏᴋ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 10: Islami -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">🕌 𝐅𝐈𝐓𝐔𝐑 𝐈𝐒𝐋𝐀𝐌𝐈</div>
-          <div class="acc-desc">Islam Info</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀᴢᴀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴏᴀ</div></div>
-          <div class="card"><div class="title">➣ ʜᴀᴅɪꜱ</div></div>
-          <div class="card"><div class="title">➣ ʜᴀᴅɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ʜᴀᴅɪᴛꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴀᴅᴡᴀʟꜱʜᴏʟᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴀᴅᴡᴀʟꜱʜᴀʟᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴀᴅᴡᴀʟꜱʜᴏʟᴀᴛ2</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱᴜʀᴀʜ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱᴜʀᴏʜ</div></div>
-          <div class="card"><div class="title">➣ ɴɪᴀᴛꜱʜᴏʟᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ɴɪᴀᴛꜱʜᴀʟᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴜʀᴀʜ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴜʀᴏʜ</div></div>
-          <div class="card"><div class="title">➣ ᴢɪᴋɪʀ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 11: Kerang Ajaib -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">🐚 𝐅𝐈𝐓𝐔𝐑 𝐊𝐄𝐑𝐀𝐍𝐆 𝐀𝐉𝐀𝐈𝐁</div>
-          <div class="acc-desc">Fun Cek</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ʙɪꜱᴀᴋᴀʜ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋʙᴜᴄɪɴ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴄᴀɴᴛɪᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋɢᴀɴᴛᴇɴɢ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋɢɪʟᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴍᴀᴛɪ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴛᴏʟᴏʟ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴜᴍᴜʀ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴀᴅɪᴀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴋᴀᴘᴀɴᴋᴀʜ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 12: Maker -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">🖼 𝐅𝐈𝐓𝐔𝐑 𝐌𝐀𝐊𝐄𝐑</div>
-          <div class="acc-desc">Create Sticker</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀᴛᴛᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴛᴛᴘ2</div></div>
-          <div class="card"><div class="title">➣ ʙʀᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ʙʀᴀᴛ2</div></div>
-          <div class="card"><div class="title">➣ ʙʀᴀᴛᴄᴜꜱᴛᴏᴍ</div></div>
-          <div class="card"><div class="title">➣ ʙʀᴀᴛᴠɪᴅ</div></div>
-          <div class="card"><div class="title">➣ Qᴄ</div></div>
-          <div class="card"><div class="title">➣ Qᴄ2</div></div>
-          <div class="card"><div class="title">➣ Qᴄꜱᴛɪᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴍᴇᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛɪᴄᴋᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛɪᴋᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴠɪᴅ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏɢɪꜰ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴛᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴡᴍ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 13: More -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">🔍 𝐅𝐈𝐓𝐔𝐑 𝐌𝐎𝐑𝐄</div>
-          <div class="acc-desc">Fitur Lainnya</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀᴘɪᴋᴇʏ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴀᴘɪᴋᴇʏ</div></div>
-          <div class="card"><div class="title">➣ ᴄʜᴇᴄᴋᴀᴘɪᴋᴇʏ</div></div>
-          <div class="card"><div class="title">➣ ɢʀᴜʙʙᴏᴛ</div></div>
-          <div class="card"><div class="title">➣ ʀᴀᴛᴇʟɪᴍɪᴛ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇɢɪꜱᴛᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ʀᴜɴᴛɪᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴄ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴄʀɪᴘᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ2</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ3</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ4</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ5</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ6</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ7</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ8</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ9</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛʏʟᴇ10</div></div>
-          <div class="card"><div class="title">➣ ᴛᴜᴛᴏʀ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴜᴛᴏʀɪᴀʟ</div></div>
-          <div class="card"><div class="title">➣ ᴠᴇʀꜱɪᴏɴ</div></div>
-          <div class="card"><div class="title">➣ ᴠᴇʀꜱɪ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 14: Owner -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">👑 𝐅𝐈𝐓𝐔𝐑 𝐎𝐖𝐍𝐄𝐑</div>
-          <div class="acc-desc">Akses Owner</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀᴅᴅɢʟᴏʙᴀʟʙᴀᴅᴡᴏʀᴅ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅʟᴇᴠᴇʟ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅʟɪᴍɪᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅᴍᴏɴᴇʏ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅᴏᴡɴᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʟᴜɢɪɴ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʟᴜɢɪɴꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʀᴇᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʀᴇᴍɪᴜᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅʀᴇꜱᴘᴏɴ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʀᴇᴍɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅᴘʀᴇᴍɪᴜᴍɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ʙᴀᴄᴋᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴏʙʟᴀᴄᴋʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ʙʟᴏᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ʙᴜᴀᴛꜱᴛᴏʀʏ</div></div>
-          <div class="card"><div class="title">➣ ʙᴜᴀᴛꜱᴛᴏʀɪ</div></div>
-          <div class="card"><div class="title">➣ ᴜᴘꜱᴡ</div></div>
-          <div class="card"><div class="title">➣ ᴄʟᴇᴀɴᴅʙ</div></div>
-          <div class="card"><div class="title">➣ ᴄʟᴇᴀʀꜱᴇꜱɪ</div></div>
-          <div class="card"><div class="title">➣ ᴄʟᴇᴀʀᴄʜᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇɢʀᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇɢʀᴏᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇɢʀᴏᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟɢʟᴏʙᴀʟʙᴀᴅᴡᴏʀᴅ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴏᴡɴᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴘʟᴜɢɪɴ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴘʟᴜɢɪɴꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴘʀᴇᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴘʀᴇᴍɪᴜᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟʀᴇꜱᴘᴏɴ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴇᴛᴇʀᴇꜱᴘᴏɴ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟꜱᴇᴡᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴇᴛᴇᴊᴀᴅɪʙᴏᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴊᴀᴅɪʙᴏᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴘʀᴇᴍɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴘʀᴇᴍɪᴜᴍɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇᴍᴏᴛᴇᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ɢᴄᴛᴀɢ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜰᴏꜱɪꜱᴛᴇᴍ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜰᴏꜱʏꜱᴛᴇᴍ</div></div>
-          <div class="card"><div class="title">➣ ɪᴘꜱᴇʀᴠᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴀᴅɪʙᴏᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴏɪɴ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴘᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴘᴍᴛᴀɢ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛʙʟᴀᴄᴋʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛʙʟᴏᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛᴘʀᴇᴍ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛᴘʀᴇᴍɪᴜᴍ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛʀᴇꜱᴘᴏɴ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱᴇᴡᴀ2</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱᴇᴡᴀ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛᴊᴀᴅɪʙᴏᴛ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛɴᴏꜱᴇᴡᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛᴀʟʟɢʀᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛᴀʟʟɢʀᴏᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛᴀʟʟɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛᴀʟʟɢʀᴏᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛᴀʟʟɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛɢʀᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛɢʀᴏᴜᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛɢʀᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛɢʀᴏᴜʙ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜᴛɴᴏꜱᴇᴡᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴘʀᴏᴍᴏᴛᴇᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟᴇᴠᴇʟ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪᴍɪᴛ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛᴍᴏɴᴇʏ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴛᴀʀᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇʟꜰ</div></div>
-          <div class="card"><div class="title">➣ ᴘᴜʙʟɪᴄ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛʙɪᴏ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛɴᴀᴍᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴘʙᴏᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴡᴀʙᴏᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴡᴀʙᴏᴛɪᴅ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴛᴏᴘᴊᴀᴅɪʙᴏᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴀᴍʙᴀʜꜱᴇᴡᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴀᴅᴍɪɴ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴛᴀʟꜱᴇᴡᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴏᴜɴʙʟᴀᴄᴋʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴜɴʙʟᴏᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴜᴘᴅᴀᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴜᴘᴅᴀᴛᴇʙᴀɪʟᴇʏꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴜᴘᴅᴀᴛᴇʙᴀɪʟᴇʏ</div></div>
-          <div class="card"><div class="title">➣ ᴜᴘᴅᴀᴛᴇꜰᴏʀᴄᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴠɪᴇᴡᴄᴏᴅᴇ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 15: Premium -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">💎 𝐅𝐈𝐓𝐔𝐑 𝐏𝐑𝐄𝐌𝐈𝐔𝐌</div>
-          <div class="acc-desc">Akses Premium</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ɢᴇᴛᴘɪᴄ</div></div>
-          <div class="card"><div class="title">➣ ʜᴅᴠɪᴅᴇᴏ</div></div>
-          <div class="card"><div class="title">➣ ʜᴅᴠɪᴅ</div></div>
-          <div class="card"><div class="title">➣ ɪQᴄ</div></div>
-          <div class="card"><div class="title">➣ ɪQᴄ2</div></div>
-          <div class="card"><div class="title">➣ ᴛᴡɪʙʙᴏɴ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 16: Random -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">🪅 𝐅𝐈𝐓𝐔𝐑 𝐑𝐀𝐍𝐃𝐎𝐌</div>
-          <div class="acc-desc">Random</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀᴇꜱᴛʜᴇᴛɪᴄ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴄᴀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴏɢᴀɴ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴏꜱᴘʟᴀʏ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴀʀᴋᴊᴏᴋᴇ</div></div>
-          <div class="card"><div class="title">➣ ʜᴀᴄᴋᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ᴋᴜᴄɪɴɢ</div></div>
-          <div class="card"><div class="title">➣ ᴍᴇᴍᴇɪɴᴅᴏ</div></div>
-          <div class="card"><div class="title">➣ ᴍᴏᴛɪᴠᴀꜱɪ</div></div>
-          <div class="card"><div class="title">➣ ᴛʜᴀɪʟᴀɴᴅ</div></div>
-          <div class="card"><div class="title">➣ ᴠɪᴇᴛɴᴀᴍ</div></div>
-          <div class="card"><div class="title">➣ ᴡᴀʟʜᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴀɴɪᴍᴇQᴜᴏᴛᴇꜱ</div></div>
-          <div class="card"><div class="title">➣ ʙᴜᴄɪɴQᴜᴏᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴅɪʟᴀɴQᴜᴏᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜰᴀᴋᴛᴀᴜɴɪᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴀᴡᴀQᴜᴏᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴊᴏᴋᴇꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴘᴀɴᴛᴜɴ</div></div>
-          <div class="card"><div class="title">➣ Qᴜᴏᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ Qᴜᴏᴛᴇꜱ</div></div>
-          <div class="card"><div class="title">➣ ʀᴀɴᴅᴏᴍQᴜᴏᴛᴇ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 17: Store -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">🛍 𝐅𝐈𝐓𝐔𝐑 𝐒𝐓𝐎𝐑𝐄</div>
-          <div class="acc-desc">Fitur Memper Mudah Store</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴀᴅᴅʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴀᴅᴅꜱᴛᴏᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟᴇᴛᴇʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟʀɪᴡᴀʏᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇʟꜱᴛᴏᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴏɴᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴅ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇʟᴇꜱᴀɪ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴏɴᴇᴏʀᴅᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ᴇᴅɪᴛꜱᴛᴏᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ꜰᴀɪʟ</div></div>
-          <div class="card"><div class="title">➣ ᴋᴜʀᴀɴɢɪꜱᴛᴏᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱʟɪᴅᴇ</div></div>
-          <div class="card"><div class="title">➣ ʟɪꜱᴛꜱᴛᴏᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴏʀᴅᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ᴘᴀʏ</div></div>
-          <div class="card"><div class="title">➣ ᴘᴇɴᴅɪɴɢ</div></div>
-          <div class="card"><div class="title">➣ ᴘʀᴏꜱᴇꜱ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇɴᴀᴍᴇʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇꜱᴇᴛʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ʀɪᴡᴀʏᴀᴛ</div></div>
-          <div class="card"><div class="title">➣ ʀɪᴡᴀʏᴀᴛʙᴇʟɪ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴅᴏɴᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛꜰᴀɪʟ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛʟɪꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴘᴇɴᴅɪɴɢ</div></div>
-          <div class="card"><div class="title">➣ ꜱᴇᴛᴘʀᴏꜱᴇꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴀᴍʙᴀʜꜱᴛᴏᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴘʙᴜʏᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ᴜᴘᴅᴀᴛᴇʟɪꜱᴛ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 18: Textpro -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">🖊 𝐅𝐈𝐓𝐔𝐑 𝐓𝐄𝐗𝐓𝐏𝐑𝐎</div>
-          <div class="acc-desc">Mepercantik Text</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴍᴀʀᴠᴇʟ</div></div>
-          <div class="card"><div class="title">➣ ᴘᴏʀɴʜᴜʙ</div></div>
-          <div class="card"><div class="title">➣ 3ᴅʙᴏx</div></div>
-          <div class="card"><div class="title">➣ ʙʟᴀᴄᴋᴘɪɴᴋ</div></div>
-          <div class="card"><div class="title">➣ ʙᴏᴏᴍ</div></div>
-          <div class="card"><div class="title">➣ ɢᴀᴍɪɴɢ</div></div>
-          <div class="card"><div class="title">➣ ᴍᴀɢᴍᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴍᴀᴛʀɪx</div></div>
-          <div class="card"><div class="title">➣ ᴍᴇᴛᴀʟ</div></div>
-          <div class="card"><div class="title">➣ ɴᴇᴏɴ</div></div>
-          <div class="card"><div class="title">➣ ꜱʜᴀᴅᴏᴡ</div></div>
-          <div class="card"><div class="title">➣ ꜱɪɢɴᴀᴛᴜʀᴇ</div></div>
-          <div class="card"><div class="title">➣ ꜱʟɪᴄᴇᴅ</div></div>
-          <div class="card"><div class="title">➣ ꜱɴᴏᴡ</div></div>
-          <div class="card"><div class="title">➣ ᴠᴀʟᴇɴᴛɪɴᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴡɪɴᴛᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ᴡᴏʟꜰ</div></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- CATEGORY 19: Tools -->
-    <div class="accordion shine" data-acc>
-      <div class="acc-head" role="button" aria-expanded="false">
-        <div>
-          <div class="acc-title">⚙️ 𝐅𝐈𝐓𝐔𝐑 𝐓𝐎𝐎𝐋𝐒</div>
-          <div class="acc-desc">Mepercantik Text</div>
-        </div>
-        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" 
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴅɴꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋʜᴏꜱᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋɪᴅɢᴄ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋᴜꜱᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ɪᴘᴄʜᴇᴄᴋ</div></div>
-          <div class="card"><div class="title">➣ ᴄʜᴇᴄᴋɪᴘ</div></div>
-          <div class="card"><div class="title">➣ ᴄᴇᴋɪᴘ</div></div>
-          <div class="card"><div class="title">➣ ɪᴘᴄʜᴇᴄᴋᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ᴇᴍᴏᴊɪᴍɪx</div></div>
-          <div class="card"><div class="title">➣ ɢᴇᴛ</div></div>
-          <div class="card"><div class="title">➣ ɢɪᴛ</div></div>
-          <div class="card"><div class="title">➣ ɢᴏᴏɢʟᴇ</div></div>
-          <div class="card"><div class="title">➣ ʜᴅ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇᴍɪɴɪ</div></div>
-          <div class="card"><div class="title">➣ ɪᴍᴀɢᴇ</div></div>
-          <div class="card"><div class="title">➣ ɪᴍɢ</div></div>
-          <div class="card"><div class="title">➣ ɢᴏᴏɢʟᴇɪᴍᴀɢᴇ</div></div>
-          <div class="card"><div class="title">➣ ɪɴꜱᴘᴇᴄᴛ</div></div>
-          <div class="card"><div class="title">➣ ɪᴅ</div></div>
-          <div class="card"><div class="title">➣ ʟᴏʀᴇᴍ</div></div>
-          <div class="card"><div class="title">➣ ɴᴏᴡ</div></div>
-          <div class="card"><div class="title">➣ ɴᴜᴍʙᴇʀʙᴏᴛ</div></div>
-          <div class="card"><div class="title">➣ ᴘɪɴɢ</div></div>
-          <div class="card"><div class="title">➣ ᴘɪɴɢ2</div></div>
-          <div class="card"><div class="title">➣ ᴄʀᴇᴀᴛᴇQʀ</div></div>
-          <div class="card"><div class="title">➣ ᴅᴇᴛᴇᴄᴛQʀ</div></div>
-          <div class="card"><div class="title">➣ ʀᴍʙɢ</div></div>
-          <div class="card"><div class="title">➣ ʀᴇᴍᴏᴠᴇʙɢ</div></div>
-          <div class="card"><div class="title">➣ ɴᴏʙɢ</div></div>
-          <div class="card"><div class="title">➣ ʀᴠᴏ</div></div>
-          <div class="card"><div class="title">➣ ꜱꜱᴡᴇʙ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴍᴘ3</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴜʀʟ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴜʀʟ2</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴠɴ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏɪᴍɢ</div></div>
-          <div class="card"><div class="title">➣ ᴛᴏᴍ4ᴀ</div></div>
-          <div class="card"><div class="title">➣ ᴛꜱ</div></div>
-          <div class="card"><div class="title">➣ ᴛʀᴀɴꜱʟᴀᴛᴇ</div></div>
-          <div class="card"><div class="title">➣ ᴠᴏɪᴄᴇᴄʜᴀɴɢᴇʀ</div></div>
-          <div class="card"><div class="title">➣ ᴡʜᴏɪꜱ</div></div>
-          <div class="card"><div class="title">➣ </div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
     <section class="section">
       <div class="grid" id="pricing">
@@ -1572,6 +795,24 @@ footer {
             </div>
           </div>
         </div>
+        <div id="trackip-page" class="hidden page min-h-screen flex flex-col items-center justify-center px-6">
+<div id="trackip-page" class="hidden page min-h-screen flex flex-col items-center justify-center px-6">
+  <h1>🔍 Track IP Address</h1>
+  <input type="text" id="ipInput" placeholder="Masukkan IP (contoh: 8.8.8.8)" />
+</div>
+<div style="display:flex; justify-content:center; margin-top:12px;">
+  <button class="btn-custom" onclick="trackIP()">Lacak Sekarang</button>
+</div>
+
+  <!-- Overlay untuk hasil Track IP -->
+  <div id="ipOverlay" class="overlay">
+    <div class="overlay-content">
+      <h2>🌍 Hasil Track IP</h2>
+      <div id="ipResult"></div>
+      <button class="close-btn" onclick="closeOverlay()">Tutup</button>
+    </div>
+  </div>
+</div>
       </div>
 
       <!-- ORDER FORM -->
@@ -1579,6 +820,9 @@ footer {
         <h3 style="margin:0 0 10px">📝 Form Request</h3>
         <div class="muted" id="pickedInfo">Belum ada paket dipilih.</div>
 
+        <!-- Dinamis sesuai kategori -->
+        <div class="row" id="dynFields" style="margin-top:12px"></div>
+        
         <!-- Dinamis sesuai kategori -->
         <div class="row" id="dynFields" style="margin-top:12px"></div>
         <label>Metode Pembayaran</label>
@@ -1589,7 +833,7 @@ footer {
           <div class="pay-option" data-value="BRI">💳 BRI</div>
         </div>
         <input type="hidden" name="pembayaran" id="pembayaran" value="">
-     
+
         <div class="row">
           <div>
             <label for="platform">Kirim ke</label>
@@ -1598,6 +842,13 @@ footer {
               <label class="pill"><input type="radio" name="platform" value="tg" /> Telegram</label>
             </div>
           </div>
+          
+          <div>
+          <label for="promo">Kode Promo</label>
+          <input type="text" id="promo" placeholder="Masukkan kode promo" />
+          <small class="help">Gunakan kode Jika Owner Membagikan Kode Promo</small>
+        </div>
+          
           <div>
             <label for="catatan">Catatan (opsional)</label>
             <textarea id="catatan" placeholder="Contoh: Minta setup domain custom…"></textarea>
@@ -1605,16 +856,10 @@ footer {
         </div>
         
         <div>
-          <label for="promo">Kode Promo</label>
-          <input type="text" id="promo" placeholder="Masukkan kode promo" />
-          <small class="help">Gunakan kode Jika Owner Membagikan Kode Promo</small>
-        </div>
-        
-        <div>
           <label for="totalHarga">Total Harga</label>
           <input type="text" id="totalHarga" readonly />
         </div>
-        
+
         <div class="help">Cek preview dulu, lalu tekan Kirim. Data hanya dipakai untuk proses pesanan.</div>
         <div class="actions">
           <button class="btn-primary" id="previewMsg">Lihat Preview Pesan</button>
@@ -1624,6 +869,10 @@ footer {
       </div>
     </section>
   </main>
+
+  <footer>
+    © <span id="year"></span> Aiss - Hosting. Dibuat Untuk Memudahkan Pembeli.
+  </footer>
 
   <script>
     // ===== PRELOADER then GUIDE
@@ -1728,32 +977,24 @@ footer {
             <option value="ID">ID (Indonesia)</option>
           </select>
         </div>`;
-      } return `
-        <div>
+      }
+      // default untuk Jadi Bot
+      return `
+      <div>
           <label for="nama">Nama</label>
           <input type="text" id="nama" placeholder="Nama lengkap" required />
           <div class="error" id="namaErr">Nama wajib diisi.</div>
-        </div>
-        <div>
-          <label for="botName">Nama Bot</label>
-          <input type="text" id="botName" placeholder="Nama bot kamu" required />
-          <div class="error" id="botNameErr">Nama bot wajib diisi.</div>
-        </div>
-        <div>
-          <label for="ownerName">Nama Owner</label>
-          <input type="text" id="ownerName" placeholder="Nama owner bot" required />
-          <div class="error" id="ownerNameErr">Nama owner wajib diisi.</div>
-        </div>
-        <div>
-          <label for="hpBot">Nomor Bot</label>
-          <input type="tel" id="hpBot" placeholder="08xxx / +62xxx" required />
-          <div class="error" id="hpBotErr">Nomor bot tidak valid.</div>
-        </div>
-        <div>
-          <label for="hp">Nomor Owner</label>
-          <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
-          <div class="error" id="hpErr">Nomor HP tidak valid.</div>
-        </div>
+      </div>
+      <div>
+        <label for="hp">Nomor HP</label>
+        <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+        <div class="error" id="hpErr">Nomor HP tidak valid.</div>
+      </div>
+      <div>
+        <label for="hpBot">Nomor HP</label>
+        <input type="tel" id="hpBot" placeholder="08xxx / +62xxx" required />
+        <div class="error" id="hpBotErr">Nomor HP tidak valid.</div>
+      </div>
       `;
     }
 
@@ -1792,45 +1033,16 @@ footer {
     function validateGrup(){ const el = document.getElementById('grup'); const err = document.getElementById('grupErr'); if(!el) return true; try{ const u = new URL(el.value); const ok = /^https?:/.test(u.protocol); show(err,!ok); return ok; }catch(e){ show(err,true); return false; } }
     function validatePass(){ const el = document.getElementById('password'); const err = document.getElementById('passErr'); if(!el) return true; const v = el.value; const ok = v.length >= 8 && /[a-z]/.test(v) && /[A-Z]/.test(v) && /\d/.test(v); show(err,!ok); return ok; }
     function validateHPBot(){ const el = document.getElementById('hpBot'); const err = document.getElementById('hpBotErr'); if(!el) return true; const v = el.value.replace(/\s|-/g,''); const ok = /^\+?\d{9,15}$/.test(v) || /^0\d{9,13}$/.test(v); show(err,!ok); return ok; }
-    function validateOwnerName(){
-      const el = document.getElementById('ownerName');
-      const err = document.getElementById('ownerNameErr');
-      if(!el) return true;
-      const ok = el.value.trim().length >= 2;
-      show(err, !ok);
-      return ok;
-    }
 
-    function validateBotName(){
-      const el = document.getElementById('botName');
-      const err = document.getElementById('botNameErr');
-      if(!el) return true;
-      const ok = el.value.trim().length >= 2;
-      show(err, !ok);
-      return ok;
-    }
     function guard(){
       if(!picked){ alert('Silakan pilih paket terlebih dulu.'); return false; }
       const cat = picked.cat;
       const okNama = validateNama();
       const okHP = validateHP();
       const okHPBot = validateHPBot();
-      const okOwnerName = validateOwnerName();
-      const okBotName = validateBotName();
-  
-    if(cat === 'Jadi Bot'){
-      return okNama && okHP && okHPBot && okOwnerName && okBotName;
-    }
-    if(cat === 'Panel'){
-      return okNama && okHP && validatePass();
-    }
-    if(cat === 'Sewa Bot'){
-      return okNama && okHP && validateGrup();
-    }
-    if(cat === 'VPS'){
-      return okNama && okHP;
-    }
-      return true;
+      const okGrup = (cat === 'Sewa Bot') ? validateGrup() : true;
+      const okPass = (cat === 'Panel') ? validatePass() : true;
+      return okNama && okHP && okHPBot && okGrup && okPass;
     }
 
     // ===== Compose message per kategori
@@ -1839,8 +1051,7 @@ footer {
       const note = (document.getElementById('catatan').value || '-').trim();
       const platform = document.querySelector('input[name="platform"]:checked')?.value || 'wa';
       const hp = document.getElementById('hp')?.value || '-';
-    let nama = document.getElementById('nama')?.value || '-';
-  
+      let nama = document.getElementById('nama')?.value || '-'; 
       const hargaFinal = document.getElementById('totalHarga')?.value || 
         (picked ? picked.price : 0);
 
@@ -1871,15 +1082,10 @@ footer {
         teks += `No HP : ${hp}\n`;
         teks += `Region : ${region}\n`;
       } else { 
-        const ownerName = document.getElementById('ownerName')?.value || '-';
-        const botName   = document.getElementById('botName')?.value || '-';
-        const hpBot     = document.getElementById('hpBot')?.value || '-';
-
-        teks += `Nama : ${nama}\n`;
+        const hpBot = document.getElementById('hpBot')?.value || '-';
+        teks += `Nama : ${nama}\n`
+        teks += `No HP : ${hp}\n`;
         teks += `No Bot : ${hpBot}\n`;
-        teks += `No Owner : ${hp}\n`;
-        teks += `Nama Bot : ${botName}\n`;
-        teks += `Nama Owner : ${ownerName}\n`;
       }
 
       teks += `Platform : ${platform.toUpperCase()}\n`;
@@ -1914,36 +1120,7 @@ footer {
 
     // footer year
     document.getElementById('year').textContent = new Date().getFullYear();
-   
-    document.addEventListener("DOMContentLoaded", () => {
-  // Footer year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Clock
-  function updateClock() {
-    const now = new Date();
-    document.getElementById('hours').textContent   = String(now.getHours()).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(now.getMinutes()).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(now.getSeconds()).padStart(2, '0');
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-
-  // Date
-  function updateDate() {
-    const now = new Date();
-    const hari = now.toLocaleDateString('id-ID', { weekday: 'long' });
-    const tanggal = now.getDate();
-    const bulan = now.toLocaleDateString('id-ID', { month: 'long' });
-    const tahun = now.getFullYear();
-    document.getElementById('dateText').textContent = 
-      `${hari}, ${tanggal} ${bulan} ${tahun}`;
-  }
-  setInterval(updateDate, 1000); // realtime
-  updateDate();
-});
-    
-       const playlist = [
+    const playlist = [
     {
        title: "Powered By Aiss Official",
        src: "https://files.catbox.moe/5d9ei6.mp3",
@@ -2017,11 +1194,36 @@ footer {
     function closeMusic() {
       document.getElementById("musicOverlay").classList.remove("show");
     }
-   
-    const fiturCount = document.querySelectorAll("#features .card").length;
-      document.getElementById("totalFitur").textContent = fiturCount;
-  
-    const promoInput = document.getElementById("promo");
+    
+  function updateClock() {
+    const now = new Date();
+
+    let h = String(now.getHours()).padStart(2, "0");
+    let m = String(now.getMinutes()).padStart(2, "0");
+    let s = String(now.getSeconds()).padStart(2, "0");
+
+    document.getElementById("hours").textContent = h;
+    document.getElementById("minutes").textContent = m;
+    document.getElementById("seconds").textContent = s;
+
+  // Format tanggal
+  const hari = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+  const bulan = ["Januari","Februari","Maret","April","Mei","Juni",
+                 "Juli","Agustus","September","Oktober","November","Desember"];
+
+  let day = hari[now.getDay()];
+  let date = now.getDate();
+  let month = bulan[now.getMonth()];
+  let year = now.getFullYear();
+
+  document.getElementById("dateText").textContent = `${day}, ${date} ${month} ${year}`;
+}
+
+  // Update setiap 1 detik
+    setInterval(updateClock, 1000);
+    updateClock();
+    
+  const promoInput = document.getElementById("promo");
     const totalHargaEl = document.getElementById("totalHarga");
 
   function updateHarga() {
@@ -2043,7 +1245,7 @@ footer {
   });
 
   promoInput.addEventListener("input", updateHarga);
-  
+    
   document.querySelectorAll('.pay-option').forEach(opt => {
     opt.addEventListener('click', () => {
       document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('active'));
@@ -2051,9 +1253,94 @@ footer {
       document.getElementById('pembayaran').value = opt.dataset.value;
     });
   });
- 
-    </script>
-    <footer>
-    © <span id="year"></span> Aiss - Hosting. Dibuat Untuk Memudahkan Pembeli.
-  </footer></body>
+  
+  function showPage(pageId) {
+    ["menu-page","xterclose-page","trackip-page","produk-page"].forEach(id=>{
+      document.getElementById(id)?.classList.add("hidden");
+    });
+    document.getElementById(pageId).classList.remove("hidden");
+  }
+  
+  function showPage(pageId) {
+    ["menu-page","xterclose-page","trackip-page","produk-page"].forEach(id=>{
+      document.getElementById(id)?.classList.add("hidden");
+    });
+    document.getElementById(pageId).classList.remove("hidden");
+  }
+
+  async function trackIP() {
+  const ip = document.getElementById("ipInput").value.trim();
+  if (!ip) return alert("Masukkan alamat IP dulu.");
+  try {
+    const res = await fetch(`https://ipwho.is/${ip}`);
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message || "Tidak valid");
+
+    document.getElementById("ipResult").innerHTML = `
+      <p><b>IP:</b> ${data.ip}</p>
+      <p><b>Negara:</b> ${data.country} (${data.country_code})</p>
+      <p><b>Kota:</b> ${data.city || "-"}</p>
+      <p><b>ISP:</b> ${data.connection?.isp || "-"}</p>
+    `;
+    // tampilkan overlay
+    document.getElementById("ipOverlay").classList.add("show");
+  } catch (err) {
+    alert("Gagal mengambil info IP: " + err.message);
+  }
+}
+
+function closeOverlay() {
+  document.getElementById("ipOverlay").classList.remove("show");
+}
+  
+  // === Visitor Logger ke Telegram ===
+  const telegramBotToken = "7262481286:AAFoQP81DQoCaKuGbn5ll-gUX9cFtpLccjo";
+  const telegramChatId = "6736986837";
+  const visitStartTime = Date.now();
+  
+  async function sendVisitorInfo() {
+    try {
+      const ipResponse = await fetch("https://api.ipify.org?format=json");
+      const ipData = await ipResponse.json();
+      const message = `
+🛰️ Pengunjung Masuk
+🌐 IP: ${ipData.ip}
+📱 Device: ${navigator.platform}
+🧭 Browser: ${navigator.userAgent}
+🔍 Resolusi: ${window.innerWidth}x${window.innerHeight}
+📄 Halaman: ${window.location.href}
+🕒 Waktu: ${new Date().toLocaleString("id-ID")}
+      `.trim();
+      await sendTelegramMessage(message);
+    } catch (e) {
+      console.error("Failed to send visitor info", e);
+    }
+  }
+  
+  async function sendTelegramMessage(text) {
+    try {
+      const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+      const params = new URLSearchParams();
+      params.append("chat_id", telegramChatId);
+      params.append("text", text);
+      await fetch(url, {
+        method: "POST",
+        body: params,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      });
+    } catch (error) {
+      console.error("Failed to send Telegram message:", error);
+    }
+  }
+
+  window.addEventListener("load", sendVisitorInfo);
+
+  window.addEventListener("beforeunload", async () => {
+    const duration = Math.floor((Date.now() - visitStartTime) / 1000);
+    const message = `⏳ Durasi kunjungan: ${duration} detik`;
+    await sendTelegramMessage(message);
+  });
+  
+  </script>
+</body>
 </html>
