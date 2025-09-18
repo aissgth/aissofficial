@@ -325,6 +325,159 @@
   to   { transform: scale(1); opacity: 1; }
 }
 
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.overlay.show { display: flex; }
+
+.overlay-content {
+  animation: popUp 0.35s ease;
+}
+
+@keyframes popUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Box fitur */
+.fitur-box {
+  max-width: 480px;
+  width: 92%;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(124,92,255,0.4);
+  border-radius: 18px;
+  padding: 20px;
+  color: #e0f2fe;
+  text-align: left;
+}
+
+/* Tab kategori */
+.fitur-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  overflow-x: auto;      /* bisa geser kiri-kanan */
+  padding-bottom: 6px;
+  scrollbar-width: none; /* hilangin scrollbar firefox */
+}
+.fitur-tabs::-webkit-scrollbar {
+  display: none;         /* hilangin scrollbar chrome */
+}
+
+.tab-btn {
+  flex: 0 0 auto;        /* biar tombol tidak mengecil */
+  white-space: nowrap;   /* biar teks tidak patah */
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(124,92,255,0.4);
+  background: rgba(255,255,255,0.05);
+  color: #e0f2fe;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(124,92,255,0.4);
+  background: rgba(255,255,255,0.05);
+  color: #e0f2fe;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s;
+}
+.tab-btn.active {
+  background: linear-gradient(135deg, #7c5cff, #00ffd0);
+  color: #0b0f14;
+}
+
+/* List fitur scrollable */
+.fitur-slider {
+  max-height: 280px;        /* tinggi maksimal */
+  overflow-y: auto;         /* scroll atas-bawah */
+  padding-right: 6px;
+  margin-bottom: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: #7c5cff rgba(255,255,255,0.05);
+}
+.fitur-slider::-webkit-scrollbar { width: 6px; }
+.fitur-slider::-webkit-scrollbar-thumb {
+  background: #7c5cff;
+  border-radius: 6px;
+}
+
+/* Item fitur */
+.fitur-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(124,92,255,0.25);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.25s;
+}
+.fitur-item:hover {
+  background: rgba(124,92,255,0.15);
+  transform: translateX(4px);
+}
+
+/* Tombol tutup */
+.fitur-box h2 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.close-btn {
+  display: block;
+  margin: 16px auto 0; /* auto biar ke tengah */
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  background: #00ffd0;
+  color: #0b0f14;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.close-btn:hover {
+  background: #00c9a5;
+}
+  
+  .running-text {
+  flex: 1;                    /* biar ambil sisa space */
+  overflow: hidden;            /* sembunyikan teks keluar */
+  white-space: nowrap;         /* cegah text turun ke bawah */
+  margin: 0 12px;              /* jarak kiri-kanan */
+}
+
+.running-text span {
+  display: inline-block;
+  padding-left: 100%;          /* mulai dari kanan */
+  animation: scrollText 18s linear infinite;
+  color: #e0f2fe;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+@keyframes scrollText {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
   
     /* ====== PRELOADER ====== */
     .preloader{position:fixed; inset:0; display:grid; place-items:center; z-index:9999; background:
@@ -345,7 +498,7 @@
 
     /* ====== HEADER ====== */
     header{position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background: rgba(11,15,20,.45); border-bottom:1px solid rgba(255,255,255,.05)}
-    .wrap{max-width:1100px; margin:0 auto; padding:14px 18px;}
+    .wrap{max-width:1100px; margin:0 auto; padding:8px 18px;}
     .nav{display:flex; align-items:center; justify-content:space-between}
     .brand{display:flex; gap:12px; align-items:center; font-weight:800}
     .spark{width:26px; height:26px; border-radius:8px; background:linear-gradient(135deg, var(--brand), var(--brand2)); box-shadow: 0 6px 20px rgba(124,92,255,.45)}
@@ -431,6 +584,7 @@
        <header>
          <div class="wrap nav">
            <div class="brand"><span class="spark"></span> <span>AissOfficial</span></div>
+           
              <div class="cta">
                <button class="music-btn" onclick="document.getElementById('musicOverlay').classList.add('show')">🎵</button>               
                <button class="ghost" onclick="document.getElementById('guideOverlay').classList.add('show')">Panduan</button>
@@ -456,13 +610,15 @@
       </div>
 
     <audio id="bgMusic" preload="auto"></audio>
- 
+            <div class="running-text">
+    <span>✨ Selamat datang di Web AissOfficial | Aiss Official Menyediakan kebutuhan Hosting/store anda | Sewa bot, Panel, Vps, Jadi bot, Script Bot</span>
+  </div>
   <main>
     <section class="hero wrap">
     <div id="clock" class="clock">
         <div class="time">
-          <span id="hours">00</span><span class="colon">:</span>
-      <span id="minutes">00</span><span class="colon">:</span>
+          <span id="hours">00</span><span class="colon"> :</span>
+      <span id="minutes">00</span><span class="colon"> :</span>
       <span id="seconds">00</span>
       </div>
         <div class="date-marquee">
@@ -795,6 +951,45 @@
             </div>
           </div>
         </div>
+        
+        <button class="ghost" onclick="document.getElementById('fiturOverlay').classList.add('show')">
+  ✨ Daftar Fitur
+</button>
+
+<!-- Overlay -->
+<div id="fiturOverlay" class="overlay">
+  <div class="overlay-content fitur-box">
+    <h2>📋 Daftar Fitur</h2>
+
+    <!-- Tab kategori -->
+    <div class="fitur-tabs">
+      <button class="tab-btn active" data-tab="admin">👨‍💻 Fitur Admin</button>
+      <button class="tab-btn active" data-tab="ai">🧬 Fitur Ai</button>
+      <button class="tab-btn active" data-tab="anime">🧜‍♀️ Fitur Anime</button>
+      <button class="tab-btn active" data-tab="berita">📰 Fitur Berita</button>
+      <button class="tab-btn active" data-tab="download">♻️ Fitur Download</button>
+      <button class="tab-btn" data-tab="editor">👩‍💻 Fitur Editor</button>
+      <button class="tab-btn" data-tab="game">🕹 Fitur Games</button>
+      <button class="tab-btn" data-tab="group">👥 Fitur Group</button>
+      <button class="tab-btn" data-tab="information">🔔 Fitur Information</button>
+      <button class="tab-btn" data-tab="islami">🕌 Fitur Islami</button>
+      <button class="tab-btn" data-tab="kerangAjaib">🐚 Fitur Kerang Ajaib</button>
+      <button class="tab-btn" data-tab="maker">📝 Fitur Maker</button>
+      <button class="tab-btn" data-tab="more">📥 Fitur More</button>
+      <button class="tab-btn" data-tab="owner">👑 Fitur Owner</button>
+      <button class="tab-btn" data-tab="premium">💎 Fitur Premium</button>
+      <button class="tab-btn" data-tab="random">🪅 Fitur Random</button>
+      <button class="tab-btn" data-tab="store">🛍 Fitur Store</button>
+      <button class="tab-btn" data-tab="textpro">🖊 Fitur Text Pro</button>
+      <button class="tab-btn" data-tab="tools">🌐 Fitur Tools</button>
+    </div>
+
+    <div class="fitur-slider" id="fiturList"></div>
+
+    <button class="close-btn" onclick="closeFitur()">Tutup</button>
+  </div>
+</div>
+        
         <div id="trackip-page" class="hidden page min-h-screen flex flex-col items-center justify-center px-6">
 <div id="trackip-page" class="hidden page min-h-screen flex flex-col items-center justify-center px-6">
   <h1>🔍 Track IP Address</h1>
@@ -804,7 +999,6 @@
   <button class="btn-custom" onclick="trackIP()">Lacak Sekarang</button>
 </div>
 
-  <!-- Overlay untuk hasil Track IP -->
   <div id="ipOverlay" class="overlay">
     <div class="overlay-content">
       <h2>🌍 Hasil Track IP</h2>
@@ -887,7 +1081,7 @@
     });
     document.getElementById('btnMengerti').addEventListener('click', ()=> guide.classList.remove('show'));
 
-    // ===== Accordion behavior
+   // ===== Accordion behavior
     document.querySelectorAll('[data-acc]').forEach(acc => {
       const head = acc.querySelector('.acc-head');
       const body = acc.querySelector('.acc-body');
@@ -977,24 +1171,32 @@
             <option value="ID">ID (Indonesia)</option>
           </select>
         </div>`;
-      }
-      // default untuk Jadi Bot
-      return `
-      <div>
+      } return `
+        <div>
           <label for="nama">Nama</label>
           <input type="text" id="nama" placeholder="Nama lengkap" required />
           <div class="error" id="namaErr">Nama wajib diisi.</div>
-      </div>
-      <div>
-        <label for="hp">Nomor HP</label>
-        <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
-        <div class="error" id="hpErr">Nomor HP tidak valid.</div>
-      </div>
-      <div>
-        <label for="hpBot">Nomor HP</label>
-        <input type="tel" id="hpBot" placeholder="08xxx / +62xxx" required />
-        <div class="error" id="hpBotErr">Nomor HP tidak valid.</div>
-      </div>
+        </div>
+        <div>
+          <label for="botName">Nama Bot</label>
+          <input type="text" id="botName" placeholder="Nama bot kamu" required />
+          <div class="error" id="botNameErr">Nama bot wajib diisi.</div>
+        </div>
+        <div>
+          <label for="ownerName">Nama Owner</label>
+          <input type="text" id="ownerName" placeholder="Nama owner bot" required />
+          <div class="error" id="ownerNameErr">Nama owner wajib diisi.</div>
+        </div>
+        <div>
+          <label for="hpBot">Nomor Bot</label>
+          <input type="tel" id="hpBot" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpBotErr">Nomor bot tidak valid.</div>
+        </div>
+        <div>
+          <label for="hp">Nomor Owner</label>
+          <input type="tel" id="hp" placeholder="08xxx / +62xxx" required />
+          <div class="error" id="hpErr">Nomor HP tidak valid.</div>
+        </div>
       `;
     }
 
@@ -1033,16 +1235,45 @@
     function validateGrup(){ const el = document.getElementById('grup'); const err = document.getElementById('grupErr'); if(!el) return true; try{ const u = new URL(el.value); const ok = /^https?:/.test(u.protocol); show(err,!ok); return ok; }catch(e){ show(err,true); return false; } }
     function validatePass(){ const el = document.getElementById('password'); const err = document.getElementById('passErr'); if(!el) return true; const v = el.value; const ok = v.length >= 8 && /[a-z]/.test(v) && /[A-Z]/.test(v) && /\d/.test(v); show(err,!ok); return ok; }
     function validateHPBot(){ const el = document.getElementById('hpBot'); const err = document.getElementById('hpBotErr'); if(!el) return true; const v = el.value.replace(/\s|-/g,''); const ok = /^\+?\d{9,15}$/.test(v) || /^0\d{9,13}$/.test(v); show(err,!ok); return ok; }
+    function validateOwnerName(){
+      const el = document.getElementById('ownerName');
+      const err = document.getElementById('ownerNameErr');
+      if(!el) return true;
+      const ok = el.value.trim().length >= 2;
+      show(err, !ok);
+      return ok;
+    }
 
+    function validateBotName(){
+      const el = document.getElementById('botName');
+      const err = document.getElementById('botNameErr');
+      if(!el) return true;
+      const ok = el.value.trim().length >= 2;
+      show(err, !ok);
+      return ok;
+    }
     function guard(){
       if(!picked){ alert('Silakan pilih paket terlebih dulu.'); return false; }
       const cat = picked.cat;
       const okNama = validateNama();
       const okHP = validateHP();
       const okHPBot = validateHPBot();
-      const okGrup = (cat === 'Sewa Bot') ? validateGrup() : true;
-      const okPass = (cat === 'Panel') ? validatePass() : true;
-      return okNama && okHP && okHPBot && okGrup && okPass;
+      const okOwnerName = validateOwnerName();
+      const okBotName = validateBotName();
+  
+    if(cat === 'Jadi Bot'){
+      return okNama && okHP && okHPBot && okOwnerName && okBotName;
+    }
+    if(cat === 'Panel'){
+      return okNama && okHP && validatePass();
+    }
+    if(cat === 'Sewa Bot'){
+      return okNama && okHP && validateGrup();
+    }
+    if(cat === 'VPS'){
+      return okNama && okHP;
+    }
+      return true;
     }
 
     // ===== Compose message per kategori
@@ -1051,7 +1282,8 @@
       const note = (document.getElementById('catatan').value || '-').trim();
       const platform = document.querySelector('input[name="platform"]:checked')?.value || 'wa';
       const hp = document.getElementById('hp')?.value || '-';
-      let nama = document.getElementById('nama')?.value || '-'; 
+    let nama = document.getElementById('nama')?.value || '-';
+  
       const hargaFinal = document.getElementById('totalHarga')?.value || 
         (picked ? picked.price : 0);
 
@@ -1060,8 +1292,6 @@
       teks += `Kategori : ${picked? picked.cat : '-'}\n`;
       teks += `Paket : ${picked? picked.plan : '-'}\n`;
       teks += `Harga : Rp ${parseInt(hargaFinal).toLocaleString('id-ID')}\n`;
-      const metodeBayar = document.getElementById('pembayaran')?.value || '-';
-      teks += `Metode Pembayaran : ${metodeBayar}\n`;
 
       if(picked.cat === 'Sewa Bot'){
         const grup = document.getElementById('grup')?.value || '-';
@@ -1082,10 +1312,15 @@
         teks += `No HP : ${hp}\n`;
         teks += `Region : ${region}\n`;
       } else { 
-        const hpBot = document.getElementById('hpBot')?.value || '-';
-        teks += `Nama : ${nama}\n`
-        teks += `No HP : ${hp}\n`;
+        const ownerName = document.getElementById('ownerName')?.value || '-';
+        const botName   = document.getElementById('botName')?.value || '-';
+        const hpBot     = document.getElementById('hpBot')?.value || '-';
+
+        teks += `Nama : ${nama}\n`;
         teks += `No Bot : ${hpBot}\n`;
+        teks += `No Owner : ${hp}\n`;
+        teks += `Nama Bot : ${botName}\n`;
+        teks += `Nama Owner : ${ownerName}\n`;
       }
 
       teks += `Platform : ${platform.toUpperCase()}\n`;
@@ -1340,6 +1575,695 @@ function closeOverlay() {
     const message = `⏳ Durasi kunjungan: ${duration} detik`;
     await sendTelegramMessage(message);
   });
+  
+  function closeFitur() {
+  document.getElementById("fiturOverlay").classList.remove("show");
+}
+
+// Data fitur per kategori
+const fiturData = {
+  admin: [
+          "➣ ᴀᴅᴅʙᴀᴅᴡᴏʀᴅ",
+          "➣ ᴀᴅᴅ",
+          "➣ ᴀɴᴛɪʟɪɴᴋ",
+          "➣ ʙᴀn",
+          "➣ ʙᴀɴꜰɪᴛᴜʀ",
+          "➣ ᴅᴇʟʙᴀᴅᴡᴏʀᴅ",
+          "➣ ᴅᴇʟ",
+          "➣ ᴅᴇʟᴇᴛᴇ",
+          "➣ ᴅᴇᴍᴏᴛᴇᴀʟʟ",
+          "➣ ᴅᴇᴍᴏᴛᴇ",
+          "➣ ᴇᴅɪᴛᴅᴇꜱᴋ",
+          "➣ ᴇᴅɪᴛᴅᴇꜱᴋʀɪᴘꜱɪ",
+          "➣ ᴇᴅɪᴛꜱᴜʙᴊᴇᴋ",
+          "➣ ᴇᴅɪᴛꜱᴜʙᴊᴇᴄᴛ",
+          "➣ ᴇᴅɪᴛꜱᴜʙᴊᴇᴄᴋ",
+          "➣ ᴇᴅɪᴛᴊᴜᴅᴜʟ",
+          "➣ ꜰɪxᴄʜᴀᴛ",
+          "➣ ɢᴄꜱɪᴅᴇʀ",
+          "➣ ɢɪᴠᴇᴀᴡᴀʏ",
+          "➣ ᴍᴜʟᴀɪɢɪᴠᴇᴀᴡᴀʏ",
+          "➣ ɢʀᴜʙ",
+          "➣ ɢʀᴏᴜᴘ",
+          "➣ ɢʀᴜᴘ",
+          "➣ ɢʀᴏᴜʙ",
+          "➣ ɢᴄ",
+          "➣ ꜱᴇᴛᴏᴘᴇɴ",
+          "➣ ꜱᴇᴛᴄʟᴏꜱᴇ",
+          "➣ ʜɪᴅᴇᴛᴀɢ",
+          "➣ ʜ",
+          "➣ ʜɪᴅᴇᴛᴀᴋ",
+          "➣ ᴋɪᴄᴋ",
+          "➣ ᴅᴏʀ",
+          "➣ ᴋɪᴄᴋꜱɪᴅᴇʀ",
+          "➣ ʟɪꜱᴛᴀʙꜱᴇɴ",
+          "➣ ʟɪꜱᴛᴀᴅᴍɪɴ",
+          "➣ ʟɪꜱᴛᴀʟʟᴜꜱᴇʀ",
+          "➣ ʟɪꜱᴛᴍᴇᴍʙᴇʀ",
+          "➣ ʟɪꜱᴛɴᴏᴀʙꜱᴇɴ",
+          "➣ ʟɪꜱᴛʙᴀɴ",
+          "➣ ᴍᴜᴛᴇ",
+          "➣ ᴜɴᴍᴜᴛᴇ",
+          "➣ ᴏꜰꜰ",
+          "➣ ᴏɴ",
+          "➣ ᴘʀᴏᴍᴏᴛᴇᴀʟʟ",
+          "➣ ᴘʀᴏᴍᴏᴛᴇ",
+          "➣ ʀᴇꜱᴇᴛʟɪɴᴋɢᴄ",
+          "➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴜᴘ",
+          "➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴏᴜᴘ",
+          "➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴜʙ",
+          "➣ ʀᴇꜱᴇᴛʟɪɴᴋɢʀᴏᴜʙ",
+          "➣ ʀᴇꜱᴇᴛɢᴄ",
+          "➣ ꜱᴇᴛᴅᴇᴍᴏᴛᴇ",
+          "➣ ꜱᴇᴛʟᴇꜰᴛ",
+          "➣ ꜱᴇᴛᴘʀᴏᴍᴏᴛᴇ",
+          "➣ ꜱᴇᴛᴛᴇᴍᴘʟᴀᴛᴇʟɪꜱᴛ",
+          "➣ ᴛᴇᴍᴘʟᴀᴛᴇʟɪꜱᴛ",
+          "➣ ꜱᴇᴛᴛᴇᴍᴘʟᴀᴛᴇᴡᴇʟᴄᴏᴍᴇ",
+          "➣ ᴛᴇᴍᴘʟᴀᴛᴇᴡᴇʟᴄᴏᴍᴇ",
+          "➣ ꜱᴇᴛᴡᴇʟᴄᴏᴍᴇ",
+          "➣ ꜱᴇᴛᴄʟᴏꜱᴇɢᴄ",
+          "➣ ꜱᴇᴛᴄʟᴏꜱᴇᴛᴇxᴛ",
+          "➣ ꜱᴇᴛᴏᴘᴇɴɢᴄ",
+          "➣ ꜱᴇᴛᴏᴘᴇɴᴛᴇxᴛ",
+          "➣ ꜱᴇᴛᴘᴘɢᴄ",
+          "➣ ꜱᴇᴛᴘᴘɢʀᴏᴜʙ",
+          "➣ ꜱᴇᴛᴘᴘɢʀᴜʙ",
+          "➣ ꜱᴇᴛᴘᴘɢʀᴏᴜᴘ",
+          "➣ ꜱᴇᴛᴘᴘɢʀᴜᴘ",
+          "➣ ꜱʟʀ",
+          "➣ ᴛᴀɢᴀʟʟ",
+          "➣ ᴛᴇꜱᴡᴇʟᴄᴏᴍᴇ",
+          "➣ ᴛᴏᴘ",
+          "➣ ʀᴇꜱᴇᴛᴛᴏᴛᴀʟᴄʜᴀᴛ",
+          "➣ ᴛᴏᴛᴀʟᴄʜᴀᴛ",
+          "➣ ᴜɴʙᴀɴ",
+          "➣ ᴜɴʙᴀɴꜰɪᴛᴜʀ",
+          "➣ ᴡᴀʀɴ",
+          "➣ ᴡᴀʀɴɪɴɢ",
+          "➣ ʟɪꜱᴛᴡᴀʀɴɪɴɢ",
+          "➣ ʟɪꜱᴛᴡᴀʀɴ",
+          "➣ ᴅᴇʟᴇᴛᴇᴡᴀʀɴɪɴɢ",
+          "➣ ᴅᴇʟᴡᴀʀɴɪɴɢ",
+          "➣ ᴅᴇʙᴜɢᴡᴀʀɴ"
+  ],
+  ai: [
+          "➣ ᴀɪ",
+          "➣ ꜱɪᴍɪ",
+          "➣ ᴠɴ",
+          "➣ ᴠɴᴀɴɪᴍᴇ",
+          "➣ ᴠᴏɪᴄᴇᴀɪ"
+  ],
+  anime: [
+          "➣ ᴡᴀɪꜰᴜ",
+          "➣ ɴᴇᴋᴏ",
+          "➣ ꜱʜɪɴᴏʙᴜ",
+          "➣ ᴍᴇɢᴜᴍɪɴ",
+          "➣ ʙᴜʟʟʏ",
+          "➣ ᴄᴜᴅᴅʟᴇ",
+          "➣ ᴄʀʏ",
+          "➣ ʜᴜɢ",
+          "➣ ᴀᴡᴏᴏ",
+          "➣ ᴋɪꜱꜱ",
+          "➣ ʟɪᴄᴋ",
+          "➣ ᴘᴀᴛ",
+          "➣ ꜱᴍᴜɢ",
+          "➣ ʙᴏɴᴋ",
+          "➣ ʏᴇᴇᴛ",
+          "➣ ʙʟᴜꜱʜ",
+          "➣ ꜱᴍɪʟᴇ",
+          "➣ ᴡᴀᴠᴇ",
+          "➣ ʜɪɢʜꜰɪᴠᴇ",
+          "➣ ʜᴀɴᴅʜᴏʟᴅ",
+          "➣ ɴᴏᴍ",
+          "➣ ʙɪᴛᴇ",
+          "➣ ɢʟᴏᴍᴘ",
+          "➣ ꜱʟᴀᴘ",
+          "➣ ᴋɪʟʟ",
+          "➣ ʜᴀᴘᴘʏ",
+          "➣ ᴡɪɴᴋ",
+          "➣ ᴘᴏᴋᴇ",
+          "➣ ᴅᴀɴᴄᴇ",
+          "➣ ᴄʀɪɴɢᴇ"
+  ],
+  berita: [
+          "➣ ᴀɴᴛᴀʀᴀ",
+          "➣ ᴄɴɴ",
+          "➣ ᴄɴʙᴄ",
+          "➣ ᴊᴘɴɴ",
+          "➣ ᴋᴜᴍᴘᴀʀᴀɴ",
+          "➣ ᴍᴇʀᴅᴇᴋᴀ",
+          "➣ ᴏᴋᴇᴢᴏɴᴇ",
+          "➣ ʀᴇᴘᴜʙʟɪᴋᴀ",
+          "➣ ꜱɪɴᴅᴏɴᴇᴡꜱ",
+          "➣ ᴛᴇᴍᴘᴏ",
+          "➣ ᴛʀɪʙᴜɴ"
+  ],
+  download: [
+          "➣ ꜰʙ",
+          "➣ ꜰᴀᴄᴇʙᴏᴏᴋ",
+          "➣ ɪɢ",
+          "➣ ɪɴꜱᴛᴀɢʀᴀᴍ",
+          "➣ ɪɢꜰᴏᴛᴏ",
+          "➣ ɪɴꜱᴛᴀɢʀᴀᴍꜰᴏᴛᴏ",
+          "➣ ʟɪʀɪᴋ",
+          "➣ ᴘɪɴ",
+          "➣ ᴘɪɴᴛᴇʀᴇꜱᴛ",
+          "➣ ᴘʟᴀʏ",
+          "➣ ꜱᴘᴏᴛɪꜰʏ",
+          "➣ ᴛɪᴋᴛᴏᴋꜱᴇᴀʀᴄʜ",
+          "➣ ᴛᴛꜱᴇᴀʀᴄʜ",
+          "➣ ᴛᴛꜱ",
+          "➣ ᴛᴛꜱʟɪᴅᴇ",
+          "➣ ᴛɪᴋᴛᴏᴋꜱʟɪᴅᴇ",
+          "➣ ᴛᴛ",
+          "➣ ᴛɪᴋᴛᴏᴋ",
+          "➣ ᴛɪᴋᴛᴏᴋᴍᴘ3",
+          "➣ ᴛᴛᴍᴘ3",
+          "➣ ᴛᴡ",
+          "➣ ᴛᴡɪᴛᴛᴇʀ",
+          "➣ ʏᴛᴍᴘ3",
+          "➣ ʏᴛᴍᴘ4",
+          "➣ ʏᴛꜱ",
+          "➣ ʏᴛꜱᴇᴀʀᴄʜ"
+  ],
+  editor: [
+          "➣ ʙʟᴜʀ",
+          "➣ ᴅᴜᴏᴛᴏɴᴇ",
+          "➣ ꜰʟɪᴘx",
+          "➣ ꜰʟɪᴘʏ",
+          "➣ ɢʀᴀʏꜱᴄᴀʟᴇ",
+          "➣ ʀᴇꜱɪᴢᴇ",
+          "➣ ʀᴏᴛᴀᴛᴇ",
+          "➣ ꜱᴇᴘɪᴀ",
+          "➣ ᴛᴀᴊᴀᴍ",
+          "➣ ᴡᴀɴᴛᴇᴅ",
+          "➣ ᴡᴀꜱᴛᴇᴅ"
+  ],
+  game: [
+          "➣ ʙᴊ",
+          "➣ ʙʟᴀᴄᴋᴊᴀᴄᴋ",
+          "➣ ᴄᴀᴋ",
+          "➣ ᴄᴀᴋʟᴏɴᴛᴏɴɢ",
+          "➣ ᴋᴏᴅᴀᴍ",
+          "➣ ᴄᴇᴋᴋᴏᴅᴀᴍ",
+          "➣ ᴄᴇᴋᴋʜᴏᴅᴀᴍ",
+          "➣ ᴄᴇᴋᴏᴅᴀᴍ",
+          "➣ ᴅᴀʀᴇ",
+          "➣ ꜰᴀᴍɪʟʏ100",
+          "➣ ᴋᴜɪꜱᴍᴀᴛʜ",
+          "➣ ᴍᴀᴛʜ",
+          "➣ ꜱɴᴀᴋᴇꜱ",
+          "➣ ꜱᴜɪᴛ",
+          "➣ ᴛᴇʙᴀᴋ",
+          "➣ ᴛᴇʙᴀᴋᴀɴɢᴋᴀ",
+          "➣ ᴛᴇʙᴀᴋʙᴇɴᴅᴇʀᴀ",
+          "➣ ᴛᴇʙᴀᴋʙᴏᴍ",
+          "➣ ᴛᴇʙᴀᴋɢᴀᴍʙᴀʀ",
+          "➣ ᴛᴇʙᴀᴋʜᴇᴡᴀɴ",
+          "➣ ᴛᴇʙᴀᴋᴋᴀʟɪᴍᴀᴛ",
+          "➣ ᴛᴇʙᴀᴋᴋᴀᴛᴀ",
+          "➣ ᴛᴇʙᴀᴋʟᴀɢᴜ",
+          "➣ ᴛᴇʙᴀᴋʟɪʀɪᴋ",
+          "➣ ᴛᴛᴄ",
+          "➣ ᴛᴛᴛ",
+          "➣ ᴛɪᴄᴛᴀᴄᴛᴏᴇ",
+          "➣ ᴛʀᴜᴛʜ"
+  ],
+  group: [
+          "➣ ᴀʙꜱᴇɴ",
+          "➣ ᴀꜰᴋ",
+          "➣ ʙᴀᴅᴡᴏʀᴅ",
+          "➣ ʟɪꜱᴛʙᴀᴅᴡᴏʀᴅ",
+          "➣ ᴀɪꜱꜱ",
+          "➣ ʙᴜʏʟɪᴍɪᴛ",
+          "➣ ᴄᴇᴋᴘʀᴇᴍ",
+          "➣ ᴄᴇᴋᴘʀᴇᴍɪᴜᴍ",
+          "➣ ᴄᴇᴋꜱᴇᴡᴀ",
+          "➣ ᴄʟᴀɪᴍ",
+          "➣ ʜᴇʟᴘ",
+          "➣ ʙᴀɴᴛᴜᴀɴ",
+          "➣ ᴘᴀɴᴅᴜᴀɴ",
+          "➣ ɴᴏ1",
+          "➣ ɴᴏ2",
+          "➣ ɴᴏ3",
+          "➣ ɴᴏ4",
+          "➣ ɴᴏ5",
+          "➣ ɴᴏ6",
+          "➣ ɴᴏ7",
+          "➣ ɴᴏ8",
+          "➣ ɴᴏ9",
+          "➣ ɴᴏ10",
+          "➣ ɴᴏ11",
+          "➣ ɴᴏ12",
+          "➣ ɪᴋᴜᴛ",
+          "➣ ɪɴꜰᴏɢᴄ",
+          "➣ ɪɴꜰᴏɢʀᴜʙ",
+          "➣ ɪɴꜰᴏɢʀᴏᴜʙ",
+          "➣ ɪɴꜰᴏɢʀᴜᴘ",
+          "➣ ɪɴꜰᴏɢʀᴏᴜᴘ",
+          "➣ ʟɪɴᴋɢʀᴜᴘ",
+          "➣ ʟɪɴᴋɢʀᴏᴜᴘ",
+          "➣ ʟɪɴᴋɢᴄ",
+          "➣ ʟɪɴᴋɢʀᴜʙ",
+          "➣ ʟɪɴᴋɢʀᴏᴜʙ",
+          "➣ ᴍᴇ",
+          "➣ ʟɪᴍɪᴛ",
+          "➣ ʀᴜʟᴇꜱʙᴏᴛ",
+          "➣ ʀᴜʟᴇꜱ",
+          "➣ ꜱᴇɴᴅʟɪᴍɪᴛ",
+          "➣ ꜱᴇɴᴅᴍᴏɴᴇʏ",
+          "➣ ꜱᴇᴛᴀᴋᴜɴ"
+  ],
+  information: [
+          "➣ ᴀʀᴛɪɴᴀᴍᴀ",
+          "➣ ᴄᴏᴅᴄᴇᴋ",
+          "➣ ᴄᴏᴅ",
+          "➣ ꜰꜰᴄᴇᴋ",
+          "➣ ꜰꜰ",
+          "➣ ɪɴꜰᴏɢᴇᴍᴘᴀ",
+          "➣ ᴋʙʙɪ",
+          "➣ ᴍʟ",
+          "➣ ᴍʟᴄᴇᴋ",
+          "➣ ᴘᴜʙɢᴄᴇᴋ",
+          "➣ ᴘᴜʙɢ",
+          "➣ ꜱᴛᴀʟᴋᴛɪᴋᴛᴏᴋ"
+  ],
+  islami: [
+          "➣ ᴀᴢᴀɴ",
+          "➣ ᴅᴏᴀ",
+          "➣ ʜᴀᴅɪꜱ",
+          "➣ ʜᴀᴅɪꜱᴛ",
+          "➣ ʜᴀᴅɪᴛꜱ",
+          "➣ ᴊᴀᴅᴡᴀʟꜱʜᴏʟᴀᴛ",
+          "➣ ᴊᴀᴅᴡᴀʟꜱʜᴀʟᴀᴛ",
+          "➣ ᴊᴀᴅᴡᴀʟꜱʜᴏʟᴀᴛ2",
+          "➣ ʟɪꜱᴛꜱᴜʀᴀʜ",
+          "➣ ʟɪꜱᴛꜱᴜʀᴏʜ",
+          "➣ ɴɪᴀᴛꜱʜᴏʟᴀᴛ",
+          "➣ ɴɪᴀᴛꜱʜᴀʟᴀᴛ",
+          "➣ ꜱᴜʀᴀʜ",
+          "➣ ꜱᴜʀᴏʜ",
+          "➣ ᴢɪᴋɪʀ"
+  ],
+  kerangAjaib: [
+          "➣ ʙɪꜱᴀᴋᴀʜ",
+          "➣ ᴄᴇᴋʙᴜᴄɪɴ",
+          "➣ ᴄᴇᴋᴄᴀɴᴛɪᴋ",
+          "➣ ᴄᴇᴋɢᴀɴᴛᴇɴɢ",
+          "➣ ᴄᴇᴋɢɪʟᴀ",
+          "➣ ᴄᴇᴋᴍᴀᴛɪ",
+          "➣ ᴄᴇᴋᴛᴏʟᴏʟ",
+          "➣ ᴄᴇᴋᴜᴍᴜʀ",
+          "➣ ᴊᴀᴅɪᴀɴ",
+          "➣ ᴋᴀᴘᴀɴᴋᴀʜ"
+  ],
+  maker: [
+          "➣ ᴀᴛᴛᴘ",
+          "➣ ᴀᴛᴛᴘ2",
+          "➣ ʙʀᴀᴛ",
+          "➣ ʙʀᴀᴛ2",
+          "➣ ʙʀᴀᴛᴄᴜꜱᴛᴏᴍ",
+          "➣ ʙʀᴀᴛᴠɪᴅ",
+          "➣ Qᴄ",
+          "➣ Qᴄ2",
+          "➣ Qᴄꜱᴛɪᴄᴋ",
+          "➣ ꜱᴍᴇᴍᴇ",
+          "➣ ꜱᴛɪᴄᴋᴇʀ",
+          "➣ ꜱᴛɪᴋᴇʀ",
+          "➣ ꜱ",
+          "➣ ᴛᴏᴠɪᴅ",
+          "➣ ᴛᴏɢɪꜰ",
+          "➣ ᴛᴛᴘ",
+          "➣ ᴡᴍ"
+  ],
+  more: [
+          "➣ ᴀᴘɪᴋᴇʏ",
+          "➣ ᴄᴇᴋᴀᴘɪᴋᴇʏ",
+          "➣ ᴄʜᴇᴄᴋᴀᴘɪᴋᴇʏ",
+          "➣ ɢʀᴜʙʙᴏᴛ",
+          "➣ ʀᴀᴛᴇʟɪᴍɪᴛ",
+          "➣ ʀᴇɢɪꜱᴛᴇʀ",
+          "➣ ʀᴜɴᴛɪᴍᴇ",
+          "➣ ꜱᴄ",
+          "➣ ꜱᴄʀɪᴘᴛ",
+          "➣ ꜱᴛʏʟᴇ",
+          "➣ ꜱᴛʏʟᴇ2",
+          "➣ ꜱᴛʏʟᴇ3",
+          "➣ ꜱᴛʏʟᴇ4",
+          "➣ ꜱᴛʏʟᴇ5",
+          "➣ ꜱᴛʏʟᴇ6",
+          "➣ ꜱᴛʏʟᴇ7",
+          "➣ ꜱᴛʏʟᴇ8",
+          "➣ ꜱᴛʏʟᴇ9",
+          "➣ ꜱᴛʏʟᴇ10",
+          "➣ ᴛᴜᴛᴏʀ",
+          "➣ ᴛᴜᴛᴏʀɪᴀʟ",
+          "➣ ᴠᴇʀꜱɪᴏɴ",
+          "➣ ᴠᴇʀꜱɪ"
+  ],
+  owner: [
+          "➣ ᴀᴅᴅɢʟᴏʙᴀʟʙᴀᴅᴡᴏʀᴅ",
+          "➣ ᴀᴅᴅʟᴇᴠᴇʟ",
+          "➣ ᴀᴅᴅʟɪᴍɪᴛ",
+          "➣ ᴀᴅᴅᴍᴏɴᴇʏ",
+          "➣ ᴀᴅᴅᴏᴡɴᴇʀ",
+          "➣ ᴀᴅᴅᴘʟᴜɢɪɴ",
+          "➣ ᴀᴅᴅᴘʟᴜɢɪɴꜱ",
+          "➣ ᴀᴅᴅᴘʀᴇᴍ",
+          "➣ ᴀᴅᴅᴘʀᴇᴍɪᴜᴍ",
+          "➣ ᴀᴅᴅʀᴇꜱᴘᴏɴ",
+          "➣ ᴀᴅᴅᴘʀᴇᴍɢʀᴜʙ",
+          "➣ ᴀᴅᴅᴘʀᴇᴍɪᴜᴍɢʀᴜʙ",
+          "➣ ʙᴀᴄᴋᴜᴘ",
+          "➣ ᴏʙʟᴀᴄᴋʟɪꜱᴛ",
+          "➣ ʙʟᴏᴄᴋ",
+          "➣ ʙᴜᴀᴛꜱᴛᴏʀʏ",
+          "➣ ʙᴜᴀᴛꜱᴛᴏʀɪ",
+          "➣ ᴜᴘꜱᴡ",
+          "➣ ᴄʟᴇᴀɴᴅʙ",
+          "➣ ᴄʟᴇᴀʀꜱᴇꜱɪ",
+          "➣ ᴄʟᴇᴀʀᴄʜᴀᴛ",
+          "➣ ᴄʀᴇᴀᴛᴇɢʀᴜᴘ",
+          "➣ ᴄʀᴇᴀᴛᴇɢʀᴏᴜᴘ",
+          "➣ ᴄʀᴇᴀᴛᴇɢᴄ",
+          "➣ ᴄʀᴇᴀᴛᴇɢʀᴜʙ",
+          "➣ ᴄʀᴇᴀᴛᴇɢʀᴏᴜʙ",
+          "➣ ᴅᴇʟɢʟᴏʙᴀʟʙᴀᴅᴡᴏʀᴅ",
+          "➣ ᴅᴇʟᴏᴡɴᴇʀ",
+          "➣ ᴅᴇʟᴘʟᴜɢɪɴ",
+          "➣ ᴅᴇʟᴘʟᴜɢɪɴꜱ",
+          "➣ ᴅᴇʟᴘʀᴇᴍ",
+          "➣ ᴅᴇʟᴘʀᴇᴍɪᴜᴍ",
+          "➣ ᴅᴇʟʀᴇꜱᴘᴏɴ",
+          "➣ ᴅᴇʟᴇᴛᴇʀᴇꜱᴘᴏɴ",
+          "➣ ᴅᴇʟꜱᴇᴡᴀ",
+          "➣ ᴅᴇʟᴇᴛᴇᴊᴀᴅɪʙᴏᴛ",
+          "➣ ᴅᴇʟᴊᴀᴅɪʙᴏᴛ",
+          "➣ ᴅᴇʟᴘʀᴇᴍɢʀᴜʙ",
+          "➣ ᴅᴇʟᴘʀᴇᴍɪᴜᴍɢʀᴜʙ",
+          "➣ ᴅᴇᴍᴏᴛᴇᴍᴇ",
+          "➣ ɢᴄᴛᴀɢ",
+          "➣ ɪɴꜰᴏꜱɪꜱᴛᴇᴍ",
+          "➣ ɪɴꜰᴏꜱʏꜱᴛᴇᴍ",
+          "➣ ɪᴘꜱᴇʀᴠᴇʀ",
+          "➣ ᴊᴀᴅɪʙᴏᴛ",
+          "➣ ᴊᴏɪɴ",
+          "➣ ᴊᴘᴍ",
+          "➣ ᴊᴘᴍᴛᴀɢ",
+          "➣ ʟɪꜱᴛʙʟᴀᴄᴋʟɪꜱᴛ",
+          "➣ ʟɪꜱᴛʙʟᴏᴄᴋ",
+          "➣ ʟɪꜱᴛᴘʀᴇᴍ",
+          "➣ ʟɪꜱᴛᴘʀᴇᴍɪᴜᴍ",
+          "➣ ʟɪꜱᴛʀᴇꜱᴘᴏɴ",
+          "➣ ʟɪꜱᴛꜱᴇᴡᴀ2",
+          "➣ ʟɪꜱᴛꜱᴇᴡᴀ",
+          "➣ ʟɪꜱᴛᴊᴀᴅɪʙᴏᴛ",
+          "➣ ʟɪꜱᴛɴᴏꜱᴇᴡᴀ",
+          "➣ ᴏᴜᴛᴀʟʟɢʀᴜᴘ",
+          "➣ ᴏᴜᴛᴀʟʟɢʀᴏᴜᴘ",
+          "➣ ᴏᴜᴛᴀʟʟɢʀᴜʙ",
+          "➣ ᴏᴜᴛᴀʟʟɢʀᴏᴜʙ",
+          "➣ ᴏᴜᴛᴀʟʟɢᴄ",
+          "➣ ᴏᴜᴛɢʀᴜᴘ",
+          "➣ ᴏᴜᴛɢʀᴏᴜᴘ",
+          "➣ ᴏᴜᴛɢʀᴜʙ",
+          "➣ ᴏᴜᴛɢʀᴏᴜʙ",
+          "➣ ᴏᴜᴛɢᴄ",
+          "➣ ᴏᴜᴛɴᴏꜱᴇᴡᴀ",
+          "➣ ᴘʀᴏᴍᴏᴛᴇᴍᴇ",
+          "➣ ʀᴇꜱᴇᴛ",
+          "➣ ʀᴇꜱᴇᴛʟᴇᴠᴇʟ",
+          "➣ ʀᴇꜱᴇᴛʟɪᴍɪᴛ",
+          "➣ ʀᴇꜱᴇᴛᴍᴏɴᴇʏ",
+          "➣ ʀᴇꜱᴛᴀʀᴛ",
+          "➣ ꜱᴇʟꜰ",
+          "➣ ᴘᴜʙʟɪᴄ",
+          "➣ ꜱᴇᴛʙɪᴏ",
+          "➣ ꜱᴇᴛɴᴀᴍᴇ",
+          "➣ ꜱᴇᴛᴘᴘʙᴏᴛ",
+          "➣ ꜱᴇᴡᴀʙᴏᴛ",
+          "➣ ꜱᴇᴡᴀʙᴏᴛɪᴅ",
+          "➣ ꜱᴛᴏᴘᴊᴀᴅɪʙᴏᴛ",
+          "➣ ᴛᴀᴍʙᴀʜꜱᴇᴡᴀ",
+          "➣ ᴛᴏᴀᴅᴍɪɴ",
+          "➣ ᴛᴏᴛᴀʟꜱᴇᴡᴀ",
+          "➣ ᴏᴜɴʙʟᴀᴄᴋʟɪꜱᴛ",
+          "➣ ᴜɴʙʟᴏᴄᴋ",
+          "➣ ᴜᴘᴅᴀᴛᴇ",
+          "➣ ᴜᴘᴅᴀᴛᴇʙᴀɪʟᴇʏꜱ",
+          "➣ ᴜᴘᴅᴀᴛᴇʙᴀɪʟᴇʏ",
+          "➣ ᴜᴘᴅᴀᴛᴇꜰᴏʀᴄᴇ",
+          "➣ ᴠɪᴇᴡᴄᴏᴅᴇ"
+  ],
+  owner: [
+          "➣ ᴀᴅᴅɢʟᴏʙᴀʟʙᴀᴅᴡᴏʀᴅ",
+          "➣ ᴀᴅᴅʟᴇᴠᴇʟ",
+          "➣ ᴀᴅᴅʟɪᴍɪᴛ",
+          "➣ ᴀᴅᴅᴍᴏɴᴇʏ",
+          "➣ ᴀᴅᴅᴏᴡɴᴇʀ",
+          "➣ ᴀᴅᴅᴘʟᴜɢɪɴ",
+          "➣ ᴀᴅᴅᴘʟᴜɢɪɴꜱ",
+          "➣ ᴀᴅᴅᴘʀᴇᴍ",
+          "➣ ᴀᴅᴅᴘʀᴇᴍɪᴜᴍ",
+          "➣ ᴀᴅᴅʀᴇꜱᴘᴏɴ",
+          "➣ ᴀᴅᴅᴘʀᴇᴍɢʀᴜʙ",
+          "➣ ᴀᴅᴅᴘʀᴇᴍɪᴜᴍɢʀᴜʙ",
+          "➣ ʙᴀᴄᴋᴜᴘ",
+          "➣ ʙʟᴀᴄᴋʟɪꜱᴛ",
+          "➣ ʙʟᴏᴄᴋ",
+          "➣ ʙᴜᴀᴛꜱᴛᴏʀʏ",
+          "➣ ʙᴜᴀᴛꜱᴛᴏʀɪ",
+          "➣ ᴜᴘꜱᴡ",
+          "➣ ᴄʟᴇᴀɴᴅʙ",
+          "➣ ᴄʟᴇᴀʀꜱᴇꜱɪ",
+          "➣ ᴄʟᴇᴀʀᴄʜᴀᴛ",
+          "➣ ᴄʀᴇᴀᴛᴇɢʀᴜᴘ",
+          "➣ ᴄʀᴇᴀᴛᴇɢʀᴏᴜᴘ",
+          "➣ ᴄʀᴇᴀᴛᴇɢᴄ",
+          "➣ ᴄʀᴇᴀᴛᴇɢʀᴜʙ",
+          "➣ ᴄʀᴇᴀᴛᴇɢʀᴏᴜʙ",
+          "➣ ᴅᴇʟɢʟᴏʙᴀʟʙᴀᴅᴡᴏʀᴅ",
+          "➣ ᴅᴇʟᴏᴡɴᴇʀ",
+          "➣ ᴅᴇʟᴘʟᴜɢɪɴ",
+          "➣ ᴅᴇʟᴘʟᴜɢɪɴꜱ",
+          "➣ ᴅᴇʟᴘʀᴇᴍ",
+          "➣ ᴅᴇʟᴘʀᴇᴍɪᴜᴍ",
+          "➣ ᴅᴇʟʀᴇꜱᴘᴏɴ",
+          "➣ ᴅᴇʟᴇᴛᴇʀᴇꜱᴘᴏɴ",
+          "➣ ᴅᴇʟꜱᴇᴡᴀ",
+          "➣ ᴅᴇʟᴇᴛᴇᴊᴀᴅɪʙᴏᴛ",
+          "➣ ᴅᴇʟᴊᴀᴅɪʙᴏᴛ",
+          "➣ ᴅᴇʟᴘʀᴇᴍɢʀᴜʙ",
+          "➣ ᴅᴇʟᴘʀᴇᴍɪᴜᴍɢʀᴜʙ",
+          "➣ ᴅᴇᴍᴏᴛᴇᴍᴇ",
+          "➣ ɢᴄᴛᴀɢ",
+          "➣ ɪɴꜰᴏꜱɪꜱᴛᴇᴍ",
+          "➣ ɪɴꜰᴏꜱʏꜱᴛᴇᴍ",
+          "➣ ɪᴘꜱᴇʀᴠᴇʀ",
+          "➣ ᴊᴀᴅɪʙᴏᴛ",
+          "➣ ᴊᴏɪɴ",
+          "➣ ᴊᴘᴍ",
+          "➣ ᴊᴘᴍᴛᴀɢ",
+          "➣ ʟɪꜱᴛʙʟᴀᴄᴋʟɪꜱᴛ",
+          "➣ ʟɪꜱᴛʙʟᴏᴄᴋ",
+          "➣ ʟɪꜱᴛᴘʀᴇᴍ",
+          "➣ ʟɪꜱᴛᴘʀᴇᴍɪᴜᴍ",
+          "➣ ʟɪꜱᴛʀᴇꜱᴘᴏɴ",
+          "➣ ʟɪꜱᴛꜱᴇᴡᴀ2",
+          "➣ ʟɪꜱᴛꜱᴇᴡᴀ",
+          "➣ ʟɪꜱᴛᴊᴀᴅɪʙᴏᴛ",
+          "➣ ʟɪꜱᴛɴᴏꜱᴇᴡᴀ",
+          "➣ ᴏᴜᴛᴀʟʟɢʀᴜᴘ",
+          "➣ ᴏᴜᴛᴀʟʟɢʀᴏᴜᴘ",
+          "➣ ᴏᴜᴛᴀʟʟɢʀᴜʙ",
+          "➣ ᴏᴜᴛᴀʟʟɢʀᴏᴜʙ",
+          "➣ ᴏᴜᴛᴀʟʟɢᴄ",
+          "➣ ᴏᴜᴛɢʀᴜᴘ",
+          "➣ ᴏᴜᴛɢʀᴏᴜᴘ",
+          "➣ ᴏᴜᴛɢʀᴜʙ",
+          "➣ ᴏᴜᴛɢʀᴏᴜʙ",
+          "➣ ᴏᴜᴛɢᴄ",
+          "➣ ᴏᴜᴛɴᴏꜱᴇᴡᴀ",
+          "➣ ᴘʀᴏᴍᴏᴛᴇᴍᴇ",
+          "➣ ʀᴇꜱᴇᴛ",
+          "➣ ʀᴇꜱᴇᴛʟᴇᴠᴇʟ",
+          "➣ ʀᴇꜱᴇᴛʟɪᴍɪᴛ",
+          "➣ ʀᴇꜱᴇᴛᴍᴏɴᴇʏ",
+          "➣ ʀᴇꜱᴛᴀʀᴛ",
+          "➣ ꜱᴇʟꜰ",
+          "➣ ᴘᴜʙʟɪᴄ",
+          "➣ ꜱᴇᴛʙɪᴏ",
+          "➣ ꜱᴇᴛɴᴀᴍᴇ",
+          "➣ ꜱᴇᴛᴘᴘʙᴏᴛ",
+          "➣ ꜱᴇᴡᴀʙᴏᴛ",
+          "➣ ꜱᴇᴡᴀʙᴏᴛɪᴅ",
+          "➣ ꜱᴛᴏᴘᴊᴀᴅɪʙᴏᴛ",
+          "➣ ᴛᴀᴍʙᴀʜꜱᴇᴡᴀ",
+          "➣ ᴛᴏᴀᴅᴍɪɴ",
+          "➣ ᴛᴏᴛᴀʟꜱᴇᴡᴀ",
+          "➣ ᴜɴʙʟᴀᴄᴋʟɪꜱᴛ",
+          "➣ ᴜɴʙʟᴏᴄᴋ",
+          "➣ ᴜᴘᴅᴀᴛᴇ",
+          "➣ ᴜᴘᴅᴀᴛᴇʙᴀɪʟᴇʏꜱ",
+          "➣ ᴜᴘᴅᴀᴛᴇʙᴀɪʟᴇʏ",
+          "➣ ᴜᴘᴅᴀᴛᴇꜰᴏʀᴄᴇ",
+          "➣ ᴠɪᴇᴡᴄᴏᴅᴇ"
+  ],
+  premium: [
+          "➣ ɢᴇᴛᴘɪᴄ",
+          "➣ ʜᴅᴠɪᴅᴇᴏ",
+          "➣ ʜᴅᴠɪᴅ",
+          "➣ ɪQᴄ",
+          "➣ ɪQᴄ2",
+          "➣ ᴛᴡɪʙʙᴏɴ",
+  ],
+  random: [
+          "➣ ᴀᴇꜱᴛʜᴇᴛɪᴄ",
+          "➣ ᴄᴇᴄᴀɴ",
+          "➣ ᴄᴏɢᴀɴ",
+          "➣ ᴄᴏꜱᴘʟᴀʏ",
+          "➣ ᴅᴀʀᴋᴊᴏᴋᴇ",
+          "➣ ʜᴀᴄᴋᴇʀ",
+          "➣ ᴋᴜᴄɪɴɢ",
+          "➣ ᴍᴇᴍᴇɪɴᴅᴏ",
+          "➣ ᴍᴏᴛɪᴠᴀꜱɪ",
+          "➣ ᴛʜᴀɪʟᴀɴᴅ",
+          "➣ ᴠɪᴇᴛɴᴀᴍ",
+          "➣ ᴡᴀʟʜᴘ",
+          "➣ ᴀɴɪᴍᴇQᴜᴏᴛᴇꜱ",
+          "➣ ʙᴜᴄɪɴQᴜᴏᴛᴇ",
+          "➣ ᴅɪʟᴀɴQᴜᴏᴛᴇ",
+          "➣ ꜰᴀᴋᴛᴀᴜɴɪᴋ",
+          "➣ ᴊᴀᴡᴀQᴜᴏᴛᴇ",
+          "➣ ᴊᴏᴋᴇꜱ",
+          "➣ ᴘᴀɴᴛᴜɴ",
+          "➣ Qᴜᴏᴛᴇ",
+          "➣ Qᴜᴏᴛᴇꜱ",
+          "➣ ʀᴀɴᴅᴏᴍQᴜᴏᴛᴇ"
+  ],
+  store: [
+          "➣ ᴀᴅᴅʟɪꜱᴛ",
+          "➣ ᴀᴅᴅꜱᴛᴏᴄᴋ",
+          "➣ ᴅᴇʟʟɪꜱᴛ",
+          "➣ ᴅᴇʟᴇᴛᴇʟɪꜱᴛ",
+          "➣ ᴅᴇʟʀɪᴡᴀʏᴀᴛ",
+          "➣ ᴅᴇʟꜱᴛᴏᴄᴋ",
+          "➣ ᴅᴏɴᴇ",
+          "➣ ᴅ",
+          "➣ ꜱᴇʟᴇꜱᴀɪ",
+          "➣ ᴅᴏɴᴇᴏʀᴅᴇʀ",
+          "➣ ᴇᴅɪᴛꜱᴛᴏᴄᴋ",
+          "➣ ꜰᴀɪʟ",
+          "➣ ᴋᴜʀᴀɴɢɪꜱᴛᴏᴄᴋ",
+          "➣ ʟɪꜱᴛ",
+          "➣ ʟɪꜱᴛꜱʟɪᴅᴇ",
+          "➣ ʟɪꜱᴛꜱᴛᴏᴄᴋ",
+          "➣ ᴏʀᴅᴇʀ",
+          "➣ ᴘᴀʏ",
+          "➣ ᴘᴇɴᴅɪɴɢ",
+          "➣ ᴘʀᴏꜱᴇꜱ",
+          "➣ ʀᴇɴᴀᴍᴇʟɪꜱᴛ",
+          "➣ ʀᴇꜱᴇᴛʟɪꜱᴛ",
+          "➣ ʀɪᴡᴀʏᴀᴛ",
+          "➣ ʀɪᴡᴀʏᴀᴛʙᴇʟɪ",
+          "➣ ꜱᴇᴛᴅᴏɴᴇ",
+          "➣ ꜱᴇᴛꜰᴀɪʟ",
+          "➣ ꜱᴇᴛʟɪꜱᴛ",
+          "➣ ꜱᴇᴛᴘᴇɴᴅɪɴɢ",
+          "➣ ꜱᴇᴛᴘʀᴏꜱᴇꜱ",
+          "➣ ᴛᴀᴍʙᴀʜꜱᴛᴏᴄᴋ",
+          "➣ ᴛᴏᴘʙᴜʏᴇʀ",
+          "➣ ᴜᴘᴅᴀᴛᴇʟɪꜱᴛ"
+  ],
+  textpro: [
+          "➣ ᴍᴀʀᴠᴇʟ",
+          "➣ ᴘᴏʀɴʜᴜʙ",
+          "➣ 3ᴅʙᴏx",
+          "➣ ʙʟᴀᴄᴋᴘɪɴᴋ",
+          "➣ ʙᴏᴏᴍ",
+          "➣ ɢᴀᴍɪɴɢ",
+          "➣ ᴍᴀɢᴍᴀ",
+          "➣ ᴍᴀᴛʀɪx",
+          "➣ ᴍᴇᴛᴀʟ",
+          "➣ ɴᴇᴏɴ",
+          "➣ ꜱʜᴀᴅᴏᴡ",
+          "➣ ꜱɪɢɴᴀᴛᴜʀᴇ",
+          "➣ ꜱʟɪᴄᴇᴅ",
+          "➣ ꜱɴᴏᴡ",
+          "➣ ᴠᴀʟᴇɴᴛɪɴᴇ",
+          "➣ ᴡɪɴᴛᴇʀ",
+          "➣ ᴡᴏʟꜰ"
+  ],
+  tools: [
+          "➣ ᴄᴇᴋᴅɴꜱ",
+          "➣ ᴄᴇᴋʜᴏꜱᴛ",
+          "➣ ᴄᴇᴋɪᴅɢᴄ",
+          "➣ ᴄᴇᴋᴜꜱᴇʀ",
+          "➣ ɪᴘᴄʜᴇᴄᴋ",
+          "➣ ᴄʜᴇᴄᴋɪᴘ",
+          "➣ ᴄᴇᴋɪᴘ",
+          "➣ ɪᴘᴄʜᴇᴄᴋᴇʀ",
+          "➣ ᴇᴍᴏᴊɪᴍɪx",
+          "➣ ɢᴇᴛ",
+          "➣ ɢɪᴛ",
+          "➣ ɢᴏᴏɢʟᴇ",
+          "➣ ʜᴅ",
+          "➣ ʀᴇᴍɪɴɪ",
+          "➣ ɪᴍᴀɢᴇ",
+          "➣ ɪᴍɢ",
+          "➣ ɢᴏᴏɢʟᴇɪᴍᴀɢᴇ",
+          "➣ ɪɴꜱᴘᴇᴄᴛ",
+          "➣ ɪᴅ",
+          "➣ ʟᴏʀᴇᴍ",
+          "➣ ɴᴏᴡ",
+          "➣ ɴᴜᴍʙᴇʀʙᴏᴛ",
+          "➣ ᴘɪɴɢ",
+          "➣ ᴘɪɴɢ2",
+          "➣ ᴄʀᴇᴀᴛᴇQʀ",
+          "➣ ᴅᴇᴛᴇᴄᴛQʀ",
+          "➣ ʀᴍʙɢ",
+          "➣ ʀᴇᴍᴏᴠᴇʙɢ",
+          "➣ ɴᴏʙɢ",
+          "➣ ʀᴠᴏ",
+          "➣ ꜱꜱᴡᴇʙ",
+          "➣ ᴛᴏᴍᴘ3",
+          "➣ ᴛᴏᴜʀʟ",
+          "➣ ᴛᴏᴜʀʟ2",
+          "➣ ᴛᴏᴠɴ",
+          "➣ ᴛᴏɪᴍɢ",
+          "➣ ᴛᴏᴍ4ᴀ",
+          "➣ ᴛꜱ",
+          "➣ ᴛʀᴀɴꜱʟᴀᴛᴇ",
+          "➣ ᴠᴏɪᴄᴇᴄʜᴀɴɢᴇʀ",
+          "➣ ᴡʜᴏɪꜱ"
+  ]
+};
+
+const listEl = document.getElementById("fiturList");
+const tabBtns = document.querySelectorAll(".tab-btn");
+
+// render default
+renderFitur("admin");
+
+// event listener tab
+tabBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelector(".tab-btn.active")?.classList.remove("active");
+    btn.classList.add("active");
+    renderFitur(btn.dataset.tab);
+  });
+});
+
+function renderFitur(cat) {
+  listEl.innerHTML = "";
+  fiturData[cat].forEach(item => {
+    const div = document.createElement("div");
+    div.className = "fitur-item";
+    div.textContent = item;
+    listEl.appendChild(div);
+  });
+}
   
   </script>
 </body>
